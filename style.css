@@ -5,7 +5,7 @@
     color: #fff;
     text-align: center;
     padding: 150px 0;
-    position: relative; /* Add position relative */
+    position: relative;
 }
 
 #hero .container {
@@ -16,11 +16,11 @@
 }
 
 #hero .hero-content {
-    position: absolute; /* Position the content absolutely */
-    top: 50%; /* Position it vertically centered */
-    left: 50%; /* Position it horizontally centered */
-    transform: translate(-50%, -50%); /* Center it precisely */
-    width: 100%; /* Take up full width */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
 }
 
 #hero h1 {
@@ -134,4 +134,27 @@ header .container {
 header .logo {
     color: white;
     font-size: 2em;
+}
+
+#about-us, #contact {
+    padding: 50px 0;
+    text-align: center;
+}
+
+#about-us .container, #contact .container, footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+#about-us h2, #contact h2, footer p {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
 }
