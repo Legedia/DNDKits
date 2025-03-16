@@ -1,28 +1,22 @@
-/* Reset some default styles */
-body, h1, h2, h3, p, ul, li {
-    margin: 0;
-    padding: 0;
-}
-
 body {
     font-family: 'Roboto', sans-serif;
-    line-height: 1.6;
-    color: white;
-    background-image: url('test.jpg'); /* Or your actual image */
+    margin: 0;
+    padding: 0;
+    background-image: url('background.jpg'); /* Replace with your image path */
     background-size: cover;
-    background-position: center;
     background-repeat: no-repeat;
-    min-height: 100vh; /* Ensure full height */
+    background-attachment: fixed;
+    color: white; /* Default text color on the background */
 }
 
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
 }
 
 header {
-    background-color: #f0f0f0;
+    background: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
     padding: 10px 0;
 }
 
@@ -32,342 +26,152 @@ header .container {
     align-items: center;
 }
 
-nav ul {
+header nav ul {
     list-style: none;
+    margin: 0;
+    padding: 0;
     display: flex;
 }
 
-nav ul li {
+header nav ul li {
     margin-left: 20px;
 }
 
-nav ul li a {
+header nav ul li a {
+    color: white;
     text-decoration: none;
-    color: black;
-    font-weight: bold;
 }
 
-nav ul li a:hover {
-    color: red;
+header nav ul li a:hover {
+    text-decoration: underline;
 }
 
 #hero {
+    background: rgba(0, 0, 0, 0.5); /* Slightly less opaque */
+    padding: 50px 0;
     text-align: center;
-    padding: 100px 0;
-    position: relative;
 }
 
-#hero h1, #hero p {
-    font-size: 3.5em;
-    margin-bottom: 20px;
-    line-height: 1.2;
-    color: white;
-    text-shadow: 2px 2px 2px #000,
-                 4px 4px 4px #222,
-                 6px 6px 6px #444,
-                 8px 8px 8px #666,
-                 0 0 10px rgba(255, 255, 255, 0.2),
-                 0 -1px 0 rgba(255, 255, 255, 0.3);
+#hero h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
 }
 
 #hero p {
     font-size: 1.2em;
-    margin-bottom: 30px;
-}
-
-#featured-kits {
-    padding: 50px 0;
-    text-align: center;
-}
-
-#featured-kits .kit {
-    display: inline-block;
-    width: 300px;
-    margin: 20px;
-    vertical-align: top;
-}
-
-#featured-kits .kit img {
-    width: 100%;
-    height: auto;
-    margin-bottom: 10px;
-}
-
-#featured-kits .kit h3 {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-    color: white;
-}
-
-#featured-kits .kit p {
     margin-bottom: 20px;
-    color: white;
-}
-
-#about-us, #contact, #blog {
-    padding: 50px 0;
-    text-align: center;
-}
-
-#blog .blog-post {
-    margin-bottom: 30px;
-}
-
-#blog .blog-post h3 {
-    margin-bottom: 10px;
-    color: white;
-}
-
-#blog .blog-post .post-date {
-    font-style: italic;
-    color: #ccc;
-}
-
-footer {
-    color: white; /* Removed background-color: #333; */
-    text-align: center;
-    padding: 20px 0;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-/* Product Category Pages */
-.product-category {
-    padding: 50px 0;
-    text-align: center;
-}
-
-.product {
-    display: inline-block;
-    width: 300px;
-    margin: 20px;
-    vertical-align: top;
-}
-
-.product img {
-    width: 100%;
-    height: auto;
-    margin-bottom: 10px;
-}
-
-product h3 {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-    color: white;
-}
-
-product p {
-    margin-bottom: 20px;
-    color: white;
-}
-
-/* Blog Post Content Page */
-.blog-post-content {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    text-align: left;
-    color: white;
-}
-
-.blog-post-content h1 {
-    font-size: 2.5em;
-    margin-bottom: 20px;
-    color: white;
-}
-
-.blog-post-content p {
-    font-size: 1.1em;
-    line-height: 1.6;
-    margin-bottom: 20px;
-}
-
-.blog-post-content ul{
-    margin-bottom: 20px;
-    padding-left: 20px;
-}
-
-a {
-    color: red;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-nav ul li a {
-    color: black;
-}
-
-#hero .hero-content {
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    text-align: center;
-}
-
-#rollButton {
-    padding: 10px 20px;
-    font-size: 1.2em;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-#rollButton:hover {
-    background-color: #0056b3;
-}
-
-#rollResult {
-    font-size: 1.5em;
-    margin-top: 10px;
-    font-weight: bold;
-    color: #ffcc00; /* Gold color */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-}
-
-#sidesInput {
-    padding: 5px 10px;
-    font-size: 1em;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    margin-right: 10px;
 }
 
 #calculator-box {
-    border: 2px solid #ccc;
+    background: rgba(0, 0, 0, 0.7);
     padding: 20px;
-    width: 300px;
-    text-align: left;
-    margin-top: 20px; /* Adjust as needed */
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-}
-
-#calculator-box h2 {
-    margin-bottom: 10px;
-    color: white;
-}
-
-#calculator-box p {
-    margin-bottom: 10px;
-    color: white;
-}
-
-#calculator-box ul {
-    margin-bottom: 10px;
-    color: white;
-}
-
-#stat-calculator {
-    margin-top: 10px;
-}
-
-#stat-calculator label {
-    display: inline-block;
-    width: 100px;
-    margin-bottom: 5px;
-    color: white;
-}
-
-#stat-calculator input {
-    width: 50px;
-    padding: 5px;
-    margin-right: 10px;
-}
-
-#stat-calculator span {
-    font-weight: bold;
-    color: white;
+    margin: 20px auto;
+    width: 50%;
+    border-radius: 8px;
 }
 
 #calculator-select {
-    padding: 5px 10px;
-    font-size: 1em;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    margin-bottom: 10px;
     width: 100%;
-    position: relative;
-    z-index: 10;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 4px;
+    background-color: #333;
+    color: white;
+    border: 1px solid #555;
 }
 
 .calculator-container {
-    display: none;
-    text-align: center;
-    widthwidth: 300px; /* or whatever width you want */
-    margin-top: 20px; /* Adjust as needed */
-    margin-left: 20px; /* Adjust as needed */
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    margin: 20px auto;
+    width: 70%;
+    border-radius: 8px;
+    display: none; /* Initially hide all calculators */
 }
 
-/* Add specific positioning for each calculator */
-#dice-roller {
-    /* Adjust positioning as needed */
+.calculator-container h3 {
+    margin-top: 0;
 }
 
-#stat-calculator {
-    /* Adjust positioning as needed */
-}
-
-#cr-calculator {
-    /* Adjust positioning as needed */
-}
-
-#treasure-generator {
-    /* Adjust positioning as needed */
-}
-
-#map-generator {
-    /* Adjust positioning as needed */
-}
-
-#treasure-result-container {
-    margin-top: 20px; /* Add space below the button */
-    border: 1px solid #ccc;
-    padding: 10px;
+.calculator-container label {
+    display: inline-block;
+    width: 150px;
     text-align: left;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 5px;
-}
-
-#treasureResults p {
     margin-bottom: 5px;
 }
 
-#treasureResults ul {
-    list-style-type: disc;
-    margin-left: 20px;
+.calculator-container input[type="number"],
+.calculator-container select {
+    width: calc(100% - 160px);
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    background-color: #333;
+    color: white;
+    border: 1px solid #555;
+}
+
+.calculator-container button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.calculator-container button:hover {
+    background-color: #0056b3;
+}
+
+footer {
+    background: rgba(0, 0, 0, 0.7);
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    width: 100%;
+    bottom: 0;
+}
+
+footer p {
+    margin: 0;
+}
+
+.input-group {
+    margin-bottom: 10px;
 }
 
 #mapCanvas {
-    width: 400px;
-    height: 400px;
+    background-color: #111; /* Dark background for the canvas */
+    border: 1px solid #555;
+    margin-top: 10px;
+    width: 500px; /* Adjust as needed */
+    height: 500px; /* Adjust as needed */
+}
+
+#mapKey {
     border: 1px solid #ccc;
-    margin-top: 20px;
-    background-color: #eee;
+    padding: 10px;
+    margin-top: 10px;
+    width: 150px;
+    text-align: left;
+    background-color: rgba(0, 0, 0, 0.7); /* Add background color for better visibility */
+    border-radius: 5px; /* Round the corners */
 }
 
-#map-generator {
-    position: relative;
-    left: 350px;
-    width: 500px;
-}
-
-#map-generator .input-group{
+.key-item {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    align-items: center;
     margin-bottom: 5px;
 }
 
-#map-generator .input-group label{
-    width: 150px;
-    text-align: left;
+.key-color {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    border: 1px solid #555; /* Add a border to the color squares */
+}
+
+.key-label {
+    color: white;
 }
