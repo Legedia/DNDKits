@@ -289,12 +289,70 @@
         }
 
         function generateMap(mapSize, terrainType) {
-            // Logic to generate the map using Canvas or a library
-            // ...
-            const mapCanvas = document.getElementById('mapCanvas');
-            mapCanvas.innerHTML = "<p>Map is being generated...</p>"; //placeholder.
-            console.log("Map Size:", mapSize, "Terrain Type:", terrainType);
+    const mapCanvas = document.getElementById('mapCanvas');
+    const ctx = mapCanvas.getContext('2d');
+
+    // Clear the canvas
+    ctx.clearRect(0, 0, mapCanvas.width, mapCanvas.height);
+
+    // Calculate tile size
+    const tileSize = mapCanvas.width / mapSize;
+
+    // Generate map data
+    const mapData = generateMapData(mapSize, terrainType);
+
+    // Draw tiles
+    drawMap(ctx, mapData, tileSize, terrainType);
+}
+
+function generateMapData(mapSize, terrainType) {
+    const mapData = [];
+    for (let y = 0; y < mapSize; y++) {
+        const row = [];
+        for (let x = 0; x < mapSize; x++) {
+            // Basic random terrain generation (you can improve this)
+            row.push(Math.random() < 0.8 ? terrainType : 'rock'); // Example: 80% terrain, 20% rock
         }
+        mapData.push(row);
+    }
+    return mapData;
+}
+
+function drawMap(ctx, mapData, tileSize, terrainType) {
+    for (let y = 0; y < mapData.length; y++) {
+        for (let x = 0; x < mapData[y].length; x++) {
+            const tile = mapData[y][x];
+            let color = '';
+
+            switch (tile) {
+                case 'grassland':
+                    color = 'green';
+                    break;
+                case 'forest':
+                    color = 'darkgreen';
+                    break;
+                case 'desert':
+                    color = 'yellow';
+                    break;
+                case 'mountain':
+                    color = 'gray';
+                    break;
+                case 'rock':
+                    color = 'darkgray'
+                    break;
+                default:
+                    color = 'lightgray';
+                    break;
+            }
+
+            ctx.fillStyle = color;
+            ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
+            ctx.strokeStyle = '#ccc'; // Optional: Add grid lines
+            ctx.strokeRect(x * tileSize, y * tileSize, tileSize, tileSize); // Optional: Add grid lines
+
+        }
+    }
+}
     </script>
 </body>
 </html>
