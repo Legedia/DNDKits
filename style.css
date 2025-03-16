@@ -54,7 +54,7 @@ nav ul li a:hover {
 #hero {
     text-align: center;
     padding: 100px 0;
-    position: relative; /* Added to allow absolute positioning of calculator box */
+    position: relative;
 }
 
 #hero h1, #hero p {
@@ -123,14 +123,14 @@ nav ul li a:hover {
     color: #ccc;
 }
 
-ffooter {
+footer {
     color: white;
     text-align: center;
     padding: 20px 0;
-    position: fixed; /* Keep it fixed */
-    bottom: 0; /* Align to the bottom */
-    width: 100%; /* Full width */
-    background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent background */
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 /* Product Category Pages */
@@ -164,7 +164,6 @@ product p {
 }
 
 /* Blog Post Content Page */
-
 .blog-post-content {
     max-width: 800px;
     margin: 20px auto;
@@ -203,11 +202,12 @@ nav ul li a {
 }
 
 #hero .hero-content {
-    position: absolute;
+    position: relative;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
+    text-align: center;
 }
 
 #rollButton {
@@ -229,7 +229,7 @@ nav ul li a {
     font-size: 1.5em;
     margin-top: 10px;
     font-weight: bold;
-    color: #ffcc00; /* Gold color */
+    color: #ffcc00;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
@@ -246,11 +246,11 @@ nav ul li a {
     padding: 20px;
     width: 300px;
     text-align: left;
-    margin: 20px auto; /* Center horizontally */
+    margin: 20px auto;
     position: absolute;
     top: 50%;
-    left: 20px; /* Position to the left */
-    transform: translateY(-50%); /* Center vertically */
+    left: 20px;
+    transform: translateY(-50%);
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
 }
@@ -301,17 +301,15 @@ nav ul li a {
     width: 100%;
 }
 
-.calculator-container {
+.calculator-container{
     display: none; /* Initially hide all calculators */
     text-align: center; /* Center calculators */
 }
 
 #hero .calculator-container {
-    position: relative;
-    top: 55%; /* Adjust this value as needed */
+    position: relative; /* Allow absolute positioning of elements inside */
+    top: 50%;
     transform: translateY(-50%);
-    margin: 0 auto;
-    max-width: 500px;
 }
 
 #dice-roller {
