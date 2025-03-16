@@ -317,12 +317,30 @@ function generateMapData(mapSize, terrainType) {
     }
     return mapData;
 }
+function generateMapData(mapSize, terrainType) {
+    console.log("mapSize in generateMapData:", mapSize);
+    const mapData = [];
+    for (let y = 0; y < mapSize; y++) {
+        const row = [];
+        for (let x = 0; x < mapSize; x++) {
+            row.push(Math.random() < 0.8 ? terrainType : 'rock');
+        }
+        mapData.push(row);
+    }
+    console.log("mapData after generation:", mapData);
+    return mapData;
+}
 
 function drawMap(ctx, mapData, tileSize, terrainType) {
+    console.log("ctx in drawMap:", ctx);
+    console.log("tileSize in drawMap:", tileSize);
+
     for (let y = 0; y < mapData.length; y++) {
         for (let x = 0; x < mapData[y].length; x++) {
             const tile = mapData[y][x];
             let color = '';
+
+            console.log("tile in drawMap:", tile);
 
             switch (tile) {
                 case 'grassland':
@@ -338,18 +356,19 @@ function drawMap(ctx, mapData, tileSize, terrainType) {
                     color = 'gray';
                     break;
                 case 'rock':
-                    color = 'darkgray'
+                    color = 'darkgray';
                     break;
                 default:
                     color = 'lightgray';
                     break;
             }
 
+            console.log("color in drawMap:", color);
+
             ctx.fillStyle = color;
             ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
-            ctx.strokeStyle = '#ccc'; // Optional: Add grid lines
-            ctx.strokeRect(x * tileSize, y * tileSize, tileSize, tileSize); // Optional: Add grid lines
-
+            ctx.strokeStyle = '#ccc';
+            ctx.strokeRect(x * tileSize, y * tileSize, tileSize, tileSize);
         }
     }
 }
