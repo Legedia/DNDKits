@@ -2,7 +2,7 @@ body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-    background-image: url('background.jpg'); /* Replace with your image path */
+    background-image: url('test.jpg'); /* Replace with your image path */
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -174,4 +174,4 @@ footer p {
 
 .key-label {
     color: white;
-}
+}   
