@@ -153,12 +153,35 @@
                 </div>
                 <button id="generateMap">Generate Map</button>
                 <canvas id="mapCanvas"></canvas>
+                <aside id="mapKey">
+                    <h3>Map Key</h3>
+                    <div class="key-item">
+                        <div class="key-color" style="background-color: green;"></div>
+                        <span class="key-label">Grassland</span>
+                    </div>
+                    <div class="key-item">
+                        <div class="key-color" style="background-color: darkgreen;"></div>
+                        <span class="key-label">Forest</span>
+                    </div>
+                    <div class="key-item">
+                        <div class="key-color" style="background-color: yellow;"></div>
+                        <span class="key-label">Desert</span>
+                    </div>
+                    <div class="key-item">
+                        <div class="key-color" style="background-color: gray;"></div>
+                        <span class="key-label">Mountain</span>
+                    </div>
+                    <div class="key-item">
+                        <div class="key-color" style="background-color: darkgray;"></div>
+                        <span class="key-label">Rock</span>
+                    </div>
+                </aside>
             </div>
         </div>
     </section>
     <footer>
         <div class="container">
-            <p>&copy; 2023 D&D Homebrew Kits. All rights reserved.</p>
+            <p>&copy;2023 D&D Homebrew Kits. All rights reserved.</p>
         </div>
     </footer>
     <script>
@@ -226,12 +249,9 @@
             const offensiveCR = calculateOffensiveCR(dpr, attackBonus, saveDC);
             const finalCR = (defensiveCR + offensiveCR) / 2;
 
-            document.getElementById('defensiveCR').textContent = defensiveCR;
-            document.getElementById('offensiveCR').textContent = offensiveCR;
-            document.getElementById('finalCR').textContent = finalCR;
-
             document.getElementById('defensiveTable').textContent = getDefensiveTable();
             document.getElementById('offensiveTable').textContent = getOffensiveTable();
+            document.getElementById('finalCR').textContent = finalCR;
 
             document.getElementById('crTables').style.display = 'block'; // Show CR tables
         });
@@ -288,139 +308,92 @@
         }
 
         function generateMap(mapSize, terrainType) {
-    const mapCanvas = document.getElementById('mapCanvas');
-    const ctx = mapCanvas.getContext('2d');
+            console.log("generateMap called with mapSize:", mapSize, "terrainType:", terrainType);
 
-    // Clear the canvas
-    ctx.clearRect(0, 0, mapCanvas.width, mapCanvas.height);
+            const mapCanvas = document.getElementById('mapCanvas');
+            const ctx = mapCanvas.getContext('2d');
 
-    // Calculate tile size
-    const tileSize = mapCanvas.width / mapSize;
-
-    // Generate map data
-    const mapData = generateMapData(mapSize, terrainType);
-
-    // Draw tiles
-    drawMap(ctx, mapData, tileSize, terrainType);
-}
-
-function generateMapData(mapSize, terrainType) {
-    const mapData = [];
-    for (let y = 0; y < mapSize; y++) {
-        const row = [];
-        for (let x = 0; x < mapSize; x++) {
-            // Basic random terrain generation (you can improve this)
-            row.push(Math.random() < 0.8 ? terrainType : 'rock'); // Example: 80% terrain, 20% rock
-        }
-        mapData.push(row);
-    }
-    return mapData;
-}
-function generateMap(mapSize, terrainType) {
-    console.log("generateMap called with mapSize:", mapSize, "terrainType:", terrainType);
-
-    const mapCanvas = document.getElementById('mapCanvas');
-    const ctx = mapCanvas.getContext('2d');
-
-    if (!ctx) {
-        console.error("Canvas context is null!");
-        return;
-    }
-
-    // Simplified test: Draw a red rectangle
-    ctx.fillStyle = "red";
-    ctx.fillRect(0, 0, mapCanvas.width, mapCanvas.height);
-
-    console.log("Canvas width:", mapCanvas.width, "Canvas height:", mapCanvas.height);
-}
-function generateMap(mapSize, terrainType) {
-    console.log("generateMap called with mapSize:", mapSize, "terrainType:", terrainType);
-
-    const mapCanvas = document.getElementById('mapCanvas');
-    const ctx = mapCanvas.getContext('2d');
-
-    if (!ctx) {
-        console.error("Canvas context is null!");
-        return;
-    }
-
-    // Clear the canvas
-    ctx.clearRect(0, 0, mapCanvas.width, mapCanvas.height);
-
-    // Calculate tile size
-    const tileSize = mapCanvas.width / mapSize;
-    console.log("tileSize:", tileSize);
-
-    // Generate map data
-    const mapData = generateMapData(mapSize, terrainType);
-    console.log("mapData:", mapData);
-
-    // Draw tiles
-    drawMap(ctx, mapData, tileSize, terrainType);
-}
-
-function generateMapData(mapSize, terrainType) {
-    console.log("generateMapData called with mapSize:", mapSize, "terrainType:", terrainType);
-
-    const mapData = [];
-    for (let y = 0; y < mapSize; y++) {
-        const row = [];
-        for (let x = 0; x < mapSize; x++) {
-            row.push(Math.random() < 0.8 ? terrainType : 'rock');
-        }
-        mapData.push(row);
-    }
-
-    console.log("mapData after generation:", mapData);
-    return mapData;
-}
-
-function drawMap(ctx, mapData, tileSize, terrainType) {
-    console.log("drawMap called with mapData:", mapData, "tileSize:", tileSize, "terrainType:", terrainType);
-
-    if (!ctx) {
-        console.error("Canvas context is null in drawMap!");
-        return;
-    }
-
-    for (let y = 0; y < mapData.length; y++) {
-        for (let x = 0; x < mapData[y].length; x++) {
-            const tile = mapData[y][x];
-            let color = '';
-
-            console.log("tile in drawMap:", tile);
-
-            switch (tile) {
-                case 'grassland':
-                    color = 'green';
-                    break;
-                case 'forest':
-                    color = 'darkgreen';
-                    break;
-                case 'desert':
-                    color = 'yellow';
-                    break;
-                case 'mountain':
-                    color = 'gray';
-                    break;
-                case 'rock':
-                    color = 'darkgray';
-                    break;
-                default:
-                    color = 'lightgray';
-                    break;
+            if (!ctx) {
+                console.error("Canvas context is null!");
+                return;
             }
 
-            console.log("color in drawMap:", color);
+            // Clear the canvas
+            ctx.clearRect(0, 0, mapCanvas.width, mapCanvas.height);
 
-            ctx.fillStyle = color;
-            ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
-            ctx.strokeStyle = '#ccc';
-            ctx.strokeRect(x * tileSize, y * tileSize, tileSize, tileSize);
+            // Calculate tile size
+            const tileSize = mapCanvas.width / mapSize;
+            console.log("tileSize:", tileSize);
+
+            // Generate map data
+            const mapData = generateMapData(mapSize, terrainType);
+            console.log("mapData:", mapData);
+
+            // Draw tiles
+            drawMap(ctx, mapData, tileSize, terrainType);
         }
-    }
-}
 
+        function generateMapData(mapSize, terrainType) {
+            console.log("generateMapData called with mapSize:", mapSize, "terrainType:", terrainType);
+
+            const mapData = [];
+            for (let y = 0; y < mapSize; y++) {
+                const row = [];
+                for (let x = 0; x < mapSize; x++) {
+                    row.push(Math.random() < 0.8 ? terrainType : 'rock');
+                }
+                mapData.push(row);
+            }
+
+            console.log("mapData after generation:", mapData);
+            return mapData;
+        }
+
+        function drawMap(ctx, mapData, tileSize, terrainType) {
+            console.log("drawMap called with mapData:", mapData, "tileSize:", tileSize, "terrainType:", terrainType);
+
+            if (!ctx) {
+                console.error("Canvas context is null in drawMap!");
+                return;
+            }
+
+            for (let y = 0; y < mapData.length; y++) {
+                for (let x = 0; x < mapData[y].length; x++) {
+                    const tile = mapData[y][x];
+                    let color = '';
+
+                    console.log("tile in drawMap:", tile);
+
+                    switch (tile) {
+                        case 'grassland':
+                            color = 'green';
+                            break;
+                        case 'forest':
+                            color = 'darkgreen';
+                            break;
+                        case 'desert':
+                            color = 'yellow';
+                            break;
+                        case 'mountain':
+                            color = 'gray';
+                            break;
+                        case 'rock':
+                            color = 'darkgray';
+                            break;
+                        default:
+                            color = 'lightgray';
+                            break;
+                    }
+
+                    console.log("color in drawMap:", color);
+
+                    ctx.fillStyle = color;
+                    ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
+                    ctx.strokeStyle = '#ccc';
+                    ctx.strokeRect(x * tileSize, y * tileSize, tileSize, tileSize);
+                }
+            }
+        }
     </script>
 </body>
 </html>
