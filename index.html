@@ -496,4 +496,175 @@
                         <ul id="treasureList"></ul>
                     </div>
                 </div>
-                <div id="map-generator
+                <div id="map-generatorUrban</option>
+                </select>
+            </div>
+            <button id="generateTreasure">Generate Treasure</button>
+            <div id="treasureResults">
+                <p>Treasure:</p>
+                <ul id="treasureList"></ul>
+            </div>
+        </div>
+        <div id="map-generator" class="calculator-container">
+            <h3>Map Generator (Beta)</h3>
+            <div class="input-group">
+                <label for="mapSize">Map Size (Tiles):</label>
+                <input type="number" id="mapSize" value="20">
+            </div>
+            <div class="input-group">
+                <label for="terrainType">Terrain Type:</label>
+                <select id="terrainType">
+                    <option value="grassland">Grassland</option>
+                    <option value="forest">Forest</option>
+                    <option value="desert">Desert</option>
+                    <option value="mountain">Mountain</option>
+                </select>
+            </div>
+            <button id="generateMap">Generate Map</button>
+            <div id="mapCanvas">
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+<footer>
+<div class="container">
+    <p>&copy; 2023 D&D Homebrew Kits. All rights reserved.</p>
+</div>
+</footer>
+<script>
+const rollButton = document.getElementById('rollButton');
+const rollResult = document.getElementById('rollResult');
+const sidesInput = document.getElementById('sidesInput');
+
+rollButton.addEventListener('click', () => {
+    const sides = parseInt(sidesInput.value);
+    if (isNaN(sides) || sides < 1) {
+        alert('Please enter a valid number of sides.');
+        return;
+    }
+    const result = Math.floor(Math.random() * sides) + 1;
+    rollResult.textContent = `You rolled: ${result}`;
+    rollButton.style.backgroundColor = '#555'; // Visual feedback
+    setTimeout(() => {
+        rollButton.style.backgroundColor = '#007bff'; // Reset color
+    }, 200);
+});
+
+const stats = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
+
+stats.forEach(stat => {
+    const input = document.getElementById(stat);
+    const mod = document.getElementById(stat + 'Mod');
+
+    input.addEventListener('input', () => {
+        const score = parseInt(input.value);
+        const modifier = Math.floor((score - 10) / 2);
+        mod.textContent = `(${modifier >= 0 ? '+' : ''}${modifier})`;
+    });
+});
+
+const calculatorSelect = document.getElementById('calculator-select');
+const calculators = document.querySelectorAll('.calculator-container');
+
+calculatorSelect.addEventListener('change', () => {
+    const selectedCalculatorId = calculatorSelect.value;
+    calculators.forEach(calc => {
+        calc.style.display = 'none'; // Hide all calculators
+    });
+
+    if (selectedCalculatorId) {
+        document.getElementById(selectedCalculatorId).style.display = 'block'; // Show the selected calculator
+
+        //Add this section to prevent clicks inside the map generator from stoping the dropdown.
+        if(selectedCalculatorId === "map-generator"){
+            document.getElementById(selectedCalculatorId).addEventListener('click', function(event){
+                event.stopPropagation();
+            })
+        }
+    }
+});
+
+// CR Calculator Logic
+document.getElementById('calculateCR').addEventListener('click', function() {
+    const hp = parseInt(document.getElementById('hp').value);
+    const ac = parseInt(document.getElementById('ac').value);
+    const dpr = parseInt(document.getElementById('dpr').value);
+    const attackBonus = parseInt(document.getElementById('attackBonus').value);
+    const saveDC = parseInt(document.getElementById('saveDC').value);
+
+    const defensiveCR = calculateDefensiveCR(hp, ac);
+    const offensiveCR = calculateOffensiveCR(dpr, attackBonus, saveDC);
+    const finalCR = (defensiveCR + offensiveCR) / 2;
+
+    document.getElementById('defensiveCR').textContent = defensiveCR;
+    document.getElementById('offensiveCR').textContent = offensiveCR;
+    document.getElementById('finalCR').textContent = finalCR;
+
+    document.getElementById('defensiveTable').textContent = getDefensiveTable();
+    document.getElementById('offensiveTable').textContent = getOffensiveTable();
+
+    document.getElementById('crTables').style.display = 'block'; // Show CR tables
+});
+
+// Treasure Generator Logic
+document.getElementById('generateTreasure').addEventListener('click', function() {
+    const partyLevel = parseInt(document.getElementById('partyLevel').value);
+    const encounterCR = parseInt(document.getElementById('encounterCR').value);
+    const location = document.getElementById('location').value;
+
+    const treasure = generateTreasure(partyLevel, encounterCR, location);
+
+    const treasureList = document.getElementById('treasureList');
+    treasureList.innerHTML = '';
+    treasure.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        treasureList.appendChild(li);
+    });
+});
+
+// Map Generator Logic
+document.getElementById('generateMap').addEventListener('click', function() {
+    const mapSize = parseInt(document.getElementById('mapSize').value);
+    const terrainType = document.getElementById('terrainType').value;
+
+    generateMap(mapSize, terrainType);
+});
+
+// Helper Functions (to be implemented)
+function calculateDefensiveCR(hp, ac) {
+    // Logic to calculate defensive CR based on DMG tables
+    return "Defensive CR Calculated"; // Placeholder
+}
+
+function calculateOffensiveCR(dpr, attackBonus, saveDC) {
+    // Logic to calculate offensive CR based on DMG tables
+    return "Offensive CR Calculated"; // Placeholder
+}
+
+function generateTreasure(partyLevel, encounterCR, location) {
+    // Logic to generate treasure based on DMG tables and random generation
+    return ["Treasure Item 1", "Treasure Item 2"]; // Placeholder
+}
+
+function getDefensiveTable(){
+    //logic to get the defensive table data.
+    return "Defensive Table Data"; //Placeholder
+}
+
+function getOffensiveTable(){
+    //logic to get the defensive table data.
+    return "Offensive Table Data"; //Placeholder
+}
+
+function generateMap(mapSize, terrainType) {
+    // Logic to generate the map using Canvas or a library
+    // ...
+    const mapCanvas = document.getElementById('mapCanvas');
+    mapCanvas.innerHTML = "<p>Map is being generated...</p>"; //placeholder.
+    console.log("Map Size:", mapSize, "Terrain Type:", terrainType);
+}
+</script>
+</body>
+</html>
