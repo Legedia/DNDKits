@@ -7,7 +7,7 @@ body, h1, h2, h3, p, ul, li {
 body {
     font-family: 'Roboto', sans-serif;
     line-height: 1.6;
-    color: #333;
+    color: white; /* Changed to white */
 }
 
 .container {
@@ -38,7 +38,7 @@ nav ul li {
 
 nav ul li a {
     text-decoration: none;
-    color: #333;
+    color: white; /* Changed to white */
     font-weight: bold;
 }
 
@@ -93,10 +93,12 @@ body .hero-background #hero .btn {
 #featured-kits .kit h3 {
     font-size: 1.5em;
     margin-bottom: 10px;
+    color: white; /* Changed to white */
 }
 
 #featured-kits .kit p {
     margin-bottom: 20px;
+    color: white; /* Changed to white */
 }
 
 #about-us, #contact, #blog {
@@ -110,16 +112,17 @@ body .hero-background #hero .btn {
 
 #blog .blog-post h3 {
     margin-bottom: 10px;
+    color: white; /* Changed to white */
 }
 
 #blog .blog-post .post-date {
     font-style: italic;
-    color: #777;
+    color: #ccc; /* Lightened post date */
 }
 
 footer {
     background-color: #333;
-    color: #fff;
+    color: white; /* Changed to white */
     text-align: center;
     padding: 20px 0;
 }
@@ -145,10 +148,12 @@ footer {
 .product h3 {
     font-size: 1.5em;
     margin-bottom: 10px;
+    color: white; /* Changed to white */
 }
 
 .product p {
     margin-bottom: 20px;
+    color: white; /* Changed to white */
 }
 
 .blog-post-content {
@@ -156,11 +161,13 @@ footer {
     margin: 20px auto;
     padding: 20px;
     text-align: left;
+    color: white; /* Changed to white */
 }
 
 .blog-post-content h1 {
     font-size: 2.5em;
     margin-bottom: 20px;
+    color: white; /* Changed to white */
 }
 
 .blog-post-content p {
@@ -179,4 +186,20 @@ footer {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+.hero-background::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3); /* Adjust opacity as needed */
+}
+
+/* Ensure content is above the overlay */
+.hero-background > * {
+    position: relative;
+    z-index: 1;
 }
