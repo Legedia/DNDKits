@@ -458,129 +458,131 @@
                     <option value="map-generator">Map Generator</option>
                 </select>
             </div>
-            <div id="dice-roller" class="calculator-container">
-                <label for="sidesInput">Enter sides:</label>
-                <input type="number" id="sidesInput" value="20" min="1">
-                <button id="rollButton">Roll Dice</button>
-                <p id="rollResult"></p>
-            </div>
-            <div id="stat-calculator" class="calculator-container">
-                <h3>Character Stat Calculator</h3>
-                <label for="str">Strength:</label>
-                <input type="number" id="str" value="10">
-                <span id="strMod"></span><br>
-                <label for="dex">Dexterity:</label>
-                <input type="number" id="dex" value="10">
-                <span id="dexMod"></span><br>
-                <label for="con">Constitution:</label>
-                <input type="number" id="con" value="10">
-                <span id="conMod"></span><br>
-                <label for="int">Intelligence:</label>
-                <input type="number" id="int" value="10">
-                <span id="intMod"></span><br>
-                <label for="wis">Wisdom:</label>
-                <input type="number" id="wis" value="10">
-                <span id="wisMod"></span><br>
-                <label for="cha">Charisma:</label>
-                <input type="number" id="cha" value="10">
-                <span id="chaMod"></span><br>
-            </div>
-            <div id="cr-calculator" class="calculator-container">
-                <h3>Challenge Rating (CR) Calculator</h3>
-                <div class="input-group">
-                    <label for="hp">Hit Points (HP):</label>
-                    <input type="number" id="hp" min="1" value="50">
+            <div id="calculator-area">
+                <div id="dice-roller" class="calculator-container">
+                    <label for="sidesInput">Enter sides:</label>
+                    <input type="number" id="sidesInput" value="20" min="1">
+                    <button id="rollButton">Roll Dice</button>
+                    <p id="rollResult"></p>
                 </div>
-                <div class="input-group">
-                    <label for="ac">Armor Class (AC):</label>
-                    <input type="number" id="ac" value="15">
+                <div id="stat-calculator" class="calculator-container">
+                    <h3>Character Stat Calculator</h3>
+                    <label for="str">Strength:</label>
+                    <input type="number" id="str" value="10">
+                    <span id="strMod"></span><br>
+                    <label for="dex">Dexterity:</label>
+                    <input type="number" id="dex" value="10">
+                    <span id="dexMod"></span><br>
+                    <label for="con">Constitution:</label>
+                    <input type="number" id="con" value="10">
+                    <span id="conMod"></span><br>
+                    <label for="int">Intelligence:</label>
+                    <input type="number" id="int" value="10">
+                    <span id="intMod"></span><br>
+                    <label for="wis">Wisdom:</label>
+                    <input type="number" id="wis" value="10">
+                    <span id="wisMod"></span><br>
+                    <label for="cha">Charisma:</label>
+                    <input type="number" id="cha" value="10">
+                    <span id="chaMod"></span><br>
                 </div>
-                <div class="input-group">
-                    <label for="dpr">Average Damage Per Round (DPR):</label>
-                    <input type="number" id="dpr" min="1" value="15">
-                </div>
-                <div class="input-group">
-                    <label for="attackBonus">Attack Bonus:</label>
-                    <input type="number" id="attackBonus" value="5">
-                </div>
-                <div class="input-group">
-                    <label for="saveDC">Save DC:</label>
-                    <input type="number" id="saveDC" value="13">
-                </div>
-                <button id="calculateCR">Calculate CR</</button>
-                CR: <span id="finalCR"></span>
-                <div id="crTables">
-                    <p>Defensive CR Table: <span id="defensiveTable"></span></p>
-                    <p>Offensive CR Table: <span id="offensiveTable"></span></p>
-                </div>
-            </div>
-            <div id="treasure-generator" class="calculator-container">
-                <h3>Treasure Generator (Coming Soon)</h3>
-                <div class="input-group">
-                    <label for="partyLevel">Party Level:</label>
-                    <input type="number" id="partyLevel" min="1" value="5">
-                </div>
-                <div class="input-group">
-                    <label for="encounterCR">Encounter CR:</label>
-                    <input type="number" id="encounterCR" value="5">
-                </div>
-                <div class="input-group">
-                    <label for="location">Location:</label>
-                    <select id="location">
-                        <option value="dungeon">Dungeon</option>
-                        <option value="wilderness">Wilderness</option>
-                        <option value="urban">Urban</option>
-                    </select>
-                </div>
-                <button id="generateTreasure">Generate Treasure</button>
-                <div id="treasure-result-container">
-                    <div id="treasureResults">
-                        <p>Treasure:</p>
-                        <ul id="treasureList"></ul>
+                <div id="cr-calculator" class="calculator-container">
+                    <h3>Challenge Rating (CR) Calculator</h3>
+                    <div class="input-group">
+                        <label for="hp">Hit Points (HP):</label>
+                        <input type="number" id="hp" min="1" value="50">
+                    </div>
+                    <div class="input-group">
+                        <label for="ac">Armor Class (AC):</label>
+                        <input type="number" id="ac" value="15">
+                    </div>
+                    <div class="input-group">
+                        <label for="dpr">Average Damage Per Round (DPR):</label>
+                        <input type="number" id="dpr" min="1" value="15">
+                    </div>
+                    <div class="input-group">
+                        <label for="attackBonus">Attack Bonus:</label>
+                        <input type="number" id="attackBonus" value="5">
+                    </div>
+                    <div class="input-group">
+                        <label for="saveDC">Save DC:</label>
+                        <input type="number" id="saveDC" value="13">
+                    </div>
+                    <button id="calculateCR">Calculate CR</button>
+                    CR: <span id="finalCR"></span>
+                    <div id="crTables">
+                        <p>Defensive CR Table: <span id="defensiveTable"></span></p>
+                        <p>Offensive CR Table: <span id="offensiveTable"></span></p>
                     </div>
                 </div>
-            </div>
-            <div id="map-generator" class="calculator-container">
-                <h3>Map Generator (Beta)</h3>
-                <div class="input-group">
-                    <label for="mapSize">Map Size (Tiles):</label>
-                    <input type="number" id="mapSize" value="20">
+                <div id="treasure-generator" class="calculator-container">
+                    <h3>Treasure Generator (Coming Soon)</h3>
+                    <div class="input-group">
+                        <label for="partyLevel">Party Level:</label>
+                        <input type="number" id="partyLevel" min="1" value="5">
+                    </div>
+                    <div class="input-group">
+                        <label for="encounterCR">Encounter CR:</label>
+                        <input type="number" id="encounterCR" value="5">
+                    </div>
+                    <div class="input-group">
+                        <label for="location">Location:</label>
+                        <select id="location">
+                            <option value="dungeon">Dungeon</option>
+                            <option value="wilderness">Wilderness</option>
+                            <option value="urban">Urban</option>
+                        </select>
+                    </div>
+                    <button id="generateTreasure">Generate Treasure</button>
+                    <div id="treasure-result-container">
+                        <div id="treasureResults">
+                            <p>Treasure:</p>
+                            <ul id="treasureList"></ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="input-group">
-                    <label for="terrainType">Terrain Type:</label>
-                    <select id="terrainType">
-                        <option value="grassland">Grassland</option>
-                        <option value="forest">Forest</option>
-                        <option value="desert">Desert</option>
-                        <option value="mountain">Mountain</option>
-                    </select>
-                </div>
-                <button id="generateMap">Generate Map</button>
-                <div id="mapContainer">
-                    <aside id="mapKey">
-                        <h3>Map Key</h3>
-                        <div class="key-item">
-                            <div class="key-color" data-terrain="grassland"></div>
-                            <span class="key-label">Grassland</span>
-                        </div>
-                        <div class="key-item">
-                            <div class="key-color" data-terrain="forest"></div>
-                            <span class="key-label">Forest</span>
-                        </div>
-                        <div class="key-item">
-                            <div class="key-color" data-terrain="desert"></div>
-                            <span class="key-label">Desert</span>
-                        </div>
-                        <div class="key-item">
-                            <div class="key-color" data-terrain="mountain"></div>
-                            <span class="key-label">Mountain</span>
-                        </div>
-                        <div class="key-item">
-                            <div class="key-color" data-terrain="rock"></div>
-                            <span class="key-label">Rock</span>
-                        </div>
-                    </aside>
-                    <canvas id="mapCanvas"></canvas>
+                <div id="map-generator" class="calculator-container">
+                    <h3>Map Generator (Beta)</h3>
+                    <div class="input-group">
+                        <label for="mapSize">Map Size (Tiles):</label>
+                        <input type="number" id="mapSize" value="20">
+                    </div>
+                    <div class="input-group">
+                        <label for="terrainType">Terrain Type:</label>
+                        <select id="terrainType">
+                            <option value="grassland">Grassland</option>
+                            <option value="forest">Forest</option>
+                            <option value="desert">Desert</option>
+                            <option value="mountain">Mountain</option>
+                        </select>
+                    </div>
+                    <button id="generateMap">Generate Map</button>
+                    <div id="mapContainer">
+                        <aside id="mapKey">
+                            <h3>Map Key</h3>
+                            <div class="key-item">
+                                <div class="key-color" data-terrain="grassland"></div>
+                                <span class="key-label">Grassland</span>
+                            </div>
+                            <div class="key-item">
+                                <div class="key-color" data-terrain="forest"></div>
+                                <span class="key-label">Forest</span>
+                            </div>
+                            <div class="key-item">
+                                <div class="key-color" data-terrain="desert"></div>
+                                <span class="key-label">Desert</span>
+                            </div>
+                            <div class="key-item">
+                                <div class="key-color" data-terrain="mountain"></div>
+                                <span class="key-label">Mountain</span>
+                            </div>
+                            <div class="key-item">
+                                <div class="key-color" data-terrain="rock"></div>
+                                <span class="key-label">Rock</span>
+                            </div>
+                        </aside>
+                        <canvas id="mapCanvas"></canvas>
+                    </div>
                 </div>
             </div>
         </div>

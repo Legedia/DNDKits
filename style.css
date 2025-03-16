@@ -402,4 +402,23 @@ nav ul li a {
 
 .key-label {
     color: white;
+
+}
+
+#calculator-area {
+    position: relative;
+    left: 350px;
+    top: 300px;
+}
+
+.calculator-container {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+#map-generator {
+    width: 500px;
 }
