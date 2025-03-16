@@ -1,107 +1,187 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>D&D Homebrew Kits</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header>
-        <div class="container">
-            <div class="logo">
-                </div>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="campaigns.html">Campaigns</a></li>
-                    <li><a href="monsters.html">Monsters</a></li>
-                    <li><a href="characters.html">Characters</a></li>
-                    <li><a href="npcs.html">NPCs</a></li>
-                    <li><a href="items.html">Items</a></li>
-                    <li><a href="weapons.html">Weapons</a></li>
-                    <li><a href="armor.html">Armor</a></li>
-                    <li><a href="#about-us">About Us</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><a href="#blog">Blog</a></li>
-                    <li><a href="#">Cart</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-    <section id="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Craft Your Epic Adventures</h1>
-                <p>Handcrafted D&D Homebrew Kits for Unforgettable Campaigns.</p>
-                <a href="#" class="btn">Explore Our Kits</a>
-            </div>
-        </div>
-    </section>
-    <section id="featured-kits">
-        <div class="container">
-            <h2>Featured Kits</h2>
-            <div class="kit">
-                <img src="kit1.jpg" alt="Kit 1">
-                <h3>Kit Name 1</h3>
-                <p>Description of Kit 1.</p>
-                <a href="#" class="btn">View Details</a>
-            </div>
-            <div class="kit">
-                <img src="kit2.jpg" alt="Kit 2">
-                <h3>Kit Name 2</h3>
-                <p>Description of Kit 2.</p>
-                <a href="#" class="btn">View Details</a>
-            </div>
-            <div class="kit">
-                <img src="kit3.jpg" alt="Kit 3">
-                <h3>Kit Name 3</h3>
-                <p>Description of Kit 3.</p>
-                <a href="#" class="btn">View Details</a>
-            </div>
-        </div>
-    </section>
-    <section id="about-us">
-        <div class="container">
-            <h2>About Us</h2>
-            <p>We are a team of passionate D&D enthusiasts dedicated to creating high-quality homebrew kits for unforgettable campaigns. Our kits are designed to spark your imagination and bring your adventures to life.</p>
-            <p>We are committed to providing exceptional customer service and ensuring that every kit meets our high standards of quality.</p>
-        </div>
-    </section>
-    <section id="contact">
-        <div class="container">
-            <h2>Contact Us</h2>
-            <p>Email: contact@dndhomebrewkits.com</p>
-            <p>Phone: 1-800-DND-KITS</p>
-            <p>Address: 123 Fantasy Lane, RPG City</p>
-        </div>
-    </section>
-    <section id="blog">
-        <div class="container">
-            <h2>Our Blog</h2>
-            <div class="blog-post">
-                <h3><a href="blog1.html">Welcome to the Adventure! Introducing D&D Homebrew Kits</a></h3>
-                <p>Greetings, fellow adventurers and Dungeon Masters!...</p>
-                <p class="post-date">March 15, 2025</p>
-            </div>
-            <div class="blog-post">
-                <h3><a href="blog2.html">The Whispering Woods: A Sample Campaign Outline</a></h3>
-                <p>Welcome back, adventurers! Today, we're diving into the world of campaign creation...</p>
-                <p class="post-date">March 10, 2025</p>
-            </div>
-            <div class="blog-post">
-                <h3><a href="blog3.html">The Time I Rolled a Natural 20 (and It Backfired Spectacularly)</a></h3>
-                <p>Greetings, fellow adventurers! Today, I'm sharing a humorous tale from my own D&D experiences...</p>
-                <p class="post-date">March 5, 2025</p>
-            </div>
-            <a href="#" class="btn">View All Posts</a>
-        </div>
-    </section>
-    <footer>
-        <div class="container">
-            <p>&copy; 2023 D&D Homebrew Kits. All rights reserved.</p>
-        </div>
-    </footer>
-    <script src="script.js"></script>
-</body>
-</html>
+/* Reset some default styles */
+body, h1, h2, h3, p, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: sans-serif;
+    line-height: 1.6;
+    color: #333; /* Default text color */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header {
+    background-color: #f0f0f0;
+    padding: 10px 0;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: #007bff;
+}
+
+#hero {
+    background-image: url('test.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #e0e0e0;
+    text-align: center;
+    padding: 100px 0;
+}
+
+#hero h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: #fff; /* Set the color of the hero section's heading to white */
+}
+
+#hero p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    color: #fff; /* Set the color of the hero section's paragraph to white */
+}
+
+.btn {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+#featured-kits {
+    padding: 50px 0;
+    text-align: center;
+}
+
+#featured-kits .kit {
+    display: inline-block;
+    width: 300px;
+    margin: 20px;
+    vertical-align: top;
+}
+
+#featured-kits .kit img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+#featured-kits .kit h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+#featured-kits .kit p {
+    margin-bottom: 20px;
+}
+
+#about-us, #contact, #blog {
+    padding: 50px 0;
+    text-align: center;
+}
+
+#blog .blog-post {
+    margin-bottom: 30px;
+}
+
+#blog .blog-post h3 {
+    margin-bottom: 10px;
+}
+
+#blog .blog-post .post-date {
+    font-style: italic;
+    color: #777;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* Product Category Pages */
+.product-category {
+    padding: 50px 0;
+    text-align: center;
+}
+
+.product {
+    display: inline-block;
+    width: 300px;
+    margin: 20px;
+    vertical-align: top;
+}
+
+.product img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.product h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.product p {
+    margin-bottom: 20px;
+}
+
+/* Blog Post Content Page */
+
+.blog-post-content {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    text-align: left;
+}
+
+.blog-post-content h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.blog-post-content p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.blog-post-content ul{
+    margin-bottom: 20px;
+    padding-left: 20px;
+}
