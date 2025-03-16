@@ -68,6 +68,28 @@
             margin-bottom: 10px;
             color: white;
         }
+
+        #stat-calculator {
+            margin-top: 10px;
+        }
+
+        #stat-calculator label {
+            display: inline-block;
+            width: 100px;
+            margin-bottom: 5px;
+            color: white;
+        }
+
+        #stat-calculator input {
+            width: 50px;
+            padding: 5px;
+            margin-right: 10px;
+        }
+
+        #stat-calculator span {
+            font-weight: bold;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -113,6 +135,32 @@
                     <li><strong>Treasure Generator:</strong> Generate random treasure based on encounter difficulty.</li>
                 </ul>
                 <p><strong>How to Use:</strong> Select the calculator you need and input the required values. The results will be displayed instantly.</p>
+                <div id="stat-calculator">
+                    <h3>Character Stat Calculator</h3>
+                    <label for="str">Strength:</label>
+                    <input type="number" id="str" value="10">
+                    <span id="strMod"></span><br>
+
+                    <label for="dex">Dexterity:</label>
+                    <input type="number" id="dex" value="10">
+                    <span id="dexMod"></span><br>
+
+                    <label for="con">Constitution:</label>
+                    <input type="number" id="con" value="10">
+                    <span id="conMod"></span><br>
+
+                    <label for="int">Intelligence:</label>
+                    <input type="number" id="int" value="10">
+                    <span id="intMod"></span><br>
+
+                    <label for="wis">Wisdom:</label>
+                    <input type="number" id="wis" value="10">
+                    <span id="wisMod"></span><br>
+
+                    <label for="cha">Charisma:</label>
+                    <input type="number" id="cha" value="10">
+                    <span id="chaMod"></span><br>
+                </div>
             </div>
         </div>
     </section>
@@ -138,6 +186,20 @@
             setTimeout(() => {
                 rollButton.style.backgroundColor = '#007bff'; // Reset color
             }, 200);
+        });
+
+        // Character Stat Calculator
+        const stats = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
+
+        stats.forEach(stat => {
+            const input = document.getElementById(stat);
+            const mod = document.getElementById(stat + 'Mod');
+
+            input.addEventListener('input', () => {
+                const score = parseInt(input.value);
+                const modifier = Math.floor((score - 10) / 2);
+                mod.textContent = `(${modifier >= 0 ? '+' : ''}${modifier})`;
+            });
         });
     </script>
 </body>

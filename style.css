@@ -54,6 +54,7 @@ nav ul li a:hover {
 #hero {
     text-align: center;
     padding: 100px 0;
+    position: relative; /* Added to allow absolute positioning of calculator box */
 }
 
 #hero h1, #hero p {
@@ -72,20 +73,6 @@ nav ul li a:hover {
 #hero p {
     font-size: 1.2em;
     margin-bottom: 30px;
-
-}
-
-#hero .btn {
-    display: inline-block;
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-}
-
-#hero .btn:hover {
-    background-color: #0056b3;
 }
 
 #featured-kits {
@@ -161,13 +148,13 @@ footer {
     margin-bottom: 10px;
 }
 
-.product h3 {
+product h3 {
     font-size: 1.5em;
     margin-bottom: 10px;
     color: white;
 }
 
-.product p {
+product p {
     margin-bottom: 20px;
     color: white;
 }
@@ -217,4 +204,86 @@ nav ul li a {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
+}
+
+#rollButton {
+    padding: 10px 20px;
+    font-size: 1.2em;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#rollButton:hover {
+    background-color: #0056b3;
+}
+
+#rollResult {
+    font-size: 1.5em;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #ffcc00; /* Gold color */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+#sidesInput {
+    padding: 5px 10px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-right: 10px;
+}
+
+#calculator-box {
+    border: 2px solid #ccc;
+    padding: 20px;
+    width: 300px;
+    text-align: left;
+    margin: 20px auto; /* Center horizontally */
+    position: absolute;
+    top: 50%;
+    left: 20px; /* Position to the left */
+    transform: translateY(-50%); /* Center vertically */
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+#calculator-box h2 {
+    margin-bottom: 10px;
+    color: white;
+}
+
+#calculator-box p {
+    margin-bottom: 10px;
+    color: white;
+}
+
+#calculator-box ul {
+    margin-bottom: 10px;
+    color: white;
+}
+
+#stat-calculator {
+    margin-top: 10px;
+}
+
+#stat-calculator label {
+    display: inline-block;
+    width: 100px;
+    margin-bottom: 5px;
+    color: white;
+}
+
+#stat-calculator input {
+    width: 50px;
+    padding: 5px;
+    margin-right: 10px;
+}
+
+#stat-calculator span {
+    font-weight: bold;
+    color: white;
 }
