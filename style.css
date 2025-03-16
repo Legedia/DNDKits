@@ -316,6 +316,17 @@ nav ul li a {
     margin-right: 10px;
 }
 
+px;
+}
+
+#dice-roller {
+    margin-top: 20px;
+}
+
+#dice-roller label {
+    margin-right: 10px;
+}
+
 #calculator-area {
     position: absolute;
     top: 50%;
