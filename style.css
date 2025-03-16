@@ -303,7 +303,7 @@ nav ul li a {
     display: none;
     text-align: center;width: 300px; /* or whatever width you want */
     margin-top: 20px; /* Adjust as needed */
-    margin-left: 350px; /* Adjust as needed */
+    margin-left: 600px; /* Adjust as needed */
 }
 
 /* Add specific positioning for each calculator */
