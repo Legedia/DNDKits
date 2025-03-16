@@ -302,9 +302,12 @@ nav ul li a {
     text-align: center; /* Center calculators */
 }
 
-#hero .calculator-container {position: relative; /* Allow absolute positioning of elements inside */
-    top: 50%;
+#hero .calculator-container {
+    position: relative;
+    top: 55%; /* Adjust this value as needed */
     transform: translateY(-50%);
+    margin: 0 auto;
+    max-width: 500px;
 }
 
 #dice-roller {
