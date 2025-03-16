@@ -246,7 +246,7 @@ nav ul li a {
     padding: 20px;
     width: 300px;
     text-align: left;
-    margin-top: 70%; /* Add margin to push it down */
+    margin-top: 20px; /* Adjust as needed */
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
 }
@@ -302,30 +302,48 @@ nav ul li a {
 .calculator-container {
     display: none;
     text-align: center;
-    width: 100%; /*Corrected: Added semicolon*/
-    margin-top: 10px; /* Add margin to create space between calculators */
+    widthwidth: 300px; /* or whatever width you want */
+    margin-top: 20px; /* Adjust as needed */
+    margin-left: 20px; /* Adjust as needed */
 }
 
-#hero .calculator-container {
-    margin: 0 auto;
-    max-width: 500px;
-}
-
+/* Add specific positioning for each calculator */
 #dice-roller {
-    margin-top: 20px;
+    /* Adjust positioning as needed */
 }
 
-#dice-roller label {
-    margin-right: 10px;
+#stat-calculator {
+    /* Adjust positioning as needed */
 }
 
-#calculator-area {
-    width: 300px;
+#cr-calculator {
+    /* Adjust positioning as needed */
+}
+
+#treasure-generator {
+    /* Adjust positioning as needed */
+}
+
+#map-generator {
+    /* Adjust positioning as needed */
+}
+
+#treasure-result-container {
+    margin-top: 20px; /* Add space below the button */
+    border: 1px solid #ccc;
+    padding: 10px;
     text-align: left;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
 }
 
-#crTables {
-    display: none;
+#treasureResults p {
+    margin-bottom: 5px;
+}
+
+#treasureResults ul {
+    list-style-type: disc;
+    margin-left: 20px;
 }
 
 #mapCanvas {
