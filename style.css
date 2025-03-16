@@ -47,6 +47,10 @@ nav ul li a:hover {
 }
 
 #hero {
+    background-image: url('test.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     background-color: #e0e0e0;
     text-align: center;
     padding: 100px 0;
@@ -137,3 +141,8 @@ footer {
     display: inline-block;
     width: 300px;
     margin: 20px;
+    vertical-align: top;
+}
+
+.product img {
+    width: 1
