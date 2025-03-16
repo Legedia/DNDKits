@@ -185,12 +185,70 @@
                     <span id="chaMod"></span><br>
                 </div>
                 <div id="cr-calculator" class="calculator-container">
-                    <h3>CR Calculator (Coming Soon)</h3>
-                    <p>This calculator is under development.</p>
+                    <h3>Challenge Rating (CR) Calculator</h3>
+
+                    <div class="input-group">
+                        <label for="hp">Hit Points (HP):</label>
+                        <input type="number" id="hp" min="1" value="50">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="ac">Armor Class (AC):</label>
+                        <input type="number" id="ac" min="10" value="15">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="dpr">Average Damage Per Round (DPR):</label>
+                        <input type="number" id="dpr" min="1" value="15">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="attackBonus">Attack Bonus:</label>
+                        <input type="number" id="attackBonus" value="5">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="saveDC">Save DC:</label>
+                        <input type="number" id="saveDC" value="13">
+                    </div>
+
+                    <button id="calculateCR">Calculate CR</button>
+
+                    CR: <span id="finalCR"></span></p>
+                    </div>
+                    <div id="crTables">
+                        <p>Defensive CR Table: <span id="defensiveTable"></span></p>
+                        <p>Offensive CR Table: <span id="offensiveTable"></span></p>
+                    </div>
                 </div>
                 <div id="treasure-generator" class="calculator-container">
                     <h3>Treasure Generator (Coming Soon)</h3>
-                    <p>This calculator is under development.</p>
+
+                    <div class="input-group">
+                        <label for="partyLevel">Party Level:</label>
+                        <input type="number" id="partyLevel" min="1" value="5">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="encounterCR">Encounter CR:</label>
+                        <input type="number" id="encounterCR" value="5">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="location">Location:</label>
+                        <select id="location">
+                            <option value="dungeon">Dungeon</option>
+                            <option value="wilderness">Wilderness</option>
+                            <option value="urban">Urban</option>
+                        </select>
+                    </div>
+
+                    <button id="generateTreasure">Generate Treasure</button>
+
+                    <div id="treasureResults">
+                        <p>Treasure:</p>
+                        <ul id="treasureList"></ul>
+                    </div>
                 </div>
             </div>
         </div>
