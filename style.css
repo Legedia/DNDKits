@@ -8,6 +8,11 @@ body {
     font-family: 'Roboto', sans-serif;
     line-height: 1.6;
     color: white;
+    background-image: url('test.jpg'); /* Or your actual image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh; /* Ensure full height */
 }
 
 .container {
@@ -47,40 +52,36 @@ nav ul li a:hover {
 }
 
 #hero {
-    background-image: url('test.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     text-align: center;
     padding: 100px 0;
 }
 
-body .hero-background #hero h1,
-body .hero-background #hero p {
-    color: white;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-}
-
-body .hero-background #hero .btn {
-    color: white;
-}
-
-#hero h1, #hero p {
-    color: white;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-}
-
 #hero h1 {
     font-size: 3.5em;
+    margin-bottom: 20px;
     line-height: 1.2;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 #hero p {
     font-size: 1.2em;
+    margin-bottom: 30px;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 #hero .btn {
+    display: inline-block;
+    background-color: #007bff;
     color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+#hero .btn:hover {
+    background-color: #0056b3;
 }
 
 #featured-kits {
@@ -138,6 +139,7 @@ footer {
     padding: 20px 0;
 }
 
+/* Product Category Pages */
 .product-category {
     padding: 50px 0;
     text-align: center;
@@ -167,6 +169,8 @@ footer {
     color: white;
 }
 
+/* Blog Post Content Page */
+
 .blog-post-content {
     max-width: 800px;
     margin: 20px auto;
@@ -192,14 +196,6 @@ footer {
     padding-left: 20px;
 }
 
-.hero-background {
-    background-image: url('test.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    position: relative;
-}
-
 .hero-background::before {
     content: "";
     position: absolute;
@@ -207,9 +203,10 @@ footer {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5); /* Increased opacity */
 }
 
+/* Ensure content is above the overlay */
 .hero-background > * {
     position: relative;
     z-index: 1;
