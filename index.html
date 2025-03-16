@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        /* ... (Your existing CSS styles here) ... */
         #rollButton {
             padding: 10px 20px;
             font-size: 1.2em;
@@ -114,6 +115,9 @@
             margin-right: 10px;
         }
 
+        #crTables {
+            display: none; /* Hide CR tables initially */
+        }
     </style>
 </head>
 <body>
@@ -186,36 +190,28 @@
                 </div>
                 <div id="cr-calculator" class="calculator-container">
                     <h3>Challenge Rating (CR) Calculator</h3>
-
                     <div class="input-group">
                         <label for="hp">Hit Points (HP):</label>
                         <input type="number" id="hp" min="1" value="50">
                     </div>
-
                     <div class="input-group">
                         <label for="ac">Armor Class (AC):</label>
                         <input type="number" id="ac" min="10" value="15">
                     </div>
-
                     <div class="input-group">
                         <label for="dpr">Average Damage Per Round (DPR):</label>
                         <input type="number" id="dpr" min="1" value="15">
                     </div>
-
                     <div class="input-group">
                         <label for="attackBonus">Attack Bonus:</label>
                         <input type="number" id="attackBonus" value="5">
                     </div>
-
                     <div class="input-group">
                         <label for="saveDC">Save DC:</label>
-                        <input type="number" id="saveDC" value="13">
+                        <input type="number"<input type="number" id="saveDC" value="13">
                     </div>
-
                     <button id="calculateCR">Calculate CR</button>
-
-                    CR: <span id="finalCR"></span></p>
-                    </div>
+                    CR: <span id="finalCR"></span>
                     <div id="crTables">
                         <p>Defensive CR Table: <span id="defensiveTable"></span></p>
                         <p>Offensive CR Table: <span id="offensiveTable"></span></p>
@@ -223,17 +219,14 @@
                 </div>
                 <div id="treasure-generator" class="calculator-container">
                     <h3>Treasure Generator (Coming Soon)</h3>
-
                     <div class="input-group">
                         <label for="partyLevel">Party Level:</label>
                         <input type="number" id="partyLevel" min="1" value="5">
                     </div>
-
                     <div class="input-group">
                         <label for="encounterCR">Encounter CR:</label>
                         <input type="number" id="encounterCR" value="5">
                     </div>
-
                     <div class="input-group">
                         <label for="location">Location:</label>
                         <select id="location">
@@ -242,9 +235,7 @@
                             <option value="urban">Urban</option>
                         </select>
                     </div>
-
                     <button id="generateTreasure">Generate Treasure</button>
-
                     <div id="treasureResults">
                         <p>Treasure:</p>
                         <ul id="treasureList"></ul>
@@ -271,13 +262,12 @@
             }
             const result = Math.floor(Math.random() * sides) + 1;
             rollResult.textContent = `You rolled: ${result}`;
-            rollButton.style.backgroundColor = '#555'; // Visual feedback
+            rollButton.style.backgroundColor = '#555';
             setTimeout(() => {
-                rollButton.style.backgroundColor = '#007bff'; // Reset color
+                rollButton.style.backgroundColor = '#007bff';
             }, 200);
         });
 
-        // Character Stat Calculator
         const stats = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
 
         stats.forEach(stat => {
@@ -291,7 +281,6 @@
             });
         });
 
-        // Calculator Selection
         const calculatorSelect = document.getElementById('calculator-select');
         const calculators = document.querySelectorAll('.calculator-container');
         const calculatorArea = document.getElementById('calculator-area');
@@ -307,6 +296,73 @@
             }
         });
 
+    </script>
+
+    <script>
+        // CR Calculator Logic
+        document.getElementById('calculateCR').addEventListener('click', function() {
+            const hp = parseInt(document.getElementById('hp').value);
+            const ac = parseInt(document.getElementById('ac').value);
+            const dpr = parseInt(document.getElementById('dpr').value);
+            const attackBonus = parseInt(document.getElementById('attackBonus').value);
+            const saveDC = parseInt(document.getElementById('saveDC').value);
+
+            const defensiveCR = calculateDefensiveCR(hp, ac);
+            const offensiveCR = calculateOffensiveCR(dpr, attackBonus, saveDC);
+            const finalCR = (defensiveCR + offensiveCR) / 2;
+
+            document.getElementById('defensiveCR').textContent = defensiveCR;
+            document.getElementById('offensiveCR').textContent = offensiveCR;
+            document.getElementById('finalCR').textContent = finalCR;
+
+            document.getElementById('defensiveTable').textContent = getDefensiveTable();
+            document.getElementById('offensiveTable').textContent = getOffensiveTable();
+
+            document.getElementById('crTables').style.display = 'block'; // Show CR tables
+        });
+
+        // Treasure Generator Logic
+        document.getElementById('generateTreasure').addEventListener('click', function() {
+            const partyLevel = parseInt(document.getElementById('partyLevel').value);
+            const encounterCR = parseInt(document.getElementById('encounterCR').value);
+            const location = document.getElementById('location').value;
+
+            const treasure = generateTreasure(partyLevel, encounterCR, location);
+
+            const treasureList = document.getElementById('treasureList');
+            treasureList.innerHTML = '';
+            treasure.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                treasureList.appendChild(li);
+            });
+        });
+
+        // Helper Functions (to be implemented)
+        function calculateDefensiveCR(hp, ac) {
+            // Logic to calculate defensive CR based on DMG tables
+            return "Defensive CR Calculated"; // Placeholder
+        }
+
+        function calculateOffensiveCR(dpr, attackBonus, saveDC) {
+            // Logic to calculate offensive CR based on DMG tables
+            return "Offensive CR Calculated"; // Placeholder
+        }
+
+        function generateTreasure(partyLevel, encounterCR, location) {
+            // Logic to generate treasure based on DMG tables and random generation
+            return ["Treasure Item 1", "Treasure Item 2"]; // Placeholder
+        }
+
+        function getDefensiveTable(){
+            //logic to get the defensive table data.
+            return "Defensive Table Data"; //Placeholder
+        }
+
+        function getOffensiveTable(){
+            //logic to get the offensive table data.
+            return "Offensive Table Data"; //Placeholder
+        }
     </script>
 </body>
 </html>
