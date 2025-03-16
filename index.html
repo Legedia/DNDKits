@@ -46,10 +46,6 @@
             width: 300px;
             text-align: left;
             margin: 20px auto; /* Center horizontally */
-            position: absolute;
-            top: 50%;
-            left: 20px; /* Position to the left */
-            transform: translateY(-50%); /* Center vertically */
             background-color: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
         }
@@ -106,9 +102,8 @@
         }
 
         #hero .calculator-container {
-            position: relative; /* Allow absolute positioning of elements inside */
-            top: 50%;
-            transform: translateY(-50%);
+            margin: 0 auto;
+            max-width: 500px;
         }
 
         #dice-roller {
@@ -150,51 +145,53 @@
                 <h1>Craft Your Epic Adventures</h1>
                 <p>Handcrafted D&D Homebrew Kits for Unforgettable Campaigns.</p>
             </div>
-            <div id="calculator-box">
-                <h2>D&D Calculators</h2>
-                <p>Select a calculator:</p>
-                <select id="calculator-select">
-                    <option value="">Select a Calculator</option>
-                    <option value="dice-roller">Dice Roller</option>
-                    <option value="stat-calculator">Character Stat Calculator</option>
-                    <option value="cr-calculator">Challenge Rating (CR) Calculator</option>
-                    <option value="treasure-generator">Treasure Generator</option>
-                </select>
-            </div>
-            <div id="dice-roller" class="calculator-container">
-                <label for="sidesInput">Enter sides:</label>
-                <input type="number" id="sidesInput" value="20" min="1">
-                <button id="rollButton">Roll Dice</button>
-                <p id="rollResult"></p>
-            </div>
-            <div id="stat-calculator" class="calculator-container">
-                <h3>Character Stat Calculator</h3>
-                <label for="str">Strength:</label>
-                <input type="number" id="str" value="10">
-                <span id="strMod"></span><br>
-                <label for="dex">Dexterity:</label>
-                <input type="number" id="dex" value="10">
-                <span id="dexMod"></span><br>
-                <label for="con">Constitution:</label>
-                <input type="number" id="con" value="10">
-                <span id="conMod"></span><br>
-                <label for="int">Intelligence:</label>
-                <input type="number" id="int" value="10">
-                <span id="intMod"></span><br>
-                <label for="wis">Wisdom:</label>
-                <input type="number" id="wis" value="10">
-                <span id="wisMod"></span><br>
-                <label for="cha">Charisma:</label>
-                <input type="number" id="cha" value="10">
-                <span id="chaMod"></span><br>
-            </div>
-            <div id="cr-calculator" class="calculator-container">
-                <h3>CR Calculator (Coming Soon)</h3>
-                <p>This calculator is under development.</p>
-            </div>
-            <div id="treasure-generator" class="calculator-container">
-                <h3>Treasure Generator (Coming Soon)</h3>
-                <p>This calculator is under development.</p>
+            <div id="calculator-area">
+                <div id="calculator-box">
+                    <h2>D&D Calculators</h2>
+                    <p>Select a calculator:</p>
+                    <select id="calculator-select">
+                        <option value="">Select a Calculator</option>
+                        <option value="dice-roller">Dice Roller</option>
+                        <option value="stat-calculator">Character Stat Calculator</option>
+                        <option value="cr-calculator">Challenge Rating (CR) Calculator</option>
+                        <option value="treasure-generator">Treasure Generator</option>
+                    </select>
+                </div>
+                <div id="dice-roller" class="calculator-container">
+                    <label for="sidesInput">Enter sides:</label>
+                    <input type="number" id="sidesInput" value="20" min="1">
+                    <button id="rollButton">Roll Dice</button>
+                    <p id="rollResult"></p>
+                </div>
+                <div id="stat-calculator" class="calculator-container">
+                    <h3>Character Stat Calculator</h3>
+                    <label for="str">Strength:</label>
+                    <input type="number" id="str" value="10">
+                    <span id="strMod"></span><br>
+                    <label for="dex">Dexterity:</label>
+                    <input type="number" id="dex" value="10">
+                    <span id="dexMod"></span><br>
+                    <label for="con">Constitution:</label>
+                    <input type="number" id="con" value="10">
+                    <span id="conMod"></span><br>
+                    <label for="int">Intelligence:</label>
+                    <input type="number" id="int" value="10">
+                    <span id="intMod"></span><br>
+                    <label for="wis">Wisdom:</label>
+                    <input type="number" id="wis" value="10">
+                    <span id="wisMod"></span><br>
+                    <label for="cha">Charisma:</label>
+                    <input type="number" id="cha" value="10">
+                    <span id="chaMod"></span><br>
+                </div>
+                <div id="cr-calculator" class="calculator-container">
+                    <h3>CR Calculator (Coming Soon)</h3>
+                    <p>This calculator is under development.</p>
+                </div>
+                <div id="treasure-generator" class="calculator-container">
+                    <h3>Treasure Generator (Coming Soon)</h3>
+                    <p>This calculator is under development.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -218,7 +215,7 @@
             rollResult.textContent = `You rolled: ${result}`;
             rollButton.style.backgroundColor = '#555'; // Visual feedback
             setTimeout(() => {
-                rollButtonrollButton.style.backgroundColor = '#007bff'; // Reset color
+                rollButton.style.backgroundColor = '#007bff'; // Reset color
             }, 200);
         });
 
@@ -239,7 +236,7 @@
         // Calculator Selection
         const calculatorSelect = document.getElementById('calculator-select');
         const calculators = document.querySelectorAll('.calculator-container');
-        const heroContent = document.querySelector('.hero-content');
+        const calculatorArea = document.getElementById('calculator-area');
 
         calculatorSelect.addEventListener('change', () => {
             const selectedCalculatorId = calculatorSelect.value;
@@ -249,7 +246,6 @@
 
             if (selectedCalculatorId) {
                 document.getElementById(selectedCalculatorId).style.display = 'block';
-                heroContent.appendChild(document.getElementById(selectedCalculatorId));
             }
         });
 
