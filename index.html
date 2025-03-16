@@ -8,6 +8,38 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        #rollButton {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #rollButton:hover {
+            background-color: #0056b3;
+        }
+
+        #rollResult {
+            font-size: 1.5em;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #ffcc00; /* Gold color */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        #sidesInput {
+            padding: 5px 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            margin-right: 10px;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -37,8 +69,9 @@
             <div class="hero-content">
                 <h1>Craft Your Epic Adventures</h1>
                 <p>Handcrafted D&D Homebrew Kits for Unforgettable Campaigns.</p>
-                <br><br>
-                <button id="rollButton">Roll D20</button>
+                <br>
+                <input type="number" id="sidesInput" value="20" min="1">
+                <button id="rollButton">Roll Dice</button>
                 <p id="rollResult"></p>
             </div>
         </div>
@@ -51,10 +84,20 @@
     <script>
         const rollButton = document.getElementById('rollButton');
         const rollResult = document.getElementById('rollResult');
+        const sidesInput = document.getElementById('sidesInput');
 
         rollButton.addEventListener('click', () => {
-            const result = Math.floor(Math.random() * 20) + 1;
+            const sides = parseInt(sidesInput.value);
+            if (isNaN(sides) || sides < 1) {
+                alert('Please enter a valid number of sides.');
+                return;
+            }
+            const result = Math.floor(Math.random() * sides) + 1;
             rollResult.textContent = `You rolled: ${result}`;
+            rollButton.style.backgroundColor = '#555'; // Visual feedback
+            setTimeout(() => {
+                rollButton.style.backgroundColor = '#007bff'; // Reset color
+            }, 200);
         });
     </script>
 </body>
