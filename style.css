@@ -329,7 +329,7 @@ px;
 
 #calculator-area {
     position: absolute;
-    top: 50%;
+    top: 60%;
     left: 20px; /* Change from 50% to a specific value */
     transform: translateY(-50%); /* Remove translateX */
     width: 300px; /* Limit the width of the calculator area */
