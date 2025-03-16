@@ -39,6 +39,35 @@
             border-radius: 3px;
             margin-right: 10px;
         }
+
+        #calculator-box {
+            border: 2px solid #ccc;
+            padding: 20px;
+            width: 300px;
+            text-align: left;
+            margin: 20px auto; /* Center horizontally */
+            position: absolute;
+            top: 50%;
+            left: 20px; /* Position to the left */
+            transform: translateY(-50%); /* Center vertically */
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        #calculator-box h2 {
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        #calculator-box p {
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        #calculator-box ul {
+            margin-bottom: 10px;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -52,37 +81,46 @@
                     <li><a href="campaigns.html">Campaigns</a></li>
                     <li><a href="monsters.html">Monsters</a></li>
                     <li><a href="characters.html">Characters</a></li>
-                        <li><a href="npcs.html">NPCs</a></li>
-                        <li><a href="items.html">Items</a></li>
-                        <li><a href="weapons.html">Weapons</a></li>
-                        <li><a href="armor.html">Armor</a></li>
-                        <li><a href="aboutus.html">About Us</a></li>
-                        <li><a href="ContactUs.html">Contact</a></li>
-                        <li><a href="Blogs.html">Blog</a></li>
-                        <li><a href="#">Cart</a></li>
-                    </ul>
-                </nav>
+                    <li><a href="npcs.html">NPCs</a></li>
+                    <li><a href="items.html">Items</a></li>
+                    <li><a href="weapons.html">Weapons</a></li>
+                    <li><a href="armor.html">Armor</a></li>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="ContactUs.html">Contact</a></li>
+                    <li><a href="Blogs.html">Blog</a></li>
+                    <li><a href="#">Cart</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Craft Your Epic Adventures</h1>
+                <p>Handcrafted D&D Homebrew Kits for Unforgettable Campaigns.</p>
+                <br>
+                <label for="sidesInput">Enter sides:</label>
+                <input type="number" id="sidesInput" value="20" min="1">
+                <button id="rollButton">Roll Dice</button>
+                <p id="rollResult"></p>
             </div>
-        </header>
-        <section id="hero">
-            <div class="container">
-                <div class="hero-content">
-                    <h1>Craft Your Epic Adventures</h1>
-                    <p>Handcrafted D&D Homebrew Kits for Unforgettable Campaigns.</p>
-                    <br>
-                    <label for="sidesInput">Enter sides:</label>
-                    <input type="number" id="sidesInput" value="20" min="1">
-                    <button id="rollButton">Roll Dice</button>
-                    <p id="rollResult"></p>
-                </div>
+            <div id="calculator-box">
+                <h2>D&D Calculators</h2>
+                <p>These calculators are designed to help DMs and players with various aspects of D&D gameplay. Use them to quickly determine character stats, calculate challenge ratings, and generate treasure.</p>
+                <ul>
+                    <li><strong>Character Stat Calculator:</strong> Enter ability scores to calculate modifiers.</li>
+                    <li><strong>Challenge Rating (CR) Calculator:</strong> Determine the difficulty of an encounter.</li>
+                    <li><strong>Treasure Generator:</strong> Generate random treasure based on encounter difficulty.</li>
+                </ul>
+                <p><strong>How to Use:</strong> Select the calculator you need and input the required values. The results will be displayed instantly.</p>
             </div>
-        </section>
-        <footer>
-            <div class="container">
-                <p>&copy; 2023 D&D Homebrew Kits. All rights reserved.</p>
-            </div>
-        </footer>
-    </div>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 D&D Homebrew Kits. All rights reserved.</p>
+        </div>
+    </footer>
     <script>
         const rollButton = document.getElementById('rollButton');
         const rollResult = document.getElementById('rollResult');
