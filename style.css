@@ -326,7 +326,7 @@ nav ul li a {
 #calculator-area {
     position: absolute;
     top: 50%;
-    left: 20px;
+    left: 50%;
     transform: translateY(-50%);
     width: 300px;
     text-align: left;
@@ -346,8 +346,8 @@ nav ul li a {
 
 #map-generator {
     position: relative;
-    left: 350px;
-    width: 500px;
+    left: 50%;
+    width: 50%;
 }
 
 #map-generator .input-group{
