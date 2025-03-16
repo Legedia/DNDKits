@@ -56,19 +56,23 @@ nav ul li a:hover {
     padding: 100px 0;
 }
 
-#hero h1 {
+#hero h1, #hero p {
     font-size: 3.5em;
     margin-bottom: 20px;
     line-height: 1.2;
     color: white;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    text-shadow: 2px 2px 2px #000,
+                 4px 4px 4px #222,
+                 6px 6px 6px #444,
+                 8px 8px 8px #666,
+                 0 0 10px rgba(255, 255, 255, 0.2),
+                 0 -1px 0 rgba(255, 255, 255, 0.3);
 }
 
 #hero p {
     font-size: 1.2em;
     margin-bottom: 30px;
-    color: white;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+
 }
 
 #hero .btn {
@@ -133,8 +137,7 @@ nav ul li a:hover {
 }
 
 footer {
-    background-color: #333;
-    color: white;
+    color: white; /* Removed background-color: #333; */
     text-align: center;
     padding: 20px 0;
 }
@@ -194,22 +197,6 @@ footer {
 .blog-post-content ul{
     margin-bottom: 20px;
     padding-left: 20px;
-}
-
-.hero-background::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Increased opacity */
-}
-
-/* Ensure content is above the overlay */
-.hero-background > * {
-    position: relative;
-    z-index: 1;
 }
 
 a {
