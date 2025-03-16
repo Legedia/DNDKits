@@ -287,3 +287,30 @@ nav ul li a {
     font-weight: bold;
     color: white;
 }
+
+#calculator-select {
+    padding: 5px 10px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.calculator-container {
+    display: none; /* Initially hide all calculators */
+    text-align: center; /* Center calculators */
+}
+
+#hero .calculator-container {position: relative; /* Allow absolute positioning of elements inside */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#dice-roller {
+    margin-top: 20px;
+}
+
+#dice-roller label {
+    margin-right: 10px;
+}
