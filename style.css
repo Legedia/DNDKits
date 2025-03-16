@@ -308,7 +308,7 @@ nav ul li a {
 
 #hero .calculator-container {
     position: relative; /* Allow absolute positioning of elements inside */
-    top: 50%;
+    top: 30%;
     transform: translateY(-50%);
 }
 
