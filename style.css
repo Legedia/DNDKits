@@ -301,15 +301,23 @@ nav ul li a {
     width: 100%;
 }
 
-.calculator-container{
+..calculator-container {
     display: none; /* Initially hide all calculators */
     text-align: center; /* Center calculators */
+    position: absolute; /* Add this line */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%; /* Add this line */
 }
 
 #hero .calculator-container {
-    position: relative; /* Allow absolute positioning of elements inside */
-    top: 100%;
-    transform: translateY(-50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0 auto;
+    max-width: 500px;
 }
 
 #dice-roller {
