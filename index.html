@@ -214,3 +214,45 @@
                 alert('Please enter a valid number of sides.');
                 return;
             }
+            const result = Math.floor(Math.random() * sides) + 1;
+            rollResult.textContent = `You rolled: ${result}`;
+            rollButton.style.backgroundColor = '#555'; // Visual feedback
+            setTimeout(() => {
+                rollButtonrollButton.style.backgroundColor = '#007bff'; // Reset color
+            }, 200);
+        });
+
+        // Character Stat Calculator
+        const stats = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
+
+        stats.forEach(stat => {
+            const input = document.getElementById(stat);
+            const mod = document.getElementById(stat + 'Mod');
+
+            input.addEventListener('input', () => {
+                const score = parseInt(input.value);
+                const modifier = Math.floor((score - 10) / 2);
+                mod.textContent = `(${modifier >= 0 ? '+' : ''}${modifier})`;
+            });
+        });
+
+        // Calculator Selection
+        const calculatorSelect = document.getElementById('calculator-select');
+        const calculators = document.querySelectorAll('.calculator-container');
+        const heroContent = document.querySelector('.hero-content');
+
+        calculatorSelect.addEventListener('change', () => {
+            const selectedCalculatorId = calculatorSelect.value;
+            calculators.forEach(calc => {
+                calc.style.display = 'none';
+            });
+
+            if (selectedCalculatorId) {
+                document.getElementById(selectedCalculatorId).style.display = 'block';
+                heroContent.appendChild(document.getElementById(selectedCalculatorId));
+            }
+        });
+
+    </script>
+</body>
+</html>
