@@ -52,35 +52,37 @@
                     <li><a href="campaigns.html">Campaigns</a></li>
                     <li><a href="monsters.html">Monsters</a></li>
                     <li><a href="characters.html">Characters</a></li>
-                    <li><a href="npcs.html">NPCs</a></li>
-                    <li><a href="items.html">Items</a></li>
-                    <li><a href="weapons.html">Weapons</a></li>
-                    <li><a href="armor.html">Armor</a></li>
-                    <li><a href="aboutus.html">About Us</a></li>
-                    <li><a href="ContactUs.html">Contact</a></li>
-                    <li><a href="Blogs.html">Blog</a></li>
-                    <li><a href="#">Cart</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-    <section id="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Craft Your Epic Adventures</h1>
-                <p>Handcrafted D&D Homebrew Kits for Unforgettable Campaigns.</p>
-                <br>
-                <input type="number" id="sidesInput" value="20" min="1">
-                <button id="rollButton">Roll Dice</button>
-                <p id="rollResult"></p>
+                        <li><a href="npcs.html">NPCs</a></li>
+                        <li><a href="items.html">Items</a></li>
+                        <li><a href="weapons.html">Weapons</a></li>
+                        <li><a href="armor.html">Armor</a></li>
+                        <li><a href="aboutus.html">About Us</a></li>
+                        <li><a href="ContactUs.html">Contact</a></li>
+                        <li><a href="Blogs.html">Blog</a></li>
+                        <li><a href="#">Cart</a></li>
+                    </ul>
+                </nav>
             </div>
-        </div>
-    </section>
-    <footer>
-        <div class="container">
-            <p>&copy; 2023 D&D Homebrew Kits. All rights reserved.</p>
-        </div>
-    </footer>
+        </header>
+        <section id="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Craft Your Epic Adventures</h1>
+                    <p>Handcrafted D&D Homebrew Kits for Unforgettable Campaigns.</p>
+                    <br>
+                    <label for="sidesInput">Enter sides:</label>
+                    <input type="number" id="sidesInput" value="20" min="1">
+                    <button id="rollButton">Roll Dice</button>
+                    <p id="rollResult"></p>
+                </div>
+            </div>
+        </section>
+        <footer>
+            <div class="container">
+                <p>&copy; 2023 D&D Homebrew Kits. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
     <script>
         const rollButton = document.getElementById('rollButton');
         const rollResult = document.getElementById('rollResult');
