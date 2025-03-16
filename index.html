@@ -317,8 +317,27 @@ function generateMapData(mapSize, terrainType) {
     }
     return mapData;
 }
+function generateMap(mapSize, terrainType) {
+    console.log("generateMap called with mapSize:", mapSize, "terrainType:", terrainType);
+
+    const mapCanvas = document.getElementById('mapCanvas');
+    const ctx = mapCanvas.getContext('2d');
+
+    if (!ctx) {
+        console.error("Canvas context is null!");
+        return;
+    }
+
+    // Simplified test: Draw a red rectangle
+    ctx.fillStyle = "red";
+    ctx.fillRect(0, 0, mapCanvas.width, mapCanvas.height);
+
+    console.log("Canvas width:", mapCanvas.width, "Canvas height:", mapCanvas.height);
+}
+
 function generateMapData(mapSize, terrainType) {
-    console.log("mapSize in generateMapData:", mapSize);
+    console.log("generateMapData called with mapSize:", mapSize, "terrainType:", terrainType);
+
     const mapData = [];
     for (let y = 0; y < mapSize; y++) {
         const row = [];
@@ -327,13 +346,18 @@ function generateMapData(mapSize, terrainType) {
         }
         mapData.push(row);
     }
+
     console.log("mapData after generation:", mapData);
     return mapData;
 }
 
 function drawMap(ctx, mapData, tileSize, terrainType) {
-    console.log("ctx in drawMap:", ctx);
-    console.log("tileSize in drawMap:", tileSize);
+    console.log("drawMap called with mapData:", mapData, "tileSize:", tileSize, "terrainType:", terrainType);
+
+    if (!ctx) {
+        console.error("Canvas context is null in drawMap!");
+        return;
+    }
 
     for (let y = 0; y < mapData.length; y++) {
         for (let x = 0; x < mapData[y].length; x++) {
