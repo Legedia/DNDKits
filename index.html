@@ -333,6 +333,31 @@ function generateMap(mapSize, terrainType) {
 
     console.log("Canvas width:", mapCanvas.width, "Canvas height:", mapCanvas.height);
 }
+function generateMap(mapSize, terrainType) {
+    console.log("generateMap called with mapSize:", mapSize, "terrainType:", terrainType);
+
+    const mapCanvas = document.getElementById('mapCanvas');
+    const ctx = mapCanvas.getContext('2d');
+
+    if (!ctx) {
+        console.error("Canvas context is null!");
+        return;
+    }
+
+    // Clear the canvas
+    ctx.clearRect(0, 0, mapCanvas.width, mapCanvas.height);
+
+    // Calculate tile size
+    const tileSize = mapCanvas.width / mapSize;
+    console.log("tileSize:", tileSize);
+
+    // Generate map data
+    const mapData = generateMapData(mapSize, terrainType);
+    console.log("mapData:", mapData);
+
+    // Draw tiles
+    drawMap(ctx, mapData, tileSize, terrainType);
+}
 
 function generateMapData(mapSize, terrainType) {
     console.log("generateMapData called with mapSize:", mapSize, "terrainType:", terrainType);
@@ -395,6 +420,7 @@ function drawMap(ctx, mapData, tileSize, terrainType) {
         }
     }
 }
+
     </script>
 </body>
 </html>
