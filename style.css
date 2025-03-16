@@ -123,10 +123,14 @@ nav ul li a:hover {
     color: #ccc;
 }
 
-footer {
-    color: white; /* Removed background-color: #333; */
+ffooter {
+    color: white;
     text-align: center;
     padding: 20px 0;
+    position: fixed; /* Keep it fixed */
+    bottom: 0; /* Align to the bottom */
+    width: 100%; /* Full width */
+    background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent background */
 }
 
 /* Product Category Pages */
