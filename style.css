@@ -246,7 +246,7 @@ nav ul li a {
     padding: 20px;
     width: 300px;
     text-align: left;
-    margin-top: 200px; /* Add margin to push it down */
+    margin-top: 70%; /* Add margin to push it down */
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
 }
