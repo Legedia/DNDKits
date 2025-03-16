@@ -1,172 +1,236 @@
-/* style.css */
+/* Reset some default styles */
+body, h1, h2, h3, p, ul, li {
+    margin: 0;
+    padding: 0;
+}
 
 body {
     font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
     line-height: 1.6;
-    color: #333;
-    background-color: #f4f4f4;
+    color: white;
 }
 
 .container {
-    width: 80%;
-    margin: auto;
-    overflow: hidden;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 header {
-    background: #333;
-    color: #fff;
-    padding-top: 20px;
-    min-height: 70px;
-    border-bottom: #e8491d 3px solid;
+    background-color: #f0f0f0;
+    padding: 10px 0;
 }
 
-header a {
-    color: #fff;
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
     text-decoration: none;
-    text-transform: uppercase;
-    font-size: 16px;
-}
-
-header ul {
-    margin: 0;
-    padding: 0;
-}
-
-header li {
-    float: left;
-    display: inline;
-    padding: 0 20px 0 20px;
-}
-
-header #branding {
-    float: left;
-}
-
-header #branding h1 {
-    margin: 0;
-}
-
-header nav {
-    float: right;
-    margin-top: 10px;
-}
-
-header .highlight, header .current a {
-    color: #e8491d;
+    color: black;
     font-weight: bold;
 }
 
-header a:hover {
-    color: #ccc;
-    font-weight: bold;
+nav ul li a:hover {
+    color: red;
 }
 
 #hero {
-    background: url('../images/hero-bg.jpg') no-repeat center center/cover;
+    background-image: url('test.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     text-align: center;
-    color: #fff;
     padding: 100px 0;
 }
 
+body .hero-background #hero h1,
+body .hero-background #hero p {
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+body .hero-background #hero .btn {
+    color: white;
+}
+
+#hero h1, #hero p {
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
 #hero h1 {
-    font-size: 3em;
-    margin-bottom: 20px;
+    font-size: 3.5em;
+    line-height: 1.2;
 }
 
 #hero p {
     font-size: 1.2em;
-    margin-bottom: 30px;
 }
 
-.btn {
+#hero .btn {
+    color: white;
+}
+
+#featured-kits {
+    padding: 50px 0;
+    text-align: center;
+}
+
+#featured-kits .kit {
     display: inline-block;
-    background: #e8491d;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    text-decoration: none;
+    width: 300px;
+    margin: 20px;
+    vertical-align: top;
 }
 
-#featured-kits, .product-category, .blog-post-page {
-    padding: 30px 0;
-}
-
-#featured-kits h2, .product-category h2, .blog-post-page h1 {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.kit, .product {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.kit img, .product img, .blog-image {
-    max-width: 100%;
+#featured-kits .kit img {
+    width: 100%;
     height: auto;
     margin-bottom: 10px;
 }
 
+#featured-kits .kit h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: white;
+}
+
+#featured-kits .kit p {
+    margin-bottom: 20px;
+    color: white;
+}
+
 #about-us, #contact, #blog {
-    background: #f0f0f0;
-    padding: 30px 0;
-}
-
-#about-us h2, #contact h2, #blog h2 {
+    padding: 50px 0;
     text-align: center;
-    margin-bottom: 20px;
 }
 
-.blog-post {
-    margin-bottom: 20px;
+#blog .blog-post {
+    margin-bottom: 30px;
 }
 
-.blog-post h3 a {
-    color: #e8491d;
-    text-decoration: none;
+#blog .blog-post h3 {
+    margin-bottom: 10px;
+    color: white;
 }
 
-.blog-post .post-date {
+#blog .blog-post .post-date {
     font-style: italic;
-    color: #777;
+    color: #ccc;
 }
 
 footer {
-    background: #333;
-    color: #fff;
+    background-color: #333;
+    color: white;
     text-align: center;
     padding: 20px 0;
 }
 
-.hero-background {
-    background-color: #f4f4f4;
+.product-category {
+    padding: 50px 0;
+    text-align: center;
 }
 
-/* Responsive adjustments */
-@media(max-width: 768px) {
-    .container {
-        width: 90%;
-    }
+.product {
+    display: inline-block;
+    width: 300px;
+    margin: 20px;
+    vertical-align: top;
+}
 
-    header nav, header nav li {
-        float: none;
-        text-align: center;
-        padding: 5px;
-    }
+.product img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
 
-    header h1 {
-        text-align: center;
-    }
+.product h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: white;
+}
 
-    #hero h1 {
-        font-size: 2em;
-    }
+.product p {
+    margin-bottom: 20px;
+    color: white;
+}
 
-    #hero p {
-        font-size: 1em;
-    }
+.blog-post-content {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    text-align: left;
+    color: white;
+}
+
+.blog-post-content h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.blog-post-content p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.blog-post-content ul{
+    margin-bottom: 20px;
+    padding-left: 20px;
+}
+
+.hero-background {
+    background-image: url('test.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.hero-background::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.hero-background > * {
+    position: relative;
+    z-index: 1;
+}
+
+a {
+    color: red;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+nav ul li a {
+    color: black;
+}
+
+#hero .hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
 }
