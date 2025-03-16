@@ -304,10 +304,7 @@ nav ul li a {
     display: none;
     text-align: center;
     width: 100%;position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 5;
+    margin-top: 10px; /* Add margin to create space */
 }
 
 #hero .calculator-container {
@@ -325,9 +322,8 @@ nav ul li a {
 
 #calculator-area {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateY(-50%);
+    top: 200px; /* Adjust this value to control vertical position */
+    left: 20px; /* or left: 50%; transform: translateX(-50%); to center */
     width: 300px;
     text-align: left;
 }
