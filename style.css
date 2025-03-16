@@ -296,16 +296,18 @@ nav ul li a {
     border-radius: 3px;
     margin-bottom: 10px;
     width: 100%;
+    position: relative;
+    z-index: 10;
 }
 
 .calculator-container {
     display: none;
     text-align: center;
-    width: 100%;
-    position: absolute;
+    width: 100%;position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    z-index: 5;
 }
 
 #hero .calculator-container {
@@ -328,7 +330,9 @@ nav ul li a {
     transform: translateY(-50%);
     width: 300px;
     text-align: left;
-}#crTables {
+}
+
+#crTables {
     display: none;
 }
 
