@@ -5,7 +5,7 @@ body, h1, h2, h3, p, ul, li {
 }
 
 body {
-    font-family: 'Roboto', sans-serif; /* Updated font */
+    font-family: 'Roboto', sans-serif;
     line-height: 1.6;
     color: #333;
 }
@@ -51,34 +51,25 @@ nav ul li a:hover {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-color: #e0e0e0;
     text-align: center;
     padding: 100px 0;
 }
 
-#hero h1 {
-    font-size: 3em;
-    margin-bottom: 20px;
-    color: #fff;
+body .hero-background #hero h1,
+body .hero-background #hero p {
+    color: white;
 }
 
-#hero p {
-    font-size: 1.2em;
-    margin-bottom: 30px;
-    color: #fff;
+body .hero-background #hero .btn {
+    color: white;
 }
 
-.btn {
-    display: inline-block;
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
+#hero h1, #hero p {
+    color: white;
 }
 
-.btn:hover {
-    background-color: #0056b3;
+#hero .btn {
+    color: white;
 }
 
 #featured-kits {
@@ -188,5 +179,4 @@ footer {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-color: #e0e0e0;
 }
