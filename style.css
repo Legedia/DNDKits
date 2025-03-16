@@ -246,7 +246,7 @@ nav ul li a {
     padding: 20px;
     width: 300px;
     text-align: left;
-    margin-top: 20px; /* Adjust as needed */
+    margin-top: 200px; /* Adjust as needed */
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
 }
@@ -301,8 +301,7 @@ nav ul li a {
 
 .calculator-container {
     display: none;
-    text-align: center;
-    widthwidth: 300px; /* or whatever width you want */
+    text-align: center;width: 300px; /* or whatever width you want */
     margin-top: 20px; /* Adjust as needed */
     margin-left: 20px; /* Adjust as needed */
 }
@@ -370,4 +369,37 @@ nav ul li a {
 #map-generator .input-group label{
     width: 150px;
     text-align: left;
+}
+
+#mapContainer {
+    display: flex; /* Use flexbox to align key and canvas */
+    align-items: flex-start; /* Align items to the top */
+}
+
+#mapKey {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 10px;
+    width: 150px;
+    text-align: left;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
+    margin-right: 10px; /* Add some space between key and canvas */
+}
+
+.key-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.key-color {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    border: 1px solid #555;
+}
+
+.key-label {
+    color: white;
 }
