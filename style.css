@@ -301,7 +301,7 @@ nav ul li a {
     width: 100%;
 }
 
-..calculator-container {
+.calculator-container {
     display: none; /* Initially hide all calculators */
     text-align: center; /* Center calculators */
     position: absolute; /* Add this line */
