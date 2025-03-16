@@ -246,7 +246,7 @@ nav ul li a {
     padding: 20px;
     width: 300px;
     text-align: left;
-    margin-top: 50px; /* Adjust as needed */
+    margin-top: 200px; /* Adjust as needed */
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
 }
@@ -301,7 +301,7 @@ nav ul li a {
 
 .calculator-container {
     display: none;
-    text-align: center;width: 50%; /* or whatever width you want */
+    text-align: center;width: 300px; /* or whatever width you want */
     margin-top: 20px; /* Adjust as needed */
     margin-left: 350px; /* Adjust as needed */
 }
@@ -402,23 +402,4 @@ nav ul li a {
 
 .key-label {
     color: white;
-
-}
-
-#calculator-area {
-    position: relative;
-    left: 350px;
-    top: 300px;
-}
-
-.calculator-container {
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-}
-
-#map-generator {
-    width: 500px;
 }
