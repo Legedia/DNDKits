@@ -350,7 +350,7 @@
                     for (let x = 0; x < mapSize; x++) {
                         const noiseValue = noise.noise(x / 10, y / 10, 0); // Adjust scale (10) as needed
 
-                        if (noiseValue < -0.2) {
+                        if (noiseValue < 1.0) {
                             row.push('water');
                         } else if (noiseValue < 0) {
                             row.push('grassland');
@@ -366,7 +366,7 @@
                 }
 
                 console.log("mapData after generation:", mapData);
-                return mapData;
+                    return mapData;
             }
                          
             function drawMap(ctx, mapData, tileSize, terrainType) {
