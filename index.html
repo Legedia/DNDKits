@@ -1,420 +1,147 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>D&D Homebrew Kits</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/perlin-noise-simplex"></script>
+    <title>Map Generator</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        #mapGenerator {
+            text-align: center;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #mapCanvas {
+            border: 1px solid #ccc;
+            margin-top: 10px;
+            image-rendering: pixelated; /* Ensures crisp pixels */
+        }
+
+        #mapKey {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .key-item {
+            display: flex;
+            align-items: center;
+            margin: 5px 10px;
+        }
+
+        .key-color {
+            width: 20px;
+            height: 20px;
+            border: 1px solid #ccc;
+            margin-right: 5px;
+        }
+
+        #mapSizeInput {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #generateButton {
+            padding: 8px 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #generateButton:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="logo">
-            </div>
-            <nav>
-                <ul>
-                    <li>
-                        <div>
-                            <a href="index.html">
-                                <img src="HomeIcon.jpg" alt="Home" class="nav-icon">
-                            </a>
-                            <a href="index.html">Home</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <a href="campaigns.html">
-                                <img src="CampaignsIcon.jpg" alt="Campaigns" class="nav-icon">
-                            </a>
-                            <a href="campaigns.html">Campaigns</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <a href="monsters.html">
-                                <img src="MonstersIcon.jpg" alt="Monsters" class="nav-icon">
-                            </a>
-                            <a href="monsters.html">Monsters</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <a href="characters.html">
-                                <img src="CharactersIcon.jpg" alt="Characters" class="nav-icon">
-                            </a>
-                            <a href="characters.html">Characters</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <a href="npcs.html">
-                                <img src="NPCIcon.jpg" alt="NPCs" class="nav-icon">
-                            </a>
-                            <a href="npcs.html">NPCs</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <a href="items.html">
-                                <img src="ItemsIcon.jpg" alt="Items" class="nav-icon">
-                            </a>
-                            <a href="items.html">Items</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <a href="weapons.html">
-                                <img src="WeaponsIcon.jpg" alt="Weapons" class="nav-icon">
-                            </a>
-                            <a href="weapons.html">Weapons</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <a href="armor.html">
-                                <img src="ArmorIcon.jpg" alt="Armor" class="nav-icon">
-                            </a>
-                            <a href="armor.html">Armor</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <a href="aboutus.html">
-                                <img src="AboutUsIcon.jpg" alt="About Us" class="nav-icon">
-                            </a>
-                            <a href="aboutus.html">About Us</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <a href="ContactUs.html">
-                                <img src="ContactUsIcon.jpg" alt="Contact" class="nav-icon">
-                            </a>
-                            <a href="ContactUs.html">Contact</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <a href="Blogs.html">
-                                <img src="BlogsIcon.jpg" alt="Blog" class="nav-icon">
-                            </a>
-                            <a href="Blogs.html">Blog</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <a href="cart.html">
-                                <img src="ShoppingCartIcon.jpg" alt="Cart" class="nav-icon">
-                            </a>
-                            <a href="cart.html">Cart</a>
-                        </div>
-                    </li>
-                </ul>
-            </nav>
+    <div id="mapGenerator">
+        <h1>Map Generator</h1>
+        <input type="number" id="mapSizeInput" placeholder="Map Size (e.g., 50)" value="50">
+        <button id="generateButton" onclick="generateMap(parseInt(document.getElementById('mapSizeInput').value))">Generate Map</button>
+        <canvas id="mapCanvas" width="500" height="500"></canvas>
+        <div id="mapKey">
+            <div class="key-item"><div class="key-color" data-terrain="grassland"></div>Grassland</div>
+            <div class="key-item"><div class="key-color" data-terrain="forest"></div>Forest</div>
+            <div class="key-item"><div class="key-color" data-terrain="desert"></div>Desert</div>
+            <div class="key-item"><div class="key-color" data-terrain="mountain"></div>Mountain</div>
+            <div class="key-item"><div class="key-color" data-terrain="rock"></div>Rock</div>
+            <div class="key-item"><div class="key-color" data-terrain="water"></div>Water</div>
         </div>
-    </header>
-    <section id="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Craft Your Epic Adventures</h1>
-                <p>Handcrafted D&D Homebrew Kits for Unforgettable Campaigns.</p>
-            </div>
-            <div id="calculator-box">
-                <h2>D&D Calculators</h2>
-                <p>Select a calculator:</p>
-                <select id="calculator-select">
-                    <option value="">Select a Calculator</option>
-                    <option value="dice-roller">Dice Roller</option>
-                    <option value="stat-calculator">Character Stat Calculator</option>
-                    <option value="cr-calculator">Challenge Rating (CR) Calculator</option>
-                    <option value="treasure-generator">Treasure Generator</option>
-                    <option value="map-generator">Map Generator</option>
-                </select>
-            </div>
-            <div id="calculator-area">
-                <div id="dice-roller" class="calculator-container">
-                    <label for="sidesInput">Enter sides:</label>
-                    <input type="number" id="sidesInput" value="20" min="1">
-                    <button id="rollButton">Roll Dice</button>
-                    <p id="rollResult"></p>
-                </div>
-                <div id="stat-calculator" class="calculator-container">
-                    <h3>Character Stat Calculator</h3>
-                    <label for="str">Strength:</label>
-                    <input type="number" id="str" value="10">
-                    <span id="strMod"></span><br>
-                    <label for="dex">Dexterity:</label>
-                    <input type="number" id="dex" value="10">
-                    <span id="dexMod"></span><br>
-                    <label for="con">Constitution:</label>
-                    <input type="number" id="con" value="10">
-                    <span id="conMod"></span><br>
-                    <label for="int">Intelligence:</label>
-                    <input type="number" id="int" value="10">
-                    <span id="intMod"></span><br>
-                    <label for="wis">Wisdom:</label>
-                    <input type="number" id="wis" value="10">
-                    <span id="wisMod"></span><br>
-                    <label for="cha">Charisma:</label>
-                    <input type="number" id="cha" value="10">
-                    <span id="chaMod"></span><br>
-                </div>
-                <div id="cr-calculator" class="calculator-container">
-                    <h3>Challenge Rating (CR) Calculator</h3>
-                    <div class="input-group">
-                        <label for="hp">Hit Points (HP):</label>
-                        <input type="number" id="hp" min="1" value="50">
-                    </div>
-                    <div class="input-group">
-                        <label for="ac">Armor Class (AC):</label>
-                        <input type="number" id="ac" value="15">
-                    </div>
-                    <div class="input-group">
-                        <label for="dpr">Average Damage Per Round (DPR):</label>
-                        <input type="number" id="dpr" min="1" value="15">
-                    </div>
-                    <div class="input-group">
-                        <label for="attackBonus">Attack Bonus:</label>
-                        <input type="number" id="attackBonus" value="5">
-                    </div>
-                    <div class="input-group">
-                        <label for="saveDC">Save DC:</label>
-                        <input type="number" id="saveDC" value="13">
-                    </div>
-                    <button id="calculateCR">Calculate CR</button>
-                    CR: <span id="finalCR"></span>
-                    <div id="crTables">
-                        <p>Defensive CR Table: <span id="defensiveTable"></span></p>
-                        <p>Offensive CR Table: <span id="offensiveTable"></span></p>
-                    </div>
-                </div>
-                <div id="treasure-generator" class="calculator-container">
-                    <h3>Treasure Generator (Coming Soon)</h3>
-                    <div class="input-group">
-                        <label for="partyLevel">Party Level:</label>
-                        <input type="number" id="partyLevel" min="1" value="5">
-                    </div>
-                    <div class="input-group">
-                        <label for="encounterCR">Encounter CR:</label>
-                        <input type="number" id="encounterCR" value="5">
-                    </div>
-                    <div class="input-group">
-                        <label for="location">Location:</label>
-                        <select id="location">
-                            <option value="dungeon">Dungeon</option>
-                            <option value="wilderness">Wilderness</option>
-                            <option value="urban">Urban</option>
-                        </select>
-                    </div>
-                    <button id="generateTreasure">Generate Treasure</button>
-                    <div id="treasure-result-container">
-                        <div id="treasureResults">
-                            <p>Treasure:</p>
-                            <ul id="treasureList"></ul>
-                        </div>
-                    </div>
-                </div>
-                <div id="map-generator" class="calculator-container">
-                    <h3>Map Generator (Beta)</h3>
-                    <div class="input-group">
-                        <label for="mapSize">Map Size (Tiles):</label>
-                        <input type="number" id="mapSize" value="20" min="1">
-                    </div>
+    </div>
 
-                    <div class="input-group">
-                        <label for="grasslandCount">Grassland Tiles:</label>
-                        <input type="number" id="grasslandCount" value="0" min="0">
-                    </div>
-                    <div class="input-group">
-                        <label for="forestCount">Forest Tiles:</label>
-                        <input type="number" id="forestCount" value="0" min="0">
-                    </div>
-                    <div class="input-group">
-                        <label for="desertCount">Desert Tiles:</label>
-                        <input type="number" id="desertCount" value="0" min="0">
-                    </div>
-                    <div class="input-group">
-                        <label for="mountainCount">Mountain Tiles:</label>
-                        <input type="number" id="mountainCount" value="0" min="0">
-                    </div>
-                    <div class="input-group">
-                        <label for="rockCount">Rock Tiles:</label>
-                        <input type="number" id="rockCount" value="0" min="0">
-                    </div>
-                    <div class="input-group">
-                        <label for="waterCount">Water Tiles:</label>
-                        <input type="number" id="waterCount" value="0" min="0">
-                    </div>
-
-                    <button id="generateMap">Generate Map</button>
-                    <div id="mapContainer">
-                        <aside id="mapKey">
-                            <h3>Map Key</h3>
-                            <div class="key-item">
-                                <div class="key-color" data-terrain="grassland"></div>
-                                <span class="key-label">Grassland</span>
-                            </div>
-                            <div class="key-item">
-                                <div class="key-color" data-terrain="forest"></div>
-                                <span class="key<span class="key-label">Forest</span>
-                            </div>
-                            <div class="key-item">
-                                <div class="key-color" data-terrain="desert"></div>
-                                <span class="key-label">Desert</span>
-                            </div>
-                            <div class="key-item">
-                                <div class="key-color" data-terrain="mountain"></div>
-                                <span class="key-label">Mountain</span>
-                            </div>
-                            <div class="key-item">
-                                <div class="key-color" data-terrain="rock"></div>
-                                <span class="key-label">Rock</span>
-                            </div>
-                            <div class="key-item">
-                                <div class="key-color" data-terrain="water"></div>
-                                <span class="key-label">Water</span>
-                            </div>
-                        </aside>
-                        <canvas id="mapCanvas"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <footer>
-        <div class="container">
-            <p>&copy; 2023 D&D Homebrew Kits. All rights reserved.</p></div>
-    </footer>
     <script>
-        const rollButton = document.getElementById('rollButton');
-        const rollResult = document.getElementById('rollResult');
-        const sidesInput = document.getElementById('sidesInput');
-
-        rollButton.addEventListener('click', () => {
-            const sides = parseInt(sidesInput.value);
-            if (isNaN(sides) || sides < 1) {
-                alert('Please enter a valid number of sides.');
-                return;
+        // Perlin Noise implementation (from previous responses)
+        class PerlinNoise {
+            constructor(seed = Math.random()) {
+                this.seed = seed;
+                this.gradients = {};
             }
-            const result = Math.floor(Math.random() * sides) + 1;
-            rollResult.textContent = `You rolled: ${result}`;
-            rollButton.style.backgroundColor = '#555'; // Visual feedback
-            setTimeout(() => {
-                rollButton.style.backgroundColor = '#007bff'; // Reset color
-            }, 200);
-        });
 
-        const stats = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
+            rand(x, y) {
+                let n = x + y * 57;
+                n = (n << 13) ^ n;
+                return Math.abs((1.0 - ((n * (n * n * 15731 + 789221) + this.seed) & 0x7fffffff) / 1073741824.0));
+            }
 
-        stats.forEach(stat => {
-            const input = document.getElementById(stat);
-            const mod = document.getElementById(stat + 'Mod');
-
-            input.addEventListener('input', () => {
-                const score = parseInt(input.value);
-                const modifier = Math.floor((score - 10) / 2);
-                mod.textContent = `(<span class="math-inline">\{modifier \>\= 0 ? '\+' \: ''\}</span>{modifier})`;
-            });
-        });
-
-        const calculatorSelect = document.getElementById('calculator-select');
-        const calculators = document.querySelectorAll('.calculator-container');
-
-        calculatorSelect.addEventListener('change', () => {
-            const selectedCalculatorId = calculatorSelect.value;
-            calculators.forEach(calc => {
-                calc.style.display = 'none'; // Hide all calculators
-            });
-
-            if (selectedCalculatorId) {
-                document.getElementById(selectedCalculatorId).style.display = 'block'; // Show the selected calculator
-
-                //Add this section to prevent clicks inside the map generator from stoping the dropdown.
-                if(selectedCalculatorId === "map-generator"){
-                    document.getElementById(selectedCalculatorId).addEventListener('click', function(event){
-                        event.stopPropagation();
-                    })
+            grad(x, y) {
+                const key = `<span class="math-inline">\{x\},</span>{y}`;
+                if (this.gradients[key]) {
+                    return this.gradients[key];
                 }
+
+                const v = Math.random() * 2 * Math.PI;
+                const g = [Math.cos(v), Math.sin(v)];
+                this.gradients[key] = g;
+                return g;
             }
-        });
 
-        // CR Calculator Logic
-        document.getElementById('calculateCR').addEventListener('click', function() {
-            const hp = parseInt(document.getElementById('hp').value);
-            const ac = parseInt(document.getElementById('ac').value);
-            const dpr = parseInt(document.getElementById('dpr').value);
-            const attackBonus = parseInt(document.getElementById('attackBonus').value);
-            const saveDC = parseInt(document.getElementById('saveDC').value);
+            noise(x, y) {
+                const xf = Math.floor(x);
+                const yf = Math.floor(y);
 
-            const defensiveCR = calculateDefensiveCR(hp, ac);
-            const offensiveCR = calculateOffensiveCR(dpr, attackBonus, saveDC);
-            const finalCR = (defensiveCR + offensiveCR) / 2;
+                const tl = this.grad(xf, yf);
+                const tr = this.grad(xf + 1, yf);
+                const bl = this.grad(xf, yf + 1);
+                const br = this.grad(xf + 1, yf + 1);
 
-            document.getElementById('defensiveTable').textContent = getDefensiveTable();
-            document.getElementById('offensiveTable').textContent = getOffensiveTable();
-            document.getElementById('finalCR').textContent = finalCR;
+                const tx = x - xf;
+                const ty = y - yf;
 
-            document.getElementById('crTables').style.display = 'block'; // Show CR tables
-        });
+                const xtl = tl[0] * tx + tl[1] * ty;
+                const xtr = tr[0] * (tx - 1) + tr[1] * ty;
+                const xbl = bl[0] * tx + bl[1] * (ty - 1);
+                const xbr = br[0] * (tx - 1) + br[1] * (ty - 1);
 
-        // Treasure Generator Logic
-        document.getElementById('generateTreasure').addEventListener('click', function() {
-            const partyLevel = parseInt(document.getElementById('partyLevel').value);
-            const encounterCR = parseInt(document.getElementById('encounterCR').value);
-            const location = document.getElementById('location').value;
+                const u = fade(tx);
+                const v = fade(ty);
 
-            const treasure = generateTreasure(partyLevel, encounterCR, location);
+                const x1 = lerp(xtl, xtr, u);
+                const x2 = lerp(xbl, xbr, u);
 
-            const treasureList = document.getElementById('treasureList');
-            treasureList.innerHTML = '';
-            treasure.forEach(item => {
-                const li = document.createElement('li');
-                li.textContent = item;
-                treasureList.appendChild(li);
-            });
-        });
-
-        // Map Generator Logic
-        document.getElementById('generateMap').addEventListener('click', function() {
-            const mapSize = parseInt(document.getElementById('mapSize').value);
-            generateMap(mapSize);
-        });
-
-        // Helper Functions (to be implemented)
-        function calculateDefensiveCR(hp, ac) {
-            // Logic to calculate defensive CR based on DMG tables
-            return "Defensive CR Calculated"; // Placeholder
+                return lerp(x1, x2, v);
+            }
         }
 
-        function calculateOffensiveCR(dpr, attackBonus, saveDC) {
-            // Logic to calculate offensive CR based on DMG tables
-            return "Offensive CR Calculated"; // Placeholder
+        function fade(t) {
+            return t * t * t * (t * (t * 6 - 15) + 10);
         }
 
-        function generateTreasure(partyLevel, encounterCR, location) {
-            // Logic to generate treasure based on DMG tables and random generation
-            // For now, we'll return a static list
-            return [
-                "500 Gold Pieces (GP)",
-                "Potion of Healing (Common)",
-                "Scroll of Fireball (Uncommon)",
-                "+1 Longsword (Uncommon)",
-                "Bag of Holding (Uncommon)"
-            ];
-        }
-
-        function getDefensiveTable(){
-            //logic to get the defensive table data.
-            return "Defensive Table Data"; //Placeholder
-        }
-
-        function getOffensiveTable(){
-            //logic to get the defensive table data.
-            return "Offensive Table Data"; //Placeholder
+        function lerp(a, b, t) {
+            return a + t * (b - a);
         }
 
         function generateMap(mapSize) {
@@ -452,112 +179,108 @@
 
             for (let y = 0; y < mapSize; y++) {
                 const row = [];
-            for (let x = 0; x < mapSize; x++) {
-                const value = noise.noise(x / 10, y / 10, 0); // Adjust scaling (10) for terrain feature size
-                let terrain = 'grassland'; // Default terrain
+                for (let x = 0; x < mapSize; x++) {
+                    const value = noise.noise(x / 10, y / 10, 0);
+                    let terrain = 'grassland';
 
-                if (value > 0.5) {
-                    terrain = 'mountain';
-                } else if (value > 0.3) {
-                    terrain = 'forest';
-                } else if (value < -0.3) {
-                    terrain = 'water';
-                } else if (value < 0) {
-                    terrain = 'desert';
+                    if (value > 0.5) {
+                        terrain = 'mountain';
+                    } else if (value > 0.3) {
+                        terrain = 'forest';
+                    } else if (value < -0.3) {
+                        terrain = 'water';
+                    } else if (value < 0) {
+                        terrain = 'desert';
+                    }
+
+                    row.push(terrain);
                 }
-
-                row.push(terrain);
+                map.push(row);
             }
-            map.push(row);
+
+            return map;
         }
-
-        return map;
-    }
-
-            
 
         function drawMap(ctx, mapData, tileSize) {
             console.log("drawMap called with mapData:", mapData, "tileSize:", tileSize);
 
-if (!ctx) {
-    console.error("Canvas context is null in drawMap!");
-    return;
-}
+            if (!ctx) {
+                console.error("Canvas context is null in drawMap!");
+                return;
+            }
 
-for (let y = 0; y < mapData.length; y++) {
-    for (let x = 0; x < mapData[y].length; x++) {
-        const tile = mapData[y][x];
-        let color = '';
+            for (let y = 0; y < mapData.length; y++) {
+                for (let x = 0; x < mapData[y].length; x++) {
+                    const tile = mapData[y][x];
+                    let color = '';
 
-        console.log("tile in drawMap:", tile);
+                    console.log("tile in drawMap:", tile);
 
-        switch (tile) {
-            case 'grassland':
-                color = 'green';
-                break;
-            case 'forest':
-                color = 'darkgreen';
-                break;
-            case 'desert':
-                color = 'yellow';
-                break;
-            case 'mountain':
-                color = 'gray';
-                break;
-            case 'rock':
-                color = 'darkgray';
-                break;
-            case 'water':
-                color = 'blue';
-                break;
-            default:
-                color = 'lightgray';
-                break;
+                    switch (tile) {
+                        case 'grassland':
+                            color = 'green';
+                            break;
+                        case 'forest':
+                            color = 'darkgreen';
+                            break;
+                        case 'desert':
+                            color = 'yellow';
+                            break;
+                        case 'mountain':
+                            color = 'gray';
+                            break;
+                        case 'rock':
+                            color = 'darkgray';
+                            break;
+                        case 'water':
+                            color = 'blue';
+                            break;
+                        default:
+                            color = 'lightgray';
+                            break;
+                    }
+
+                    console.log("color in drawMap:", color);ctx.fillStyle = color;
+                    ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
+                    ctx.strokeStyle = '#ccc';
+                    ctx.strokeRect(x * tileSize, y * tileSize, tileSize, tileSize);
+                }
+            }
         }
 
-        console.log("color in drawMap:", color);
+        function updateColorKey() {
+            const keyColors = document.querySelectorAll('#mapKey .key-color');
+            keyColors.forEach(keyColor => {
+                const terrain = keyColor.dataset.terrain;
+                let color = '';
 
-        ctx.fillStyle = color;
-        ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
-        ctx.strokeStyle = '#ccc';
-        ctx.strokeRect(x * tileSize, y * tileSize, tileSize, tileSize);
-    }
-}
-}
+                switch (terrain) {
+                    case 'grassland':
+                        color = 'green';
+                        break;
+                    case 'forest':
+                        color = 'darkgreen';
+                        break;
+                    case 'desert':
+                        color = 'yellow';
+                        break;
+                    case 'mountain':
+                        color = 'gray';
+                        break;
+                    case 'rock':
+                        color = 'darkgray';
+                        break;
+                    case 'water':
+                        color = 'blue';
+                        break;
+                    default:
+                        color = 'lightgray';
+                        break;
+                }
 
-function updateColorKey() {
-const keyColors = document.querySelectorAll('#mapKey .key-color');
-keyColors.forEach(keyColor => {
-    const terrain = keyColor.dataset.terrain;
-    let color = '';
-
-    switch (terrain) {
-        case 'grassland':
-            color = 'green';
-            break;
-        case 'forest':
-            color = 'darkgreen';
-            break;
-        case 'desert':
-            color = 'yellow';
-            break;
-        case 'mountain':
-            color = 'gray';
-            break;
-        case 'rock':
-            color = 'darkgray';
-            break;
-        case 'water':
-            color = 'blue';
-            break;
-        default:
-            color = 'lightgray';
-            break;
-    }
-
-    keyColor.style.backgroundColor = color;
-});
-}
-</script>
+                keyColor.style.backgroundColor = color;
+            });
+        }
+    </script>
 </body>
 </html>
