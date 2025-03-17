@@ -386,15 +386,29 @@
 
             // Place tiles randomly
             terrainTypes.forEach(terrain => {
-                for (let i = 0; i < terrain.count; i++) {
-                    let x, y;
-                    do {
-                        x = Math.floor(Math.random() * mapSize);
-                        y = Math.floor(Math.random() * mapSize);
-                    } while (map[y][x] !== ''); // Find an empty spot
-                    map[y][x] = terrain.name;
+                let placed = 0;
+                while (placed < terrain.count) {
+                    let startX, startY;
+                    startX = Math.floor(Math.random() * mapSize);
+                    startY = Math.floor(Math.random() * mapSize);
+
+                    let placedAroundStart = 0;
+                    let attempts = 0;
+                    while (placedAroundStart < 1 && attempts < 100) {
+                        let x = startX + Math.floor(Math.random() * 3) - 1;
+                        let y = startY + Math.floor(Math.random() * 3) - 1;
+
+                        if (x >= 0 && x < mapSize && y >= 0 && y < mapSize && map[y][x] === '') {
+                            map[y][x] = terrain.name;
+                            placed++;
+                            placedAroundStart++;
+                        }
+                        attempts++;
+                    }
+
                 }
             });
+            // --- END REPLACE TILE PLACEMENT LOGIC HERE ---
             return map;
         }
 
