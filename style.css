@@ -35,11 +35,12 @@ header .container {
 nav ul {
     list-style: none;
     display: flex;
+    justify-content: space-around; /* Distribute space evenly */
 }
 
 nav ul li .nav-icon {
-    width: 32px; /*Adjust size as needed*/
-    height: 32px; /* Adjust size as needed*/
+    width: 48px; /*Adjust size as needed*/
+    height: 48px; /* Adjust size as needed*/
     margin-bottom: 5px; /*Space between icon and text */
 }
 
@@ -55,6 +56,7 @@ nav ul li {
     display: flex; /* use flex to center the icon and text */
         flex-direction: column;
         align-items: center;
+        margin: 0 15px; /* Add some horizontal margin */
 }
 
 nav ul li a:hover {
