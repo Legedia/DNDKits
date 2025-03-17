@@ -22,20 +22,21 @@ body {
 }
 
 header {
-    background-color: #f0f0f0;
+    background-color: transparent; /*changed to transparent */
     padding: 10px 0;
 }
 
 header .container {
     display: flex;
-    justify-content: space-between;
+    justify-content: content; /*center horizontally */
     align-items: center;
+    flex-direction: column; /* stack logo and nav vertically */
 }
 
 nav ul {
     list-style: none;
     display: flex;
-    justify-content: space-around; /* Distribute space evenly */
+    justify-content: center; /* Center navigation items */
 }
 
 nav ul li .nav-icon {
