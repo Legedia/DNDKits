@@ -338,6 +338,7 @@ nav ul li a {
     #treasure-result-container {
     margin-top: 50px; /* Add space below the button */
     border: 1px solid #ccc;
+    position: absolute;
     padding: 10px;
     text-align: center;
     background-color: rgba(255, 255, 255, 0.1);
@@ -345,7 +346,6 @@ nav ul li a {
     width: 500px;
     top: 50%;
     left: 50%;
-    left: 350px;
     transform: translate(-50%, -50%);
     }
     
@@ -355,7 +355,7 @@ nav ul li a {
     
     #treasureResults ul {
     list-style-type: disc;
-    margin-left: 350px;
+    margin-left: 20px;
     }
     
     #mapCanvas {
