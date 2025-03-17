@@ -342,6 +342,7 @@ nav ul li a {
     text-align: left;
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 5px;
+    width: 500px;
     }
     
     #treasureResults p {
