@@ -321,7 +321,7 @@ nav ul li a {
 }
 
 .calculator-container {
-    display: flex;
+    display: none;
     flex-direction: column;
     padding: 20px;
     border: 1px solid #ddd;
