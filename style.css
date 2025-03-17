@@ -321,13 +321,61 @@ nav ul li a {
 }
 
 .calculator-container {
-    display: none;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.calculator-container .input-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.calculator-container .input-group label {
+    flex-basis: 30%;
+    text-align: left;
+}
+
+.calculator-container .input-group input,
+.calculator-container .input-group select {
+    flex-basis: 65%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.calculator-container button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    align-self: flex-start;
+}
+
+.calculator-container button:hover {
+    background-color: #0056b3;
+}
+
+.calculator-container h3 {
     text-align: center;
-    width: 100%; /* or whatever width you want */
-    Margin: 0 auto; 
-    
-    }
-    
+    margin-bottom: 20px;
+}
+
+#treasure-result-container {
+    margin-top: 10px;
+}
+
+#treasureList{
+    list-style-type: none;
+    padding-left: 0;
+}    
     /* Add specific positioning for each calculator /
     #dice-roller {
     / Adjust positioning as needed */
