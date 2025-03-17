@@ -139,7 +139,17 @@
                         <label for="mapSize">Map Size (Tiles):</label>
                         <input type="number" id="mapSize" value="20">
                     </div>
-                    
+                    <div class="input-group">
+                        <label for="terrainType">Terrain Type:</label>
+                        <select id="terrainType">
+                            <option value="grassland">Grassland</option>
+                            <option value="forest">Forest</option>
+                            <option value="desert">Desert</option>
+                            <option value="mountain">Mountain</option>
+                            <option value="rock">Rock</option>
+                            <option value="water">Water</option>
+                        </select>
+                    </div>
                     <button id="generateMap">Generate Map</button>
                     <div id="mapContainer">
                         <aside id="mapKey">
@@ -163,6 +173,10 @@
                             <div class="key-item">
                                 <div class="key-color" data-terrain="rock"></div>
                                 <span class="key-label">Rock</span>
+                            </div>
+                            <div class="key-item">
+                                <div class="key-color" data-terrain="water"></div>
+                                <span class="key-label">Water</span>
                             </div>
                         </aside>
                         <canvas id="mapCanvas"></canvas>
