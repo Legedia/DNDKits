@@ -39,8 +39,8 @@ nav ul {
 }
 
 nav ul li .nav-icon {
-    width: 85px; /*Adjust size as needed*/
-    height: 85px; /* Adjust size as needed*/
+    width: 70px; /*Adjust size as needed*/
+    height: 70px; /* Adjust size as needed*/
     margin-bottom: 5px; /*Space between icon and text */
 }
 
