@@ -47,7 +47,7 @@ nav ul li .nav-icon {
 
 nav ul li a {
     text-decoration: none;
-    color: black;
+    color: white;
     font-weight: bold;
     display: block; /* Make the link a block-level element */
     text-align: center; /* Center the link text */
