@@ -37,14 +37,24 @@ nav ul {
     display: flex;
 }
 
-nav ul li {
-    margin-left: 20px;
+nav ul li .nav-icon {
+    width: 32px; /*Adjust size as needed*/
+    height: 32px; /* Adjust size as needed*/
+    margin-bottom: 5px; /*Space between icon and text */
 }
 
 nav ul li a {
     text-decoration: none;
     color: black;
     font-weight: bold;
+    display: block; /* Make the link a block-level element */
+    text-align: center; /* Center the link text */
+}
+
+nav ul li {
+    display: flex; /* use flex to center the icon and text */
+        flex-direction: column;
+        align-items: center;
 }
 
 nav ul li a:hover {
