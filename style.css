@@ -43,6 +43,7 @@ nav ul li .nav-icon {
     width: 80px; /*Adjust size as needed*/
     height: 80px; /* Adjust size as needed*/
     margin-bottom: 5px; /*Space between icon and text */
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.7)); /* Added shadow to icons */
 }
 
 nav ul li a {
