@@ -8,145 +8,373 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        #mapContainer {
-            display: flex;
-        }
-
-        #mapKey {
-            width: 150px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            margin-right: 20px;
-        }
-
-        .key-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 5px;
-        }
-
-        .key-color {
-            width: 20px;
-            height: 20px;
-            margin-right: 10px;
-            border: 1px solid #000;
-        }
-
-        #mapCanvas {
-            border: 1px solid #000;
-        }
-    </style>
 </head>
 <body>
     <header>
-        <h1>D&D Homebrew Kits</h1>
+        <div class="container">
+            <div class="logo">
+            </div>
+            <nav>
+                <ul>
+                    <li>
+                        <div>
+                            <a href="index.html">
+                                <img src="HomeIcon.jpg" alt="Home" class="nav-icon">
+                            </a>
+                            <a href="index.html">Home</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <a href="campaigns.html">
+                                <img src="CampaignsIcon.jpg" alt="Campaigns" class="nav-icon">
+                            </a>
+                            <a href="campaigns.html">Campaigns</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <a href="monsters.html">
+                                <img src="MonstersIcon.jpg" alt="Monsters" class="nav-icon">
+                            </a>
+                            <a href="monsters.html">Monsters</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <a href="characters.html">
+                                <img src="CharactersIcon.jpg" alt="Characters" class="nav-icon">
+                            </a>
+                            <a href="characters.html">Characters</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <a href="npcs.html">
+                                <img src="NPCIcon.jpg" alt="NPCs" class="nav-icon">
+                            </a>
+                            <a href="npcs.html">NPCs</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <a href="items.html">
+                                <img src="ItemsIcon.jpg" alt="Items" class="nav-icon">
+                            </a>
+                            <a href="items.html">Items</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <a href="weapons.html">
+                                <img src="WeaponsIcon.jpg" alt="Weapons" class="nav-icon">
+                            </a>
+                            <a href="weapons.html">Weapons</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <a href="armor.html">
+                                <img src="ArmorIcon.jpg" alt="Armor" class="nav-icon">
+                            </a>
+                            <a href="armor.html">Armor</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <a href="aboutus.html">
+                                <img src="AboutUsIcon.jpg" alt="About Us" class="nav-icon">
+                            </a>
+                            <a href="aboutus.html">About Us</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <a href="ContactUs.html">
+                                <img src="ContactUsIcon.jpg" alt="Contact" class="nav-icon">
+                            </a>
+                            <a href="ContactUs.html">Contact</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <a href="Blogs.html">
+                                <img src="BlogsIcon.jpg" alt="Blog" class="nav-icon">
+                            </a>
+                            <a href="Blogs.html">Blog</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <a href="cart.html">
+                                <img src="ShoppingCartIcon.jpg" alt="Cart" class="nav-icon">
+                            </a>
+                            <a href="cart.html">Cart</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </header>
-
-    <main>
-        <div id="dice-roller" class="calculator-container">
-            <h3>Dice Roller</h3>
-            <div class="input-group">
-                <label for="diceType">Dice Type:</label>
-                <select id="diceType">
-                    <option value="4">d4</option>
-                    <option value="6">d6</option>
-                    <option value="8">d8</option>
-                    <option value="10">d10</option>
-                    <option value="12">d12</option>
-                    <option value="20">d20</option>
-                    <option value="100">d100</option>
+    <section id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Craft Your Epic Adventures</h1>
+                <p>Handcrafted D&D Homebrew Kits for Unforgettable Campaigns.</p>
+            </div>
+            <div id="calculator-box">
+                <h2>D&D Calculators</h2>
+                <p>Select a calculator:</p>
+                <select id="calculator-select">
+                    <option value="">Select a Calculator</option>
+                    <option value="dice-roller">Dice Roller</option>
+                    <option value="stat-calculator">Character Stat Calculator</option>
+                    <option value="cr-calculator">Challenge Rating (CR) Calculator</option>
+                    <option value="treasure-generator">Treasure Generator</option>
+                    <option value="map-generator">Map Generator</option>
                 </select>
             </div>
-            <div class="input-group">
-                <label for="diceCount">Number of Dice:</label>
-                <input type="number" id="diceCount" value="1" min="1">
+            <div id="calculator-area">
+                <div id="dice-roller" class="calculator-container">
+                    <label for="sidesInput">Enter sides:</label>
+                    <input type="number" id="sidesInput" value="20" min="1">
+                    <button id="rollButton">Roll Dice</button>
+                    <p id="rollResult"></p>
+                </div>
+                <div id="stat-calculator" class="calculator-container">
+                    <h3>Character Stat Calculator</h3>
+                    <label for="str">Strength:</label>
+                    <input type="number" id="str" value="10">
+                    <span id="strMod"></span><br>
+                    <label for="dex">Dexterity:</label>
+                    <input type="number" id="dex" value="10">
+                    <span id="dexMod"></span><br>
+                    <label for="con">Constitution:</label>
+                    <input type="number" id="con" value="10">
+                    <span id="conMod"></span><br>
+                    <label for="int">Intelligence:</label>
+                    <input type="number" id="int" value="10">
+                    <span id="intMod"></span><br>
+                    <label for="wis">Wisdom:</label>
+                    <input type="number" id="wis" value="10">
+                    <span id="wisMod"></span><br>
+                    <label for="cha">Charisma:</label>
+                    <input type="number" id="cha" value="10">
+                    <span id="chaMod"></span><br>
+                </div>
+                <div id="cr-calculator" class="calculator-container">
+                    <h3>Challenge Rating (CR) Calculator</h3>
+                    <div class="input-group">
+                        <label for="hp">Hit Points (HP):</label>
+                        <input type="number" id="hp" min="1" value="50">
+                    </div>
+                    <div class="input-group">
+                        <label for="ac">Armor Class (AC):</label>
+                        <input type="number" id="ac" value="15">
+                    </div>
+                    <div class="input-group">
+                        <label for="dpr">Average Damage Per Round (DPR):</label>
+                        <input type="number" id="dpr" min="1" value="15">
+                    </div>
+                    <div class="input-group">
+                        <label for="attackBonus">Attack Bonus:</label>
+                        <input type="number" id="attackBonus" value="5">
+                    </div>
+                    <div class="input-group">
+                        <label for="saveDC">Save DC:</label>
+                        <input type="number" id="saveDC" value="13">
+                    </div>
+                    <button id="calculateCR">Calculate CR</button>
+                    CR: <span id="finalCR"></span>
+                    <div id="crTables">
+                        <p>Defensive CR Table: <span id="defensiveTable"></span></p>
+                        <p>Offensive CR Table: <span id="offensiveTable"></span></p>
+                    </div>
+                </div>
+                <div id="treasure-generator" class="calculator-container">
+                    <h3>Treasure Generator (Coming Soon)</h3>
+                    <div class="input-group">
+                        <label for="partyLevel">Party Level:</label>
+                        <input type="number" id="partyLevel" min="1" value="5">
+                    </div>
+                    <div class="input-group">
+                        <label for="encounterCR">Encounter CR:</label>
+                        <input type="number" id="encounterCR" value="5">
+                    </div>
+                    <div class="input-group">
+                        <label for="location">Location:</label>
+                        <select id="location">
+                            <option value="dungeon">Dungeon</option>
+                            <option value="wilderness">Wilderness</option>
+                            <option value="urban">Urban</option>
+                        </select>
+                    </div>
+                    <button id="generateTreasure">Generate Treasure</button>
+                    <div id="treasure-result-container">
+                        <div id="treasureResults">
+                            <p>Treasure:</p>
+                            <ul id="treasureList"></ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="map-generator" class="calculator-container">
+                    <h3>Map Generator (Beta)</h3>
+                    <div class="input-group">
+                        <label for="mapSize">Map Size (Tiles):</label>
+                        <input type="number" id="mapSize" value="20" min="1">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="grasslandCount">Grassland Tiles:</label>
+                        <input type="number" id="grasslandCount" value="0" min="0">
+                    </div>
+                    <div class="input-group">
+                        <label for="forestCount">Forest Tiles:</label>
+                        <input type="number" id="forestCount" value="0" min="0">
+                    </div>
+                    <div class="input-group">
+                        <label for="desertCount">Desert Tiles:</label>
+                        <input type="number" id="desertCount" value="0" min="0">
+                    </div>
+                    <div class="input-group">
+                        <label for="mountainCount">Mountain Tiles:</label>
+                        <input type="number" id="mountainCount" value="0" min="0">
+                    </div>
+                    <div class="input-group">
+                        <label for="rockCount">Rock Tiles:</label>
+                        <input type="number" id="rockCount" value="0" min="0">
+                    </div>
+                    <div class="input-group">
+                        <label for="waterCount">Water Tiles:</label>
+                        <input type="number" id="waterCount" value="0" min="0">
+                    </div>
+
+                    <button id="generateMap">Generate Map</button>
+                    <div id="mapContainer">
+                        <aside id="mapKey">
+                            <h3>Map Key</h3>
+                            <div class="key-item">
+                                <div class="key-color" data-terrain="grassland"></div>
+                                <span class="key-label">Grassland</span>
+                            </div>
+                            <div class="key-item">
+                                <div class="key-color" data-terrain="forest"></div>
+                                <span class="key<span class="key-label">Forest</span>
+                            </div>
+                            <div class="key-item">
+                                <div class="key-color" data-terrain="desert"></div>
+                                <span class="key-label">Desert</span>
+                            </div>
+                            <div class="key-item">
+                                <div class="key-color" data-terrain="mountain"></div>
+                                <span class="key-label">Mountain</span>
+                            </div>
+                            <div class="key-item">
+                                <div class="key-color" data-terrain="rock"></div>
+                                <span class="key-label">Rock</span>
+                            </div>
+                            <div class="key-item">
+                                <div class="key-color" data-terrain="water"></div>
+                                <span class="key-label">Water</span>
+                            </div>
+                        </aside>
+                        <canvas id="mapCanvas"></canvas>
+                    </div>
+                </div>
             </div>
-            <button id="rollDice">Roll Dice</button>
-            <div id="rollResult"></div>
         </div>
-
-        <div id="map-generator" class="calculator-container">
-            <h3>Map Generator (Beta)</h3>
-            <div class="input-group">
-                <label for="mapSize">Map Size (Tiles):</label>
-                <input type="number" id="mapSize" value="20" min="1">
-            </div>
-
-            <div class="input-group">
-                <label for="grasslandCount">Grassland Tiles:</label>
-                <input type="number" id="grasslandCount" value="0" min="0">
-            </div>
-            <div class="input-group">
-                <label for="forestCount">Forest Tiles:</label>
-                <input type="number" id="forestCount" value="0" min="0">
-            </div>
-            <div class="input-group">
-                <label for="desertCount">Desert Tiles:</label>
-                <input type="number" id="desertCount" value="0" min="0">
-            </div>
-            <div class="input-group">
-                <label for="mountainCount">Mountain Tiles:</label>
-                <input type="number" id="mountainCount" value="0" min="0">
-            </div>
-            <div class="input-group">
-                <label for="rockCount">Rock Tiles:</label>
-                <input type="number" id="rockCount" value="0" min="0">
-            </div>
-            <div class="input-group">
-                <label for="waterCount">Water Tiles:</label>
-                <input type="number" id="waterCount" value="0" min="0">
-            </div>
-
-            <button id="generateMap">Generate Map</button>
-            <div id="mapContainer">
-                <aside id="mapKey">
-                    <h3>Map Key</h3>
-                    <div class="key-item">
-                        <div class="key-color" data-terrain="grassland"></div>
-                        <span class="key-label">Grassland</span>
-                    </div>
-                    <div class="key-item">
-                        <div class="key-color" data-terrain="forest"></div>
-                        <span class="key-label">Forest</span>
-                    </div>
-                    <div class="key-item">
-                        <div class="key-color" data-terrain="desert"></div>
-                        <span class="key-label">Desert</span>
-                    </div>
-                    <div class="key-item">
-                        <div class="key-color" data-terrain="mountain"></div>
-                        <span class="key-label">Mountain</span>
-                    </div>
-                    <div class="key-item">
-                        <div class="key-color" data-terrain="rock"></div>
-                        <span class="key-label">Rock</span>
-                    </div>
-                    <div class="key-item">
-                        <div class="key-color" data-terrain="water"></div>
-                        <span class="key-label">Water</span>
-                    </div>
-                </aside>
-                <canvas id="mapCanvas"></canvas>
-            </div>
-        </div>
-    </main>
-
+    </section>
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 D&D Homebrew Kits. All rights reserved.</p></div>
+    </footer>
     <script>
-        // Dice Roller Logic
-        document.getElementById('rollDice').addEventListener('click', function() {
-            const diceType = parseInt(document.getElementById('diceType').value);
-            const diceCount = parseInt(document.getElementById('diceCount').value);
-            let total = 0;
-            let rolls = [];
+        const rollButton = document.getElementById('rollButton');
+        const rollResult = document.getElementById('rollResult');
+        const sidesInput = document.getElementById('sidesInput');
 
-            for (let i = 0; i < diceCount; i++) {
-                const roll = Math.floor(Math.random() * diceType) + 1;
-                total += roll;
-                rolls.push(roll);
+        rollButton.addEventListener('click', () => {
+            const sides = parseInt(sidesInput.value);
+            if (isNaN(sides) || sides < 1) {
+                alert('Please enter a valid number of sides.');
+                return;
             }
+            const result = Math.floor(Math.random() * sides) + 1;
+            rollResult.textContent = `You rolled: ${result}`;
+            rollButton.style.backgroundColor = '#555'; // Visual feedback
+            setTimeout(() => {
+                rollButton.style.backgroundColor = '#007bff'; // Reset color
+            }, 200);
+        });
 
-            document.getElementById('rollResult').textContent = `Rolls: [${rolls.join(', ')}] Total: ${total}`;
+        const stats = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
+
+        stats.forEach(stat => {
+            const input = document.getElementById(stat);
+            const mod = document.getElementById(stat + 'Mod');
+
+            input.addEventListener('input', () => {
+                const score = parseInt(input.value);
+                const modifier = Math.floor((score - 10) / 2);
+                mod.textContent = `(<span class="math-inline">\{modifier \>\= 0 ? '\+' \: ''\}</span>{modifier})`;
+            });
+        });
+
+        const calculatorSelect = document.getElementById('calculator-select');
+        const calculators = document.querySelectorAll('.calculator-container');
+
+        calculatorSelect.addEventListener('change', () => {
+            const selectedCalculatorId = calculatorSelect.value;
+            calculators.forEach(calc => {
+                calc.style.display = 'none'; // Hide all calculators
+            });
+
+            if (selectedCalculatorId) {
+                document.getElementById(selectedCalculatorId).style.display = 'block'; // Show the selected calculator
+
+                //Add this section to prevent clicks inside the map generator from stoping the dropdown.
+                if(selectedCalculatorId === "map-generator"){
+                    document.getElementById(selectedCalculatorId).addEventListener('click', function(event){
+                        event.stopPropagation();
+                    })
+                }
+            }
+        });
+
+        // CR Calculator Logic
+        document.getElementById('calculateCR').addEventListener('click', function() {
+            const hp = parseInt(document.getElementById('hp').value);
+            const ac = parseInt(document.getElementById('ac').value);
+            const dpr = parseInt(document.getElementById('dpr').value);
+            const attackBonus = parseInt(document.getElementById('attackBonus').value);
+            const saveDC = parseInt(document.getElementById('saveDC').value);
+
+            const defensiveCR = calculateDefensiveCR(hp, ac);
+            const offensiveCR = calculateOffensiveCR(dpr, attackBonus, saveDC);
+            const finalCR = (defensiveCR + offensiveCR) / 2;
+
+            document.getElementById('defensiveTable').textContent = getDefensiveTable();
+            document.getElementById('offensiveTable').textContent = getOffensiveTable();
+            document.getElementById('finalCR').textContent = finalCR;
+
+            document.getElementById('crTables').style.display = 'block'; // Show CR tables
+        });
+
+        // Treasure Generator Logic
+        document.getElementById('generateTreasure').addEventListener('click', function() {
+            const partyLevel = parseInt(document.getElementById('partyLevel').value);
+            const encounterCR = parseInt(document.getElementById('encounterCR').value);
+            const location = document.getElementById('location').value;
+
+            const treasure = generateTreasure(partyLevel, encounterCR, location);
+
+            const treasureList = document.getElementById('treasureList');
+            treasureList.innerHTML = '';
+            treasure.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                treasureList.appendChild(li);
+            });
         });
 
         // Map Generator Logic
@@ -154,6 +382,32 @@
             const mapSize = parseInt(document.getElementById('mapSize').value);
             generateMap(mapSize);
         });
+
+        // Helper Functions (to be implemented)
+        function calculateDefensiveCR(hp, ac) {
+            // Logic to calculate defensive CR based on DMG tables
+            return "Defensive CR Calculated"; // Placeholder
+        }
+
+        function calculateOffensiveCR(dpr, attackBonus, saveDC) {
+            // Logic to calculate offensive CR based on DMG tables
+            return "Offensive CR Calculated"; // Placeholder
+        }
+
+        function generateTreasure(partyLevel, encounterCR, location) {
+            // Logic to generate treasure based on DMG tables and random generation
+            return ["Treasure Item 1", "Treasure Item 2"]; // Placeholder
+        }
+
+        function getDefensiveTable(){
+            //logic to get the defensive table data.
+            return "Defensive Table Data"; //Placeholder
+        }
+
+        function getOffensiveTable(){
+            //logic to get the defensive table data.
+            return "Offensive Table Data"; //Placeholder
+        }
 
         function generateMap(mapSize) {
             console.log("generateMap called with mapSize:", mapSize);
@@ -166,14 +420,21 @@
                 return;
             }
 
+            // Clear the canvas
             ctx.clearRect(0, 0, mapCanvas.width, mapCanvas.height);
 
+            // Calculate tile size
             const tileSize = mapCanvas.width / mapSize;
+            console.log("tileSize:", tileSize);
 
+            // Generate map data
             const mapData = generateMapData(mapSize);
+            console.log("mapData:", mapData);
 
+            // Draw tiles
             drawMap(ctx, mapData, tileSize);
 
+            // Update color key
             updateColorKey();
         }
 
@@ -209,96 +470,118 @@
 
             // Place tiles randomly
             terrainTypes.forEach(terrain => {
-                for (let i = 0; i < terrain.count; i++) {
-                    let x, ydo {
-                x = Math.floor(Math.random() * mapSize);
-                y = Math.floor(Math.random() * mapSize);
-            } while (map[y][x] !== ''); // Find an empty spot
-            map[y][x] = terrain.name;
+                let placed = 0;
+                while (placed < terrain.count) {
+                    let startX, startY;
+                    startX = Math.floor(Math.random() * mapSize);
+                    startY = Math.floor(Math.random() * mapSize);
+
+                    let attempts = 0;
+                    let tilePlaced = false; //Flag to track if a tile was placed in this attempt
+                    while (!tilePlaced && attempts < 100) {
+                        let x = startX + Math.floor(Math.random() * 3) - 1;
+                        let y = startY + Math.floor(Math.random() * 3) - 1;
+
+                        if (x >= 0 && x < mapSize && y >= 0 && y < mapSize && map[y][x] === '') {
+                            map[y][x] = terrain.name;
+                            placed++;
+                            titlePlaced = true; //Set flag to true
+
+                        }
+                        attempts++;
+                    }
+                    if (!tilePlaced){
+                        placed++;
+                    }
+            
+                }
+            });
+            // --- END REPLACE TILE PLACEMENT LOGIC HERE ---
+            return map;
         }
-    });
-    return map;
+
+        function drawMap(ctx, mapData, tileSize) {
+            console.log("drawMap called with mapData:", mapData, "tileSize:", tileSize);
+
+if (!ctx) {
+    console.error("Canvas context is null in drawMap!");
+    return;
 }
 
-function drawMap(ctx, mapData, tileSize) {
-    console.log("drawMap called with mapData:", mapData, "tileSize:", tileSize);
+for (let y = 0; y < mapData.length; y++) {
+    for (let x = 0; x < mapData[y].length; x++) {
+        const tile = mapData[y][x];
+        let color = '';
 
-    if (!ctx) {
-        console.error("Canvas context is null in drawMap!");
-        return;
-    }
+        console.log("tile in drawMap:", tile);
 
-    for (let y = 0; y < mapData.length; y++) {
-        for (let x = 0; x < mapData[y].length; x++) {
-            const tile = mapData[y][x];
-            let color = '';
-
-            console.log("tile in drawMap:", tile);
-
-            switch (tile) {
-                case 'grassland':
-                    color = 'green';
-                    break;
-                case 'forest':
-                    color = 'darkgreen';
-                    break;
-                case 'desert':
-                    color = 'yellow';
-                    break;
-                case 'mountain':
-                    color = 'gray';
-                    break;
-                case 'rock':
-                    color = 'darkgray';
-                    break;
-                case 'water':
-                    color = 'blue';
-                    break;
-                default:
-                    color = 'lightgray';
-                    break;
-            }
-
-            console.log("color in drawMap:", color);
-
-            ctx.fillStyle = color;
-            ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
-            ctx.strokeStyle = '#ccc';
-            ctx.strokeRect(x * tileSize, y * tileSize, tileSize, tileSize);
+        switch (tile) {
+            case 'grassland':
+                color = 'green';
+                break;
+            case 'forest':
+                color = 'darkgreen';
+                break;
+            case 'desert':
+                color = 'yellow';
+                break;
+            case 'mountain':
+                color = 'gray';
+                break;
+            case 'rock':
+                color = 'darkgray';
+                break;
+            case 'water':
+                color = 'blue';
+                break;
+            default:
+                color = 'lightgray';
+                break;
         }
+
+        console.log("color in drawMap:", color);
+
+        ctx.fillStyle = color;
+        ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
+        ctx.strokeStyle = '#ccc';
+        ctx.strokeRect(x * tileSize, y * tileSize, tileSize, tileSize);
     }
+}
 }
 
 function updateColorKey() {
-    const terrainTypes = [
-        { name: 'grassland', color: 'green', count: parseInt(document.getElementById('grasslandCount').value) },
-        { name: 'forest', color: 'darkgreen', count: parseInt(document.getElementById('forestCount').value) },
-        { name: 'desert', color: 'yellow', count: parseInt(document.getElementById('desertCount').value) },
-        { name: 'mountain', color: 'gray', count: parseInt(document.getElementById('mountainCount').value) },
-        { name: 'rock', color: 'darkgray', count: parseInt(document.getElementById('rockCount').value) },
-        { name: 'water', color: 'blue', count: parseInt(document.getElementById('waterCount').value) }
-    ];
+const keyColors = document.querySelectorAll('#mapKey .key-color');
+keyColors.forEach(keyColor => {
+    const terrain = keyColor.dataset.terrain;
+    let color = '';
 
-    const key = document.getElementById('mapKey');
-    key.innerHTML = '<h3>Map Key</h3>';
+    switch (terrain) {
+        case 'grassland':
+            color = 'green';
+            break;
+        case 'forest':
+            color = 'darkgreen';
+            break;
+        case 'desert':
+            color = 'yellow';
+            break;
+        case 'mountain':
+            color = 'gray';
+            break;
+        case 'rock':
+            color = 'darkgray';
+            break;
+        case 'water':
+            color = 'blue';
+            break;
+        default:
+            color = 'lightgray';
+            break;
+    }
 
-    terrainTypes.forEach(terrain => {
-        const keyItem = document.createElement('div');
-        keyItem.className = 'key-item';
-
-        const keyColor = document.createElement('div');
-        keyColor.className = 'key-color';
-        keyColor.style.backgroundColor = terrain.color;
-
-        const keyLabel = document.createElement('span');
-        keyLabel.className = 'key-label';
-        keyLabel.textContent = terrain.name;
-
-        keyItem.appendChild(keyColor);
-        keyItem.appendChild(keyLabel);
-        key.appendChild(keyItem);
-    });
+    keyColor.style.backgroundColor = color;
+});
 }
-    </script>
+</script>
 </body>
 </html>
