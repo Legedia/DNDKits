@@ -361,30 +361,14 @@
                         } else {
                             row.push('rock');
                         }
+                    }
+                    mapData.push(row);
                 }
-        mapData.push(row);
-    }
 
     console.log("mapData after generation:", mapData);
     return mapData;
 }
-            
-            function generateMapData(mapSize, terrainType) {
-                console.log("generateMapData called with mapSize:", mapSize, "terrainType:", terrainType);
-    
-                const mapData = [];
-                for (let y = 0; y < mapSize; y++) {
-                    const row = [];
-                    for (let x = 0; x < mapSize; x++) {
-                        row.push(Math.random() < 0.8 ? terrainType : 'rock');
-                    }
-                    mapData.push(row);
-                }
-    
-                console.log("mapData after generation:", mapData);
-                return mapData;
-            }
-    
+                         
             function drawMap(ctx, mapData, tileSize, terrainType) {
                 console.log("drawMap called with mapData:", mapData, "tileSize:", tileSize, "terrainType:", terrainType);
     
