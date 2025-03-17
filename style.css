@@ -339,7 +339,7 @@ nav ul li a {
     margin-top: 150px; /* Add space below the button */
     border: 1px solid #ccc;
     padding: 10px;
-    text-align: left;
+    text-align: center;
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 5px;
     width: 500px;
