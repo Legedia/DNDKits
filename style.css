@@ -6,6 +6,9 @@ body {
     padding: 0;
     line-height: 1.6;
     color: #333;
+    background-image: url('test.jpg'); /* Replace with your image path */
+    background-size: cover; /* Or other background properties */
+    background-repeat: no-repeat;
 }
 
 .container {
