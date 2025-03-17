@@ -1,148 +1,159 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Map Generator</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D&D Homebrew Kits</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: sans-serif;
+        #mapContainer {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
-        }
-
-        #mapGenerator {
-            text-align: center;
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        #mapCanvas {
-            border: 1px solid #ccc;
-            margin-top: 10px;
-            image-rendering: pixelated; /* Ensures crisp pixels */
         }
 
         #mapKey {
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
+            width: 150px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin-right: 20px;
         }
 
         .key-item {
             display: flex;
             align-items: center;
-            margin: 5px 10px;
+            margin-bottom: 5px;
         }
 
         .key-color {
             width: 20px;
             height: 20px;
-            border: 1px solid #ccc;
-            margin-right: 5px;
+            margin-right: 10px;
+            border: 1px solid #000;
         }
 
-        #mapSizeInput {
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        #generateButton {
-            padding: 8px 16px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        #generateButton:hover {
-            background-color: #0056b3;
+        #mapCanvas {
+            border: 1px solid #000;
         }
     </style>
 </head>
 <body>
-    <div id="mapGenerator">
-        <h1>Map Generator</h1>
-        <input type="number" id="mapSizeInput" placeholder="Map Size (e.g., 50)" value="50">
-        <button id="generateButton" onclick="generateMap(parseInt(document.getElementById('mapSizeInput').value))">Generate Map</button>
-        <canvas id="mapCanvas" width="500" height="500"></canvas>
-        <div id="mapKey">
-            <div class="key-item"><div class="key-color" data-terrain="grassland"></div>Grassland</div>
-            <div class="key-item"><div class="key-color" data-terrain="forest"></div>Forest</div>
-            <div class="key-item"><div class="key-color" data-terrain="desert"></div>Desert</div>
-            <div class="key-item"><div class="key-color" data-terrain="mountain"></div>Mountain</div>
-            <div class="key-item"><div class="key-color" data-terrain="rock"></div>Rock</div>
-            <div class="key-item"><div class="key-color" data-terrain="water"></div>Water</div>
+    <header>
+        <h1>D&D Homebrew Kits</h1>
+    </header>
+
+    <main>
+        <div id="dice-roller" class="calculator-container">
+            <h3>Dice Roller</h3>
+            <div class="input-group">
+                <label for="diceType">Dice Type:</label>
+                <select id="diceType">
+                    <option value="4">d4</option>
+                    <option value="6">d6</option>
+                    <option value="8">d8</option>
+                    <option value="10">d10</option>
+                    <option value="12">d12</option>
+                    <option value="20">d20</option>
+                    <option value="100">d100</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="diceCount">Number of Dice:</label>
+                <input type="number" id="diceCount" value="1" min="1">
+            </div>
+            <button id="rollDice">Roll Dice</button>
+            <div id="rollResult"></div>
         </div>
-    </div>
+
+        <div id="map-generator" class="calculator-container">
+            <h3>Map Generator (Beta)</h3>
+            <div class="input-group">
+                <label for="mapSize">Map Size (Tiles):</label>
+                <input type="number" id="mapSize" value="20" min="1">
+            </div>
+
+            <div class="input-group">
+                <label for="grasslandCount">Grassland Tiles:</label>
+                <input type="number" id="grasslandCount" value="0" min="0">
+            </div>
+            <div class="input-group">
+                <label for="forestCount">Forest Tiles:</label>
+                <input type="number" id="forestCount" value="0" min="0">
+            </div>
+            <div class="input-group">
+                <label for="desertCount">Desert Tiles:</label>
+                <input type="number" id="desertCount" value="0" min="0">
+            </div>
+            <div class="input-group">
+                <label for="mountainCount">Mountain Tiles:</label>
+                <input type="number" id="mountainCount" value="0" min="0">
+            </div>
+            <div class="input-group">
+                <label for="rockCount">Rock Tiles:</label>
+                <input type="number" id="rockCount" value="0" min="0">
+            </div>
+            <div class="input-group">
+                <label for="waterCount">Water Tiles:</label>
+                <input type="number" id="waterCount" value="0" min="0">
+            </div>
+
+            <button id="generateMap">Generate Map</button>
+            <div id="mapContainer">
+                <aside id="mapKey">
+                    <h3>Map Key</h3>
+                    <div class="key-item">
+                        <div class="key-color" data-terrain="grassland"></div>
+                        <span class="key-label">Grassland</span>
+                    </div>
+                    <div class="key-item">
+                        <div class="key-color" data-terrain="forest"></div>
+                        <span class="key-label">Forest</span>
+                    </div>
+                    <div class="key-item">
+                        <div class="key-color" data-terrain="desert"></div>
+                        <span class="key-label">Desert</span>
+                    </div>
+                    <div class="key-item">
+                        <div class="key-color" data-terrain="mountain"></div>
+                        <span class="key-label">Mountain</span>
+                    </div>
+                    <div class="key-item">
+                        <div class="key-color" data-terrain="rock"></div>
+                        <span class="key-label">Rock</span>
+                    </div>
+                    <div class="key-item">
+                        <div class="key-color" data-terrain="water"></div>
+                        <span class="key-label">Water</span>
+                    </div>
+                </aside>
+                <canvas id="mapCanvas"></canvas>
+            </div>
+        </div>
+    </main>
 
     <script>
-        // Perlin Noise implementation (from previous responses)
-        class PerlinNoise {
-            constructor(seed = Math.random()) {
-                this.seed = seed;
-                this.gradients = {};
+        // Dice Roller Logic
+        document.getElementById('rollDice').addEventListener('click', function() {
+            const diceType = parseInt(document.getElementById('diceType').value);
+            const diceCount = parseInt(document.getElementById('diceCount').value);
+            let total = 0;
+            let rolls = [];
+
+            for (let i = 0; i < diceCount; i++) {
+                const roll = Math.floor(Math.random() * diceType) + 1;
+                total += roll;
+                rolls.push(roll);
             }
 
-            rand(x, y) {
-                let n = x + y * 57;
-                n = (n << 13) ^ n;
-                return Math.abs((1.0 - ((n * (n * n * 15731 + 789221) + this.seed) & 0x7fffffff) / 1073741824.0));
-            }
+            document.getElementById('rollResult').textContent = `Rolls: [${rolls.join(', ')}] Total: ${total}`;
+        });
 
-            grad(x, y) {
-                const key = `<span class="math-inline">\{x\},</span>{y}`;
-                if (this.gradients[key]) {
-                    return this.gradients[key];
-                }
-
-                const v = Math.random() * 2 * Math.PI;
-                const g = [Math.cos(v), Math.sin(v)];
-                this.gradients[key] = g;
-                return g;
-            }
-
-            noise(x, y) {
-                const xf = Math.floor(x);
-                const yf = Math.floor(y);
-
-                const tl = this.grad(xf, yf);
-                const tr = this.grad(xf + 1, yf);
-                const bl = this.grad(xf, yf + 1);
-                const br = this.grad(xf + 1, yf + 1);
-
-                const tx = x - xf;
-                const ty = y - yf;
-
-                const xtl = tl[0] * tx + tl[1] * ty;
-                const xtr = tr[0] * (tx - 1) + tr[1] * ty;
-                const xbl = bl[0] * tx + bl[1] * (ty - 1);
-                const xbr = br[0] * (tx - 1) + br[1] * (ty - 1);
-
-                const u = fade(tx);
-                const v = fade(ty);
-
-                const x1 = lerp(xtl, xtr, u);
-                const x2 = lerp(xbl, xbr, u);
-
-                return lerp(x1, x2, v);
-            }
-        }
-
-        function fade(t) {
-            return t * t * t * (t * (t * 6 - 15) + 10);
-        }
-
-        function lerp(a, b, t) {
-            return a + t * (b - a);
-        }
+        // Map Generator Logic
+        document.getElementById('generateMap').addEventListener('click', function() {
+            const mapSize = parseInt(document.getElementById('mapSize').value);
+            generateMap(mapSize);
+        });
 
         function generateMap(mapSize) {
             console.log("generateMap called with mapSize:", mapSize);
@@ -155,132 +166,139 @@
                 return;
             }
 
-            // Clear the canvas
             ctx.clearRect(0, 0, mapCanvas.width, mapCanvas.height);
 
-            // Calculate tile size
             const tileSize = mapCanvas.width / mapSize;
-            console.log("tileSize:", tileSize);
 
-            // Generate map data
             const mapData = generateMapData(mapSize);
-            console.log("mapData:", mapData);
 
-            // Draw tiles
             drawMap(ctx, mapData, tileSize);
 
-            // Update color key
             updateColorKey();
         }
 
         function generateMapData(mapSize) {
+            const mapData = [];
+            const terrainTypes = [
+                { name: 'grassland', color: 'green', count: parseInt(document.getElementById('grasslandCount').value) },
+                { name: 'forest', color: 'darkgreen', count: parseInt(document.getElementById('forestCount').value) },
+                { name: 'desert', color: 'yellow', count: parseInt(document.getElementById('desertCount').value) },
+                { name: 'mountain', color: 'gray', count: parseInt(document.getElementById('mountainCount').value) },
+                { name: 'rock', color: 'darkgray', count: parseInt(document.getElementById('rockCount').value) },
+                { name: 'water', color: 'blue', count: parseInt(document.getElementById('waterCount').value) }
+            ];
+
+            let totalTiles = 0;
+            terrainTypes.forEach(terrain => {
+                totalTiles += terrain.count;
+            });
+
+            if (totalTiles > mapSize * mapSize) {
+                alert("Total tiles cannot exceed map size.");
+                return;
+            }
+
             const map = [];
-            const noise = new PerlinNoise();
-
-            for (let y = 0; y < mapSize; y++) {
+            for (let i = 0; i < mapSize; i++) {
                 const row = [];
-                for (let x = 0; x < mapSize; x++) {
-                    const value = noise.noise(x / 10, y / 10, 0);
-                    let terrain = 'grassland';
-
-                    if (value > 0.5) {
-                        terrain = 'mountain';
-                    } else if (value > 0.3) {
-                        terrain = 'forest';
-                    } else if (value < -0.3) {
-                        terrain = 'water';
-                    } else if (value < 0) {
-                        terrain = 'desert';
-                    }
-
-                    row.push(terrain);
+                for (let j = 0; j < mapSize; j++) {
+                    row.push(''); // Initialize with empty strings
                 }
                 map.push(row);
             }
 
-            return map;
+            // Place tiles randomly
+            terrainTypes.forEach(terrain => {
+                for (let i = 0; i < terrain.count; i++) {
+                    let x, ydo {
+                x = Math.floor(Math.random() * mapSize);
+                y = Math.floor(Math.random() * mapSize);
+            } while (map[y][x] !== ''); // Find an empty spot
+            map[y][x] = terrain.name;
         }
+    });
+    return map;
+}
 
-        function drawMap(ctx, mapData, tileSize) {
-            console.log("drawMap called with mapData:", mapData, "tileSize:", tileSize);
+function drawMap(ctx, mapData, tileSize) {
+    console.log("drawMap called with mapData:", mapData, "tileSize:", tileSize);
 
-            if (!ctx) {
-                console.error("Canvas context is null in drawMap!");
-                return;
+    if (!ctx) {
+        console.error("Canvas context is null in drawMap!");
+        return;
+    }
+
+    for (let y = 0; y < mapData.length; y++) {
+        for (let x = 0; x < mapData[y].length; x++) {
+            const tile = mapData[y][x];
+            let color = '';
+
+            console.log("tile in drawMap:", tile);
+
+            switch (tile) {
+                case 'grassland':
+                    color = 'green';
+                    break;
+                case 'forest':
+                    color = 'darkgreen';
+                    break;
+                case 'desert':
+                    color = 'yellow';
+                    break;
+                case 'mountain':
+                    color = 'gray';
+                    break;
+                case 'rock':
+                    color = 'darkgray';
+                    break;
+                case 'water':
+                    color = 'blue';
+                    break;
+                default:
+                    color = 'lightgray';
+                    break;
             }
 
-            for (let y = 0; y < mapData.length; y++) {
-                for (let x = 0; x < mapData[y].length; x++) {
-                    const tile = mapData[y][x];
-                    let color = '';
+            console.log("color in drawMap:", color);
 
-                    console.log("tile in drawMap:", tile);
-
-                    switch (tile) {
-                        case 'grassland':
-                            color = 'green';
-                            break;
-                        case 'forest':
-                            color = 'darkgreen';
-                            break;
-                        case 'desert':
-                            color = 'yellow';
-                            break;
-                        case 'mountain':
-                            color = 'gray';
-                            break;
-                        case 'rock':
-                            color = 'darkgray';
-                            break;
-                        case 'water':
-                            color = 'blue';
-                            break;
-                        default:
-                            color = 'lightgray';
-                            break;
-                    }
-
-                    console.log("color in drawMap:", color);ctx.fillStyle = color;
-                    ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
-                    ctx.strokeStyle = '#ccc';
-                    ctx.strokeRect(x * tileSize, y * tileSize, tileSize, tileSize);
-                }
-            }
+            ctx.fillStyle = color;
+            ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
+            ctx.strokeStyle = '#ccc';
+            ctx.strokeRect(x * tileSize, y * tileSize, tileSize, tileSize);
         }
+    }
+}
 
-        function updateColorKey() {
-            const keyColors = document.querySelectorAll('#mapKey .key-color');
-            keyColors.forEach(keyColor => {
-                const terrain = keyColor.dataset.terrain;
-                let color = '';
+function updateColorKey() {
+    const terrainTypes = [
+        { name: 'grassland', color: 'green', count: parseInt(document.getElementById('grasslandCount').value) },
+        { name: 'forest', color: 'darkgreen', count: parseInt(document.getElementById('forestCount').value) },
+        { name: 'desert', color: 'yellow', count: parseInt(document.getElementById('desertCount').value) },
+        { name: 'mountain', color: 'gray', count: parseInt(document.getElementById('mountainCount').value) },
+        { name: 'rock', color: 'darkgray', count: parseInt(document.getElementById('rockCount').value) },
+        { name: 'water', color: 'blue', count: parseInt(document.getElementById('waterCount').value) }
+    ];
 
-                switch (terrain) {
-                    case 'grassland':
-                        color = 'green';
-                        break;
-                    case 'forest':
-                        color = 'darkgreen';
-                        break;
-                    case 'desert':
-                        color = 'yellow';
-                        break;
-                    case 'mountain':
-                        color = 'gray';
-                        break;
-                    case 'rock':
-                        color = 'darkgray';
-                        break;
-                    case 'water':
-                        color = 'blue';
-                        break;
-                    default:
-                        color = 'lightgray';
-                        break;
-                }
+    const key = document.getElementById('mapKey');
+    key.innerHTML = '<h3>Map Key</h3>';
 
-                keyColor.style.backgroundColor = color;
-            });
-        }
+    terrainTypes.forEach(terrain => {
+        const keyItem = document.createElement('div');
+        keyItem.className = 'key-item';
+
+        const keyColor = document.createElement('div');
+        keyColor.className = 'key-color';
+        keyColor.style.backgroundColor = terrain.color;
+
+        const keyLabel = document.createElement('span');
+        keyLabel.className = 'key-label';
+        keyLabel.textContent = terrain.name;
+
+        keyItem.appendChild(keyColor);
+        keyItem.appendChild(keyLabel);
+        key.appendChild(keyItem);
+    });
+}
     </script>
 </body>
 </html>
