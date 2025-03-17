@@ -298,26 +298,6 @@
             return "Offensive Table Data"; //Placeholder
         }
 
-        function generateMap(mapSize) {
-            const mapCanvas = document.getElementById('mapCanvas');
-            const ctx = mapCanvas.getContext('2d');
-
-            if (!ctx) {
-                console.error("Canvas context is null!");
-                return;
-            }
-
-            ctx.clearRect(0, 0, mapCanvas.width, mapCanvas.height);
-
-            const tileSize = mapCanvas.width / mapSize;
-
-            const mapData = generateMapData(mapSize);
-
-            drawMap(ctx, mapData, tileSize);
-
-            updateColorKey();
-        }   
-
         function generateMapData(mapSize, terrainType) {
             console.log("generateMapData called with mapSize:", mapSize, "terrainType:", terrainType);
 
