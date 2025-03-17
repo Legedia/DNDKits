@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/perlin-noise@0.0.1/perlin.js"></script>
 </head>
 <body>
     <header>
@@ -173,9 +172,6 @@
                                 <div class="key-color" data-terrain="rock"></div>
                                 <span class="key-label">Rock</span>
                             </div>
-                            <div class="key-item">
-                                <div class="key-color" data-terrain="water"></div>
-                                <span class="key-label">Water</span>
                         </aside>
                         <canvas id="mapCanvas"></canvas>
                     </div>
@@ -186,245 +182,191 @@
     <footer>
         <div class="container">
             <p>&copy; 2023 D&D Homebrew Kits. All rights reserved.</p></div>
-        </footer>
-        <script>
-            const rollButton = document.getElementById('rollButton');
-            const rollResult = document.getElementById('rollResult');
-            const sidesInput = document.getElementById('sidesInput');
-    
-            rollButton.addEventListener('click', () => {
-                const sides = parseInt(sidesInput.value);
-                if (isNaN(sides) || sides < 1) {
-                    alert('Please enter a valid number of sides.');
-                    return;
-                }
-                const result = Math.floor(Math.random() * sides) + 1;
-                rollResult.textContent = `You rolled: ${result}`;
-                rollButton.style.backgroundColor = '#555'; // Visual feedback
-                setTimeout(() => {
-                    rollButton.style.backgroundColor = '#007bff'; // Reset color
-                }, 200);
-            });
-    
-            const stats = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
-    
-            stats.forEach(stat => {
-                const input = document.getElementById(stat);
-                const mod = document.getElementById(stat + 'Mod');
-    
-                input.addEventListener('input', () => {
-                    const score = parseInt(input.value);
-                    const modifier = Math.floor((score - 10) / 2);
-                    mod.textContent = `(${modifier >= 0 ? '+' : ''}${modifier})`;
-                });
-            });
-    
-            const calculatorSelect = document.getElementById('calculator-select');
-            const calculators = document.querySelectorAll('.calculator-container');
-    
-            calculatorSelect.addEventListener('change', () => {
-                const selectedCalculatorId = calculatorSelect.value;
-                calculators.forEach(calc => {
-                    calc.style.display = 'none'; // Hide all calculators
-                });
-    
-                if (selectedCalculatorId) {
-                    document.getElementById(selectedCalculatorId).style.display = 'block'; // Show the selected calculator
-    
-                    //Add this section to prevent clicks inside the map generator from stoping the dropdown.
-                    if(selectedCalculatorId === "map-generator"){
-                        document.getElementById(selectedCalculatorId).addEventListener('click', function(event){
-                            event.stopPropagation();
-                        })
-                    }
-                }
-            });
-    
-            // CR Calculator Logic
-            document.getElementById('calculateCR').addEventListener('click', function() {
-                const hp = parseInt(document.getElementById('hp').value);
-                const ac = parseInt(document.getElementById('ac').value);
-                const dpr = parseInt(document.getElementById('dpr').value);
-                const attackBonus = parseInt(document.getElementById('attackBonus').value);
-                const saveDC = parseInt(document.getElementById('saveDC').value);
-    
-                const defensiveCR = calculateDefensiveCR(hp, ac);
-                const offensiveCR = calculateOffensiveCR(dpr, attackBonus, saveDC);
-                const finalCR = (defensiveCR + offensiveCR) / 2;
-    
-                document.getElementById('defensiveTable').textContent = getDefensiveTable();
-                document.getElementById('offensiveTable').textContent = getOffensiveTable();
-                document.getElementById('finalCR').textContent = finalCR;
-    
-                document.getElementById('crTables').style.display = 'block'; // Show CR tables
-            });
-    
-            // Treasure Generator Logic
-            document.getElementById('generateTreasure').addEventListener('click', function() {
-                const partyLevel = parseInt(document.getElementById('partyLevel').value);
-                const encounterCR = parseInt(document.getElementById('encounterCR').value);
-                const location = document.getElementById('location').value;
-    
-                const treasure = generateTreasure(partyLevel, encounterCR, location);
-    
-                const treasureList = document.getElementById('treasureList');
-                treasureList.innerHTML = '';
-                treasure.forEach(item => {
-                    const li = document.createElement('li');
-                    li.textContent = item;
-                    treasureList.appendChild(li);
-                });
-            });
-    
-            // Map Generator Logic
-            document.getElementById('generateMap').addEventListener('click', function() {
-                const mapSize = parseInt(document.getElementById('mapSize').value);
-                const terrainType = document.getElementById('terrainType').value;
-    
-                generateMap(mapSize, terrainType);
-            });
-    
-            // Helper Functions (to be implemented)
-            function calculateDefensiveCR(hp, ac) {
-                // Logic to calculate defensive CR based on DMG tables
-                return "Defensive CR Calculated"; // Placeholder
-            }
-    
-            function calculateOffensiveCR(dpr, attackBonus, saveDC) {
-                // Logic to calculate offensive CR based on DMG tables
-                return "Offensive CR Calculated"; // Placeholder
-            }
-    
-            function generateTreasure(partyLevel, encounterCR, location) {
-                // Logic to generate treasure based on DMG tables and random generation
-                return ["Treasure Item 1", "Treasure Item 2"]; // Placeholder
-            }
-    
-            function getDefensiveTable(){
-                //logic to get the defensive table data.
-                return "Defensive Table Data"; //Placeholder
-            }
-    
-            function getOffensiveTable(){
-                //logic to get the defensive table data.
-                return "Offensive Table Data"; //Placeholder
-            }
-    
-            function generateMap(mapSize, terrainType) {
-                console.log("generateMap called with mapSize:", mapSize, "terrainType:", terrainType);
-    
-                const mapCanvas = document.getElementById('mapCanvas');
-                const ctx = mapCanvas.getContext('2d');
-    
-                if (!ctx) {
-                    console.error("Canvas context is null!");
-                    return;
-                }
-    
-                // Clear the canvas
-                ctx.clearRect(0, 0, mapCanvas.width, mapCanvas.height);
-    
-                // Calculate tile size
-                const tileSize = mapCanvas.width / mapSize;
-                console.log("tileSize:", tileSize);
-    
-                // Generate map data
-                const mapData = generateMapData(mapSize, terrainType);
-                console.log("mapData:", mapData);
-    
-                // Draw tiles
-                drawMap(ctx, mapData, tileSize, terrainType);
-    
-                // Update color key
-                updateColorKey();
-            }
-    
-            function generateMapData(mapSize, terrainType) {
-               console.log("generateMapData called with mapSize:", mapSize, "terrainType:", terrainType);
+    </footer>
+    <script>
+        const rollButton = document.getElementById('rollButton');
+        const rollResult = document.getElementById('rollResult');
+        const sidesInput = document.getElementById('sidesInput');
 
-                const mapData = [];
-                const noise = new Perlin('randomSeed'); // You can use any seed
-
-                for (let y = 0; y < mapSize; y++) {
-                    const row = [];
-                    for (let x = 0; x < mapSize; x++) {
-                        const noiseValue = noise.noise(x / 10, y / 10, 0); // Adjust scale (10) as needed
-
-                        if (noiseValue < 1.0) {
-                            row.push('water');
-                        } else if (noiseValue < 0) {
-                            row.push('grassland');
-                        } else if (noiseValue < 0.3) {
-                            row.push('forest');
-                        } else if (noiseValue < 0.6) {
-                            row.push('mountain');
-                        } else {
-                            row.push('rock');
-                        }
-                    }
-                    mapData.push(row);
-                }
-
-                console.log("mapData after generation:", mapData);
-                    return mapData;
+        rollButton.addEventListener('click', () => {
+            const sides = parseInt(sidesInput.value);
+            if (isNaN(sides) || sides < 1) {
+                alert('Please enter a valid number of sides.');
+                return;
             }
-                         
-            function drawMap(ctx, mapData, tileSize, terrainType) {
-                console.log("drawMap called with mapData:", mapData, "tileSize:", tileSize, "terrainType:", terrainType);
-    
-                if (!ctx) {
-                    console.error("Canvas context is null in drawMap!");
-                    return;
-                }
-    
-                for (let y = 0; y < mapData.length; y++) {
-                    for (let x = 0; x < mapData[y].length; x++) {
-                        const tile = mapData[y][x];
-                        let color = '';
-    
-                        console.log("tile in drawMap:", tile);
-    
-                        switch (tile) {
-                            case 'grassland':
-                                color = 'green';
-                                break;
-                            case 'forest':
-                                color = 'darkgreen';
-                                break;
-                            case 'desert':
-                                color = 'yellow';
-                                break;
-                            case 'mountain':
-                                color = 'gray';
-                                break;
-                            case 'rock':
-                                color = 'darkgray';
-                                break;
-                            case 'water':
-                                color = 'blue';
-                                break;
-                            default:
-                                color = 'lightgray';
-                                break;
-                        }
-    
-                        console.log("color in drawMap:", color);
-    
-                        ctx.fillStyle = color;
-                        ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
-                        ctx.strokeStyle = '#ccc';
-                        ctx.strokeRect(x * tileSize, y * tileSize, tileSize, tileSize);
-                    }
+            const result = Math.floor(Math.random() * sides) + 1;
+            rollResult.textContent = `You rolled: ${result}`;
+            rollButton.style.backgroundColor = '#555'; // Visual feedback
+            setTimeout(() => {
+                rollButton.style.backgroundColor = '#007bff'; // Reset color
+            }, 200);
+        });
+
+        const stats = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
+
+        stats.forEach(stat => {
+            const input = document.getElementById(stat);
+            const mod = document.getElementById(stat + 'Mod');
+
+            input.addEventListener('input', () => {
+                const score = parseInt(input.value);
+                const modifier = Math.floor((score - 10) / 2);
+                mod.textContent = `(${modifier >= 0 ? '+' : ''}${modifier})`;
+            });
+        });
+
+        const calculatorSelect = document.getElementById('calculator-select');
+        const calculators = document.querySelectorAll('.calculator-container');
+
+        calculatorSelect.addEventListener('change', () => {
+            const selectedCalculatorId = calculatorSelect.value;
+            calculators.forEach(calc => {
+                calc.style.display = 'none'; // Hide all calculators
+            });
+
+            if (selectedCalculatorId) {
+                document.getElementById(selectedCalculatorId).style.display = 'block'; // Show the selected calculator
+
+                //Add this section to prevent clicks inside the map generator from stoping the dropdown.
+                if(selectedCalculatorId === "map-generator"){
+                    document.getElementById(selectedCalculatorId).addEventListener('click', function(event){
+                        event.stopPropagation();
+                    })
                 }
             }
-    
-            function updateColorKey() {
-                const keyColors = document.querySelectorAll('#mapKey .key-color');
-                keyColors.forEach(keyColor => {
-                    const terrain = keyColor.dataset.terrain;
+        });
+
+        // CR Calculator Logic
+        document.getElementById('calculateCR').addEventListener('click', function() {
+            const hp = parseInt(document.getElementById('hp').value);
+            const ac = parseInt(document.getElementById('ac').value);
+            const dpr = parseInt(document.getElementById('dpr').value);
+            const attackBonus = parseInt(document.getElementById('attackBonus').value);
+            const saveDC = parseInt(document.getElementById('saveDC').value);
+
+            const defensiveCR = calculateDefensiveCR(hp, ac);
+            const offensiveCR = calculateOffensiveCR(dpr, attackBonus, saveDC);
+            const finalCR = (defensiveCR + offensiveCR) / 2;
+
+            document.getElementById('defensiveTable').textContent = getDefensiveTable();
+            document.getElementById('offensiveTable').textContent = getOffensiveTable();
+            document.getElementById('finalCR').textContent = finalCR;
+
+            document.getElementById('crTables').style.display = 'block'; // Show CR tables
+        });
+
+        // Treasure Generator Logic
+        document.getElementById('generateTreasure').addEventListener('click', function() {
+            const partyLevel = parseInt(document.getElementById('partyLevel').value);
+            const encounterCR = parseInt(document.getElementById('encounterCR').value);
+            const location = document.getElementById('location').value;
+
+            const treasure = generateTreasure(partyLevel, encounterCR, location);
+
+            const treasureList = document.getElementById('treasureList');
+            treasureList.innerHTML = '';
+            treasure.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                treasureList.appendChild(li);
+            });
+        });
+
+        // Map Generator Logic
+        document.getElementById('generateMap').addEventListener('click', function() {
+            const mapSize = parseInt(document.getElementById('mapSize').value);
+            const terrainType = document.getElementById('terrainType').value;
+
+            generateMap(mapSize, terrainType);
+        });
+
+        // Helper Functions (to be implemented)
+        function calculateDefensiveCR(hp, ac) {
+            // Logic to calculate defensive CR based on DMG tables
+            return "Defensive CR Calculated"; // Placeholder
+        }
+
+        function calculateOffensiveCR(dpr, attackBonus, saveDC) {
+            // Logic to calculate offensive CR based on DMG tables
+            return "Offensive CR Calculated"; // Placeholder
+        }
+
+        function generateTreasure(partyLevel, encounterCR, location) {
+            // Logic to generate treasure based on DMG tables and random generation
+            return ["Treasure Item 1", "Treasure Item 2"]; // Placeholder
+        }
+
+        function getDefensiveTable(){
+            //logic to get the defensive table data.
+            return "Defensive Table Data"; //Placeholder
+        }
+
+        function getOffensiveTable(){
+            //logic to get the defensive table data.
+            return "Offensive Table Data"; //Placeholder
+        }
+
+        function generateMap(mapSize, terrainType) {
+            console.log("generateMap called with mapSize:", mapSize, "terrainType:", terrainType);
+
+            const mapCanvas = document.getElementById('mapCanvas');
+            const ctx = mapCanvas.getContext('2d');
+
+            if (!ctx) {
+                console.error("Canvas context is null!");
+                return;
+            }
+
+            // Clear the canvas
+            ctx.clearRect(0, 0, mapCanvas.width, mapCanvas.height);
+
+            // Calculate tile size
+            const tileSize = mapCanvas.width / mapSize;
+            console.log("tileSize:", tileSize);
+
+            // Generate map data
+            const mapData = generateMapData(mapSize, terrainType);
+            console.log("mapData:", mapData);
+
+            // Draw tiles
+            drawMap(ctx, mapData, tileSize, terrainType);
+
+            // Update color key
+            updateColorKey();
+        }
+
+        function generateMapData(mapSize, terrainType) {
+            console.log("generateMapData called with mapSize:", mapSize, "terrainType:", terrainType);
+
+            const mapData = [];
+            for (let y = 0; y < mapSize; y++) {
+                const row = [];
+                for (let x = 0; x < mapSize; x++) {
+                    row.push(Math.random() < 0.8 ? terrainType : 'rock');
+                }
+                mapData.push(row);
+            }
+
+            console.log("mapData after generation:", mapData);
+            return mapData;
+        }
+
+        function drawMap(ctx, mapData, tileSize, terrainType) {
+            console.log("drawMap called with mapData:", mapData, "tileSize:", tileSize, "terrainType:", terrainType);
+
+            if (!ctx) {
+                console.error("Canvas context is null in drawMap!");
+                return;
+            }
+
+            for (let y = 0; y < mapData.length; y++) {
+                for (let x = 0; x < mapData[y].length; x++) {
+                    const tile = mapData[y][x];
                     let color = '';
-    
-                    switch (terrain) {
+
+                    console.log("tile in drawMap:", tile);
+
+                    switch (tile) {
                         case 'grassland':
                             color = 'green';
                             break;
@@ -440,17 +382,51 @@
                         case 'rock':
                             color = 'darkgray';
                             break;
-                        case 'water':
-                            color = 'blue';
-                            break;    
                         default:
                             color = 'lightgray';
                             break;
                     }
-    
-                    keyColor.style.backgroundColor = color;
-                });
+
+                    console.log("color in drawMap:", color);
+
+                    ctx.fillStyle = color;
+                    ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
+                    ctx.strokeStyle = '#ccc';
+                    ctx.strokeRect(x * tileSize, y * tileSize, tileSize, tileSize);
+                }
             }
-        </script>
-    </body>
-    </html>
+        }
+
+        function updateColorKey() {
+            const keyColors = document.querySelectorAll('#mapKey .key-color');
+            keyColors.forEach(keyColor => {
+                const terrain = keyColor.dataset.terrain;
+                let color = '';
+
+                switch (terrain) {
+                    case 'grassland':
+                        color = 'green';
+                        break;
+                    case 'forest':
+                        color = 'darkgreen';
+                        break;
+                    case 'desert':
+                        color = 'yellow';
+                        break;
+                    case 'mountain':
+                        color = 'gray';
+                        break;
+                    case 'rock':
+                        color = 'darkgray';
+                        break;
+                    default:
+                        color = 'lightgray';
+                        break;
+                }
+
+                keyColor.style.backgroundColor = color;
+            });
+        }
+    </script>
+</body>
+</html>
