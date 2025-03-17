@@ -340,6 +340,36 @@
             }
     
             function generateMapData(mapSize, terrainType) {
+               console.log("generateMapData called with mapSize:", mapSize, "terrainType:", terrainType);
+
+                const mapData = [];
+                const noise = new Perlin('randomSeed'); // You can use any seed
+
+                for (let y = 0; y < mapSize; y++) {
+                    const row = [];
+                    for (let x = 0; x < mapSize; x++) {
+                        const noiseValue = noise.noise(x / 10, y / 10, 0); // Adjust scale (10) as needed
+
+                        if (noiseValue < -0.2) {
+                            row.push('water');
+                        } else if (noiseValue < 0) {
+                            row.push('grassland');
+                        } else if (noiseValue < 0.3) {
+                            row.push('forest');
+                        } else if (noiseValue < 0.6) {
+                            row.push('mountain');
+                        } else {
+                            row.push('rock');
+                        }
+                }
+        mapData.push(row);
+    }
+
+    console.log("mapData after generation:", mapData);
+    return mapData;
+}
+            
+            function generateMapData(mapSize, terrainType) {
                 console.log("generateMapData called with mapSize:", mapSize, "terrainType:", terrainType);
     
                 const mapData = [];
