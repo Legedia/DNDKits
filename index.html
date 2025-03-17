@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/perlin-noise@0.0.1/perlin.js"></script>
 </head>
 <body>
     <header>
@@ -172,6 +173,9 @@
                                 <div class="key-color" data-terrain="rock"></div>
                                 <span class="key-label">Rock</span>
                             </div>
+                            <div class="key-item">
+                                <div class="key-color" data-terrain="water"></div>
+                                <span class="key-label">water</span>
                         </aside>
                         <canvas id="mapCanvas"></canvas>
                     </div>
@@ -382,6 +386,9 @@
                             case 'rock':
                                 color = 'darkgray';
                                 break;
+                            case 'water':
+                                color = 'blue';
+                                break;
                             default:
                                 color = 'lightgray';
                                 break;
@@ -419,6 +426,9 @@
                         case 'rock':
                             color = 'darkgray';
                             break;
+                        case 'water':
+                            color = 'blue';
+                            break;    
                         default:
                             color = 'lightgray';
                             break;
