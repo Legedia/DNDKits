@@ -139,48 +139,6 @@
                         <label for="mapSize">Map Size (Tiles):</label>
                         <input type="number" id="mapSize" value="20">
                     </div>
-                    <div class="input-group">
-                        <label for="terrainType">Terrain Type:</label>
-                        <select id="terrainType">
-                            <option value="grassland">Grassland</option>
-                            <option value="forest">Forest</option>
-                            <option value="desert">Desert</option>
-                            <option value="mountain">Mountain</option>
-                            <option value="rock">Rock</option>
-                        </select>
-                    </div>
-                    <button id="generateMap">Generate Map</button>
-                    <div id="mapContainer">
-                        <aside id="mapKey">
-                            <h3>Map Key</h3>
-                            <div class="key-item">
-                                <div class="key-color" data-terrain="grassland"></div>
-                                <span class="key-label">Grassland</span>
-                            </div>
-                            <div class="key-item">
-                                <div class="key-color" data-terrain="forest"></div>
-                                <span class="key-label">Forest</span>
-                            </div>
-                            <div class="key-item">
-                                <div class="key-color" data-terrain="desert"></div>
-                                <span class="key-label">Desert</span>
-                            </div>
-                            <div class="key-item">
-                                <div class="key-color" data-terrain="mountain"></div>
-                                <span class="key-label">Mountain</span>
-                            </div>
-                            <div class="key-item">
-                                <div class="key-color" data-terrain="rock"></div>
-                                <span class="key-label">Rock</span>
-                            </div>
-                            <div class="key-item">
-                                <div class="key-color" data-terrain="water"></div>
-                                <span class="key-label">Water</span>
-                            </div>
-                        </aside>
-                        <canvas id="mapCanvas"></canvas>
-                    </div>
-                </div>
                     
                     <button id="generateMap">Generate Map</button>
                     <div id="mapContainer">
@@ -309,7 +267,7 @@
         // Map Generator Logic
         document.getElementById('generateMap').addEventListener('click', function() {
             const mapSize = parseInt(document.getElementById('mapSize').value);
-            const terrainType = document.getElementById('terrainType').value; // Retrieve terrain type
+            const terrainType = document.getElementById('terrainType').value;
 
             generateMap(mapSize, terrainType);
         });
@@ -340,51 +298,104 @@
             return "Offensive Table Data"; //Placeholder
         }
 
+        function generateMap(mapSize, terrainType) {
+            console.log("generateMap called with mapSize:", mapSize, "terrainType:", terrainType);
+
+            const mapCanvas = document.getElementById('mapCanvas');
+            const ctx = mapCanvas.getContext('2d');
+
+            if (!ctx) {
+                console.error("Canvas context is null!");
+                return;
+            }
+
+            // Clear the canvas
+            ctx.clearRect(0, 0, mapCanvas.width, mapCanvas.height);
+
+            // Calculate tile size
+            const tileSize = mapCanvas.width / mapSize;
+            console.log("tileSize:", tileSize);
+
+            // Generate map data
+            const mapData = generateMapData(mapSize, terrainType);
+            console.log("mapData:", mapData);
+
+            // Draw tiles
+            drawMap(ctx, mapData, tileSize, terrainType);
+
+            // Update color key
+            updateColorKey();
+        }
+
         function generateMapData(mapSize, terrainType) {
             console.log("generateMapData called with mapSize:", mapSize, "terrainType:", terrainType);
 
             const mapData = [];
-            const noise = new Perlin('randomSeed'); // You can use any seed
-
             for (let y = 0; y < mapSize; y++) {
                 const row = [];
                 for (let x = 0; x < mapSize; x++) {
-                    const noiseValue = noise.noise(x / 10, y / 10, 0); // Adjust scale (10) as needed
+                    row.push(Math.random() < 0.8 ? terrainType : 'rock');
+                }
+                mapData.push(row);
+            }
 
-                if (noiseValue < -0.2) {
-                    row.push('water');
-                } else if (noiseValue < 0) {
-                    row.push('grassland');
-                } else if (noiseValue < 0.3) {
-                    row.push('forest');
-                } else if (noiseValue < 0.6) {
-                    row.push('mountain');
-                } else {
-                    row.push('rock');
+            console.log("mapData after generation:", mapData);
+            return mapData;
+        }
+
+        function drawMap(ctx, mapData, tileSize, terrainType) {
+            console.log("drawMap called with mapData:", mapData, "tileSize:", tileSize, "terrainType:", terrainType);
+
+            if (!ctx) {
+                console.error("Canvas context is null in drawMap!");
+                return;
+            }
+
+            for (let y = 0; y < mapData.length; y++) {
+                for (let x = 0; x < mapData[y].length; x++) {
+                    const tile = mapData[y][x];
+                    let color = '';
+
+                    console.log("tile in drawMap:", tile);
+
+                    switch (tile) {
+                        case 'grassland':
+                            color = 'green';
+                            break;
+                        case 'forest':
+                            color = 'darkgreen';
+                            break;
+                        case 'desert':
+                            color = 'yellow';
+                            break;
+                        case 'mountain':
+                            color = 'gray';
+                            break;
+                        case 'rock':
+                            color = 'darkgray';
+                            break;
+                        default:
+                            color = 'lightgray';
+                            break;
+                    }
+
+                    console.log("color in drawMap:", color);
+
+                    ctx.fillStyle = color;
+                    ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
+                    ctx.strokeStyle = '#ccc';
+                    ctx.strokeRect(x * tileSize, y * tileSize, tileSize, tileSize);
                 }
             }
-            mapData.push(row);
         }
 
-        console.log("mapData after generation:", mapData);
-        return mapData;
-    }
-    function drawMap(ctx, mapData, tileSize, terrainType) {
-        console.log("drawMap called with mapData:", mapData, "tileSize:", tileSize, "terrainType:", terrainType);
-
-        if (!ctx) {
-            console.error("Canvas context is null in drawMap!");
-            return;
-        }
-
-        for (let y = 0; y < mapData.length; y++) {
-            for (let x = 0; x < mapData[y].length; x++) {
-                const tile = mapData[y][x];
+        function updateColorKey() {
+            const keyColors = document.querySelectorAll('#mapKey .key-color');
+            keyColors.forEach(keyColor => {
+                const terrain = keyColor.dataset.terrain;
                 let color = '';
 
-                console.log("tile in drawMap:", tile);
-
-                switch (tile) {
+                switch (terrain) {
                     case 'grassland':
                         color = 'green';
                         break;
@@ -400,56 +411,14 @@
                     case 'rock':
                         color = 'darkgray';
                         break;
-                    case 'water':
-                        color = 'blue';
-                        break;
                     default:
                         color = 'lightgray';
                         break;
                 }
 
-                console.log("color in drawMap:", color);
-
-                ctx.fillStyle = color;
-                ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
-                ctx.strokeStyle = '#ccc';
-                ctx.strokeRect(x * tileSize, y * tileSize, tileSize, tileSize);
-            }
+                keyColor.style.backgroundColor = color;
+            });
         }
-    }
-    function updateColorKey() {
-        const keyColors = document.querySelectorAll('#mapKey .key-color');
-        keyColors.forEach(keyColor => {
-            const terrain = keyColor.dataset.terrain;
-            let color = '';
-
-            switch (terrain) {
-                case 'grassland':
-                    color = 'green';
-                    break;
-                case 'forest':
-                    color = 'darkgreen';
-                    break;
-                case 'desert':
-                    color = 'yellow';
-                    break;
-                case 'mountain':
-                    color = 'gray';
-                    break;
-                case 'rock':
-                    color = 'darkgray';
-                    break;
-                case 'water':
-                    color = 'blue';
-                    break;
-                default:
-                    color = 'lightgray';
-                    break;
-            }
-
-            keyColor.style.backgroundColor = color;
-        });
-    }
     </script>
 </body>
 </html>
