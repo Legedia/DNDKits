@@ -392,17 +392,14 @@ nav ul li a {
     }
     
     #treasure-result-container {
-    margin-top: 200px; /* Add space below the button */
-    border: 1px solid #ccc;
-    position: absolute;
-    padding: 10px;
-    text-align: center;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 5px;
-    width: 500px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+        margin-top: 20px; /* Adjust as needed */
+        border: 1px solid #ccc;
+        padding: 10px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 5px;
+        width: 95%; /* Adjust width to fit container */
+        margin-left: auto;
+        margin-right: auto;
     }
     
     #treasureResults p {
