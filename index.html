@@ -137,19 +137,34 @@
                     <h3>Map Generator (Beta)</h3>
                     <div class="input-group">
                         <label for="mapSize">Map Size (Tiles):</label>
-                        <input type="number" id="mapSize" value="20">
+                        <input type="number" id="mapSize" value="20" min="1">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="grasslandCount">Grassland Tiles:</label>
+                        <input type="number" id="grasslandCount" value="0" min="0">
                     </div>
                     <div class="input-group">
-                        <label for="terrainType">Terrain Type:</label>
-                        <select id="terrainType">
-                            <option value="grassland">Grassland</option>
-                            <option value="forest">Forest</option>
-                            <option value="desert">Desert</option>
-                            <option value="mountain">Mountain</option>
-                            <option value="rock">Rock</option>
-                            <option value="water">Water</option>
-                        </select>
+                        <label for="forestCount">Forest Tiles:</label>
+                        <input type="number" id="forestCount" value="0" min="0">
                     </div>
+                    <div class="input-group">
+                        <label for="desertCount">Desert Tiles:</label>
+                        <input type="number" id="desertCount" value="0" min="0">
+                    </div>
+                    <div class="input-group">
+                        <label for="mountainCount">Mountain Tiles:</label>
+                        <input type="number" id="mountainCount" value="0" min="0">
+                    </div>
+                    <div class="input-group">
+                        <label for="rockCount">Rock Tiles:</label>
+                        <input type="number" id="rockCount" value="0" min="0">
+                    </div>
+                    <div class="input-group">
+                        <label for="waterCount">Water Tiles:</label>
+                        <input type="number" id="waterCount" value="0" min="0">
+                    </div>
+
                     <button id="generateMap">Generate Map</button>
                     <div id="mapContainer">
                         <aside id="mapKey">
@@ -160,7 +175,7 @@
                             </div>
                             <div class="key-item">
                                 <div class="key-color" data-terrain="forest"></div>
-                                <span class="key-label">Forest</span>
+                                <span class="key<span class="key-label">Forest</span>
                             </div>
                             <div class="key-item">
                                 <div class="key-color" data-terrain="desert"></div>
@@ -217,7 +232,7 @@
             input.addEventListener('input', () => {
                 const score = parseInt(input.value);
                 const modifier = Math.floor((score - 10) / 2);
-                mod.textContent = `(${modifier >= 0 ? '+' : ''}${modifier})`;
+                mod.textContent = `(<span class="math-inline">\{modifier \>\= 0 ? '\+' \: ''\}</span>{modifier})`;
             });
         });
 
@@ -281,9 +296,7 @@
         // Map Generator Logic
         document.getElementById('generateMap').addEventListener('click', function() {
             const mapSize = parseInt(document.getElementById('mapSize').value);
-            const terrainType = document.getElementById('terrainType').value;
-
-            generateMap(mapSize, terrainType);
+            generateMap(mapSize);
         });
 
         // Helper Functions (to be implemented)
@@ -312,8 +325,8 @@
             return "Offensive Table Data"; //Placeholder
         }
 
-        function generateMap(mapSize, terrainType) {
-            console.log("generateMap called with mapSize:", mapSize, "terrainType:", terrainType);
+        function generateMap(mapSize) {
+            console.log("generateMap called with mapSize:", mapSize);
 
             const mapCanvas = document.getElementById('mapCanvas');
             const ctx = mapCanvas.getContext('2d');
@@ -331,117 +344,142 @@
             console.log("tileSize:", tileSize);
 
             // Generate map data
-            const mapData = generateMapData(mapSize, terrainType);
+            const mapData = generateMapData(mapSize);
             console.log("mapData:", mapData);
 
             // Draw tiles
-            drawMap(ctx, mapData, tileSize, terrainType);
+            drawMap(ctx, mapData, tileSize);
 
             // Update color key
             updateColorKey();
         }
 
-        function generateMapData(mapSize, terrainType) {
-            console.log("generateMapData called with mapSize:", mapSize, "terrainType:", terrainType);
-
+        function generateMapData(mapSize) {
             const mapData = [];
-            const terrainTypes = ['grassland', 'forest', 'desert', 'mountain', 'rock', 'water']; // All possible terrain types
+            const terrainTypes = [
+                { name: 'grassland', color: 'green', count: parseInt(document.getElementById('grasslandCount').value) },
+                { name: 'forest', color: 'darkgreen', count: parseInt(document.getElementById('forestCount').value) },
+                { name: 'desert', color: 'yellow', count: parseInt(document.getElementById('desertCount').value) },
+                { name: 'mountain', color: 'gray', count: parseInt(document.getElementById('mountainCount').value) },
+                { name: 'rock', color: 'darkgray', count: parseInt(document.getElementById('rockCount').value) },
+                { name: 'water', color: 'blue', count: parseInt(document.getElementById('waterCount').value) }
+            ];
 
-            for (let y = 0; y < mapSize; y++) {
-                const row = [];
-                for (let x = 0; x < mapSize; x++) {
-                    const randomIndex = Math.floor(Math.random() * terrainTypes.length);
-                    row.push(terrainTypes[randomIndex]); // Randomly select a terrain type
-                }
-            mapData.push(row);
-        }
+            let totalTiles = 0;
+            terrainTypes.forEach(terrain => {
+                totalTiles += terrain.count;
+            });
 
-        console.log("mapData after generation:", mapData);
-        return mapData;
-    }
-
-        function drawMap(ctx, mapData, tileSize, terrainType) {
-            console.log("drawMap called with mapData:", mapData, "tileSize:", tileSize, "terrainType:", terrainType);
-
-            if (!ctx) {
-                console.error("Canvas context is null in drawMap!");
+            if (totalTiles > mapSize * mapSize) {
+                alert("Total tiles cannot exceed map size.");
                 return;
             }
 
-            for (let y = 0; y < mapData.length; y++) {
-                for (let x = 0; x < mapData[y].length; x++) {
-                    const tile = mapData[y][x];
-                    let color = '';
-
-                    console.log("tile in drawMap:", tile);
-
-                    switch (tile) {
-                        case 'grassland':
-                            color = 'green';
-                            break;
-                        case 'forest':
-                            color = 'darkgreen';
-                            break;
-                        case 'desert':
-                            color = 'yellow';
-                            break;
-                        case 'mountain':
-                            color = 'gray';
-                            break;
-                        case 'rock':
-                            color = 'darkgray';
-                            break;
-                        case 'water':
-                            color - 'blue';
-                            break;
-                        default:
-                            color = 'lightgray';
-                            break;
-                    }
-
-                    console.log("color in drawMap:", color);
-
-                    ctx.fillStyle = color;
-                    ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
-                    ctx.strokeStyle = '#ccc';
-                    ctx.strokeRect(x * tileSize, y * tileSize, tileSize, tileSize);
+            const map = [];
+            for (let i = 0; i < mapSize; i++) {
+                const row = [];
+                for (let j = 0; j < mapSize; j++) {
+                    row.push(''); // Initialize with empty strings
                 }
+                map.push(row);
             }
-        }
 
-        function updateColorKey() {
-            const keyColors = document.querySelectorAll('#mapKey .key-color');
-            keyColors.forEach(keyColor => {
-                const terrain = keyColor.dataset.terrain;
-                let color = '';
-
-                switch (terrain) {
-                    case 'grassland':
-                        color = 'green';
-                        break;
-                    case 'forest':
-                        color = 'darkgreen';
-                        break;
-                    case 'desert':
-                        color = 'yellow';
-                        break;
-                    case 'mountain':
-                        color = 'gray';
-                        break;
-                    case 'rock':
-                        color = 'darkgray';
-                        break;
-                    case 'water': 
-                        color = 'blue';
-                        break;
-                    default:
-                        color = 'lightgray';
-                        break;
+            // Place tiles randomly
+            terrainTypes.forEach(terrain => {
+                for (let i = 0; i < terrain.count; i++) {
+                    let x, y;
+                    do {
+                        x = Math.floor(Math.random() * mapSize);
+                        y = Math.floor(Math.random() * mapSize);
+                    } while (map[y][x] !== ''); // Find an empty spot
+                    map[y][x] = terrain.name;
                 }
-
-                keyColor.style.backgroundColor = color;
             });
+            return map;
         }
-    </script>
+
+        function drawMap(ctx, mapData, tileSize) {
+            console.log("drawMap called with mapData:", mapData, "tileSize:", tileSize);
+
+if (!ctx) {
+    console.error("Canvas context is null in drawMap!");
+    return;
+}
+
+for (let y = 0; y < mapData.length; y++) {
+    for (let x = 0; x < mapData[y].length; x++) {
+        const tile = mapData[y][x];
+        let color = '';
+
+        console.log("tile in drawMap:", tile);
+
+        switch (tile) {
+            case 'grassland':
+                color = 'green';
+                break;
+            case 'forest':
+                color = 'darkgreen';
+                break;
+            case 'desert':
+                color = 'yellow';
+                break;
+            case 'mountain':
+                color = 'gray';
+                break;
+            case 'rock':
+                color = 'darkgray';
+                break;
+            case 'water':
+                color = 'blue';
+                break;
+            default:
+                color = 'lightgray';
+                break;
+        }
+
+        console.log("color in drawMap:", color);
+
+        ctx.fillStyle = color;
+        ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
+        ctx.strokeStyle = '#ccc';
+        ctx.strokeRect(x * tileSize, y * tileSize, tileSize, tileSize);
+    }
+}
+}
+
+function updateColorKey() {
+const keyColors = document.querySelectorAll('#mapKey .key-color');
+keyColors.forEach(keyColor => {
+    const terrain = keyColor.dataset.terrain;
+    let color = '';
+
+    switch (terrain) {
+        case 'grassland':
+            color = 'green';
+            break;
+        case 'forest':
+            color = 'darkgreen';
+            break;
+        case 'desert':
+            color = 'yellow';
+            break;
+        case 'mountain':
+            color = 'gray';
+            break;
+        case 'rock':
+            color = 'darkgray';
+            break;
+        case 'water':
+            color = 'blue';
+            break;
+        default:
+            color = 'lightgray';
+            break;
+    }
+
+    keyColor.style.backgroundColor = color;
+});
+}
+</script>
 </body>
 </html>
