@@ -345,17 +345,20 @@
             console.log("generateMapData called with mapSize:", mapSize, "terrainType:", terrainType);
 
             const mapData = [];
+            const terrainTypes = ['grassland', 'forest', 'desert', 'mountain', 'rock', 'water']; // All possible terrain types
+
             for (let y = 0; y < mapSize; y++) {
                 const row = [];
                 for (let x = 0; x < mapSize; x++) {
-                    row.push(Math.random() < 0.8 ? terrainType : 'rock');
+                    const randomIndex = Math.floor(Math.random() * terrainTypes.length);
+                    row.push(terrainTypes[randomIndex]); // Randomly select a terrain type
                 }
-                mapData.push(row);
-            }
-
-            console.log("mapData after generation:", mapData);
-            return mapData;
+            mapData.push(row);
         }
+
+        console.log("mapData after generation:", mapData);
+        return mapData;
+    }
 
         function drawMap(ctx, mapData, tileSize, terrainType) {
             console.log("drawMap called with mapData:", mapData, "tileSize:", tileSize, "terrainType:", terrainType);
