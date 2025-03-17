@@ -257,19 +257,14 @@ nav ul li a {
 }
 
 #calculator-box {
-    border: 2px solid #ccc;
     position: absolute;
-    top: 50%;
-    left: 20%;
-    transform: translate(-50%, -50%);
-    padding: 20px;
-    width: 300px;
-    height: 150px;
-    text-align: center  ;
-    margin-top: 2.5cm; /* Adjust as needed */
+    top: 80px; /* Adjust as needed */
+    left: 20px; /* Adjust as needed */
+    border: 2px solid #ccc;
+    padding: 10px; /* Reduced padding */
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
-    overflow-y: auto; /*add scroll bar if content overflows */
+    z-index: 10; /* Ensure it's above other elements */
 }
 
 #calculator-box h2 {
