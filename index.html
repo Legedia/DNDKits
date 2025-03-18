@@ -198,10 +198,55 @@
                 <div id="map-generator" class="calculator-container">
                     <h3>Map Generator (Beta)</h3>
                     <div class="input-group">
-                        <label for="mapSize">Map Size (Tiles):</label>
-                        <input type="number" id="mapSize" value="20" min="1">
+                        <label for="mapWidth">Map Width (Tiles):</label>
+                        <input type="number" id="mapWidth" value="20" min="1">
                     </div>
-
+                    <div class="input-group">
+                        <label for="mapHeight">Map Height (Tiles):</label>
+                        <input type="number" id="mapHeight" value="20" min="1">
+                    </div>
+                
+                    <div id="terrainPalette">
+                        <button data-terrain="grassland">Grassland</button>
+                        <button data-terrain="forest">Forest</button>
+                        <button data-terrain="desert">Desert</button>
+                        <button data-terrain="mountain">Mountain</button>
+                        <button data-terrain="rock">Rock</button>
+                        <button data-terrain="water">Water</button>
+                    </div>
+                
+                    <button id="generateMap">Generate Map</button>
+                    <div id="mapContainer">
+                        <aside id="mapKey">
+                            <h3>Map Key</h3>
+                            <div class="key-item">
+                                <div class="key-color" data-terrain="grassland"></div>
+                                <span class="key-label">Grassland</span>
+                            </div>
+                            <div class="key-item">
+                                <div class="key-color" data-terrain="forest"></div>
+                                <span class="key-label">Forest</span>
+                            </div>
+                            <div class="key-item">
+                                <div class="key-color" data-terrain="desert"></div>
+                                <span class="key-label">Desert</span>
+                            </div>
+                            <div class="key-item">
+                                <div class="key-color" data-terrain="mountain"></div>
+                                <span class="key-label">Mountain</span>
+                            </div>
+                            <div class="key-item">
+                                <div class="key-color" data-terrain="rock"></div>
+                                <span class="key-label">Rock</span>
+                            </div>
+                            <div class="key-item">
+                                <div class="key-color" data-terrain="water"></div>
+                                <span class="key-label">Water</span>
+                            </div>
+                        </aside>
+                        <canvas id="mapCanvas"></canvas>
+                    </div>
+                </div>
                     <div class="input-group">
                         <label for="grasslandCount">Grassland Tiles:</label>
                         <input type="number" id="grasslandCount" value="0" min="0">
