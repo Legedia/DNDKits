@@ -484,7 +484,8 @@
 
     /* Navigation List Items Styling */
     header nav ul li {
-        margin: 0 15px; /* Spacing between navigation items */
+        margin: 0 20px; /* Spacing between navigation items */
+        flex-direction: column;
         display: flex; /* Use flexbox to center content */
         align-items: center; /* Align items vertically */
     }
@@ -494,6 +495,7 @@
         color: white;
         font-weight: bold;
         display: flex; /* Use flex to align icon and text */
+        flex-direction: column;
         align-items: center; /* Align icon and text vertically */
     }
 
