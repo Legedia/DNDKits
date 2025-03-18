@@ -325,7 +325,26 @@
                 const mapData = getMapDataFromCanvas(mapWidth, mapHeight);
                 drawMap(canvas.getContext('2d'), mapData, tileSize);
             });
+
+            // --- Add Event Listener for Generate Map Button ---
+            document.getElementById('generateMap').addEventListener('click', function () {
+                const mapWidth = parseInt(document.getElementById('mapWidth').value);
+                const mapHeight = parseInt(document.getElementById('mapHeight').value);
+                generateMap(mapWidth, mapHeight);
+            });
     
+            function getMapDataFromCanvas(mapWidth, mapHeight) {
+                const canvas = document.getElementById('mapCanvas');
+                const ctx = canvas.getContext('2d');
+                const tileSize = canvas.width / mapWidth;
+
+                // Clear the canvas
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                // Initialize map data
+                const mapData = generateMapData(mapWidth, mapHeight);
+                drawMap(ctx, mapData, tileSize);
+            
             function getMapDataFromCanvas(mapWidth, mapHeight) {
                 const canvas = document.getElementById('mapCanvas');
                 const ctx = canvas.getContext('2d');
