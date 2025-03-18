@@ -28,7 +28,7 @@ header {
 
 header .container {
     display: flex;
-    justify-content: content; /*center horizontally */
+    justify-content: center; /*center horizontally */
     align-items: center;
     flex-direction: column; /* stack logo and nav vertically */
 }
@@ -37,6 +37,7 @@ nav ul {
     list-style: none;
     display: flex;
     justify-content: center; /* Center navigation items */
+    text-align: center; /*Center Navigation items
 }
 
 nav ul li .nav-icon {
