@@ -37,7 +37,7 @@ nav ul {
     list-style: none;
     display: flex;
     justify-content: center; /* Center navigation items */
-    text-align: center; /*Center Navigation items
+    text-align: center; /*Center Navigation items */
 }
 
 nav ul li .nav-icon {
