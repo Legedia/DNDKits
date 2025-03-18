@@ -498,10 +498,13 @@
     }
 
     header nav ul li a img.nav-icon {
-        width: 80px; /* Adjust size as needed */
-        height: 80px; /* Adjust size as needed */
+        width: 65px; /* Adjust size as needed */
+        height: 65px; /* Adjust size as needed */
         margin-right: 5px; /* Spacing between icon and text */
         filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.7)) brightness(1.8); /* Added shadow to icons */
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     /* General Navigation Styling */
