@@ -472,15 +472,7 @@
         }
         /* ... (Your existing CSS) ... */
 
-    /* Logo Styling */
-    header nav ul li img.logo {
-        height: 10px; /* Adjust as needed */
-        width: auto;
-        vertical-align: middle;
-        margin-right: 10px; /* Space between logo and other items */
-        filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.7)); /* Add shadow to logo */
-    }
-
+    
     /* Navigation List Styling */
     header nav ul {
         list-style: none;
