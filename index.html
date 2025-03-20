@@ -1,35 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>D&D Homebrew Kits</title>
-    <meta name="description" content="Handcrafted D&D homebrew kits, calculators, and resources for unforgettable campaigns">
-    <meta name="keywords" content="D&D, homebrew, kits, campaigns, calculators, RPG, tabletop, roleplaying">
+    <meta name="description"
+        content="Handcrafted D&D homebrew kits, calculators, and resources for unforgettable campaigns">
+    <meta name="keywords"
+        content="D&D, homebrew, kits, campaigns, calculators, RPG, tabletop, roleplaying">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"> 
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
     <header>
         <div class="container">
             <nav>
                 <ul>
-                    <li><a href="index.html"><img src="HomeIcon.jpg" alt="Home" class="nav-icon" title="Home"> Home</a></li>
-                    <li><a href="campaigns.html"><img src="CampaignsIcon.jpg" alt="Campaigns" class="nav-icon" title="Campaigns"> Campaigns</a></li>
-                    <li><a href="monsters.html"><img src="MonstersIcon.jpg" alt="Monsters" class="nav-icon" title="Monsters"> Monsters</a></li>
-                    <li><a href="characters.html"><img src="CharactersIcon.jpg" alt="Characters" class="nav-icon" title="Characters"> Characters</a></li>
-                    <li><a href="npcs.html"><img src="NPCIcon.jpg" alt="NPCs" class="nav-icon" title="NPCs"> NPCs</a></li>
-                    <li><a href="items.html"><img src="ItemsIcon.jpg" alt="Items" class="nav-icon" title="Items"> Items</a></li>
-                    <li><a href="weapons.html"><img src="WeaponsIcon.jpg" alt="Weapons" class="nav-icon" title="Weapons"> Weapons</a></li>
-                    <li><a href="armor.html"><img src="ArmorIcon.jpg" alt="Armor" class="nav-icon" title="Armor"> Armor</a></li>
-                    <li><a href="aboutus.html"><img src="AboutUsIcon.jpg" alt="About Us" class="nav-icon" title="About Us"> About Us</a></li>
-                    <li><a href="ContactUs.html"><img src="ContactUsIcon.jpg" alt="Contact" class="nav-icon" title="Contact Us"> Contact</a></li>
-                    <li><a href="Blogs.html"><img src="BlogsIcon.jpg" alt="Blog" class="nav-icon" title="Blogs"> Blog</a></li>
-                    <li><a href="cart.html"><img src="ShoppingCartIcon.jpg" alt="Cart" class="nav-icon" title="Shopping Cart"> Cart</a></li>
+                    <li><a href="index.html"><img src="HomeIcon.jpg" alt="Home" class="nav-icon" title="Home">
+                            Home</a></li>
+                    <li><a href="campaigns.html"><img src="CampaignsIcon.jpg" alt="Campaigns" class="nav-icon"
+                                title="Campaigns"> Campaigns</a></li>
+                    <li><a href="monsters.html"><img src="MonstersIcon.jpg" alt="Monsters" class="nav-icon"
+                                title="Monsters"> Monsters</a></li>
+                    <li><a href="characters.html"><img src="CharactersIcon.jpg" alt="Characters"
+                                class="nav-icon" title="Characters"> Characters</a></li>
+                    <li><a href="npcs.html"><img src="NPCIcon.jpg" alt="NPCs" class="nav-icon" title="NPCs"> NPCs</a>
+                    </li>
+                    <li><a href="items.html"><img src="ItemsIcon.jpg" alt="Items" class="nav-icon" title="Items"> Items</a>
+                    </li>
+                    <li><a href="weapons.html"><img src="WeaponsIcon.jpg" alt="Weapons" class="nav-icon"
+                                title="Weapons"> Weapons</a></li>
+                    <li><a href="armor.html"><img src="ArmorIcon.jpg" alt="Armor" class="nav-icon" title="Armor"> Armor</a>
+                    </li>
+                    <li><a href="aboutus.html"><img src="AboutUsIcon.jpg" alt="About Us" class="nav-icon"
+                                title="About Us"> About Us</a></li>
+                    <li><a href="ContactUs.html"><img src="ContactUsIcon.jpg" alt="Contact" class="nav-icon"
+                                title="Contact Us"> Contact</a></li>
+                    <li><a href="Blogs.html"><img src="BlogsIcon.jpg" alt="Blog" class="nav-icon" title="Blogs"> Blog</a>
+                    </li>
+                    <li><a href="cart.html"><img src="ShoppingCartIcon.jpg" alt="Cart" class="nav-icon"
+                                title="Shopping Cart"> Cart</a></li>
                 </ul>
             </nav>
         </div>
@@ -139,253 +156,256 @@
                     <h3>Map Generator (Beta)</h3>
                     <div class="input-group">
                         <label for="mapWidth">Map Width (Tiles):</label>
-                        <input type="number" id="mapWidth" value="20" min="1">
+                        <input type="number" id="mapWidth" value="20"min="1">
                     </div>
                     <div class="input-group">
-                        <label for="mapHeight">Map Height <input type="number" id="mapHeight" value="20" min="1">
-                        </div>
-    
-                        <div id="terrainPalette">
-                            <button data-terrain="grassland">Grassland</button>
-                            <button data-terrain="forest">Forest</button>
-                            <button data-terrain="desert">Desert</button>
-                            <button data-terrain="mountain">Mountain</button>
-                            <button data-terrain="rock">Rock</button>
-                            <button data-terrain="water">Water</button>
-                        </div>
-    
-                        <button id="generateMap">Generate Map</button>
-                        <div id="mapContainer">
-                            <aside id="mapKey">
-                                <h3>Map Key</h3>
-                                <div class="key-item">
-                                    <div class="key-color" data-terrain="grassland"></div>
-                                    <span class="key-label">Grassland</span>
-                                </div>
-                                <div class="key-item">
-                                    <div class="key-color" data-terrain="forest"></div>
-                                    <span class="key-label">Forest</span>
-                                </div>
-                                <div class="key-item">
-                                    <div class="key-color" data-terrain="desert"></div>
-                                    <span class="key-label">Desert</span>
-                                </div>
-                                <div class="key-item">
-                                    <div class="key-color" data-terrain="mountain"></div>
-                                    <span class="key-label">Mountain</span>
-                                </div>
-                                <div class="key-item">
-                                    <div class="key-color" data-terrain="rock"></div>
-                                    <span class="key-label">Rock</span>
-                                </div>
-                                <div class="key-item">
-                                    <div class="key-color" data-terrain="water"></div>
-                                    <span class="key-label">Water</span>
-                                </div>
-                            </aside>
-                            <canvas id="mapCanvas"></canvas>
-                        </div>
+                        <label for="mapHeight">Map Height:</label>
+                        <input type="number" id="mapHeight" value="20" min="1">
+                    </div>
+
+                    <div id="terrainPalette">
+                        <button data-terrain="grassland">Grassland</button>
+                        <button data-terrain="forest">Forest</button>
+                        <button data-terrain="desert">Desert</button>
+                        <button data-terrain="mountain">Mountain</button>
+                        <button data-terrain="rock">Rock</button>
+                        <button data-terrain="water">Water</button>
+                    </div>
+
+                    <button id="generateMap">Generate Map</button>
+                    <div id="mapContainer">
+                        <aside id="mapKey">
+                            <h3>Map Key</h3>
+                            <div class="key-item">
+                                <div class="key-color" data-terrain="grassland"></div>
+                                <span class="key-label">Grassland</span>
+                            </div>
+                            <div class="key-item">
+                                <div class="key-color" data-terrain="forest"></div>
+                                <span class="key-label">Forest</span>
+                            </div>
+                            <div class="key-item">
+                                <div class="key-color" data-terrain="desert"></div>
+                                <span class="key-label">Desert</span>
+                            </div>
+                            <div class="key-item">
+                                <div class="key-color" data-terrain="mountain"></div>
+                                <span class="key-label">Mountain</span>
+                            </div>
+                            <div class="key-item">
+                                <div class="key-color" data-terrain="rock"></div>
+                                <span class="key-label">Rock</span>
+                            </div>
+                            <div class="key-item">
+                                <div class="key-color" data-terrain="water"></div>
+                                <span class="key-label">Water</span>
+                            </div>
+                        </aside>
+                        <canvas id="mapCanvas"></canvas>
                     </div>
                 </div>
             </div>
-        </section>
-        <footer>
-            <div class="container">
-                <p>&copy; 2023 D&D Homebrew Kits. All rights reserved.</p>
-            </div>
-        </footer>
-        <script>
-            const rollButton = document.getElementById('rollButton');
-            const rollResult = document.getElementById('rollResult');
-            const sidesInput = document.getElementById('sidesInput');
-        
-            rollButton.addEventListener('click', () => {
-                const sides = parseInt(sidesInput.value);
-                if (isNaN(sides) || sides < 1) {
-                    alert('Please enter a valid number of sides.');
-                    return;
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 D&D Homebrew Kits. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+        const rollButton = document.getElementById('rollButton');
+        const rollResult = document.getElementById('rollResult');
+        const sidesInput = document.getElementById('sidesInput');
+
+        rollButton.addEventListener('click', () => {
+            const sides = parseInt(sidesInput.value);
+            if (isNaN(sides) || sides < 1) {
+                alert('Please enter a valid number of sides.');
+                return;
+            }
+            const result = Math.floor(Math.random() * sides) + 1;
+            rollResult.textContent = `You rolled: ${result}`;
+            rollButton.style.backgroundColor = '#555';
+            setTimeout(() => {
+                rollButton.style.backgroundColor = '#007bff';
+            }, 200);
+        });
+
+        const stats = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
+
+        stats.forEach(stat => {
+            const input = document.getElementById(stat);
+            const mod = document.getElementById(stat + 'Mod');
+
+            input.addEventListener('input', () => {
+                const score = parseInt(input.value);
+                const modifier = Math.floor((score - 10) / 2);
+                mod.textContent = `(${modifier >= 0 ? '+' : ''}${modifier})`;
+            });
+        });
+
+        const calculatorSelect = document.getElementById('calculator-select');
+        const calculators = document.querySelectorAll('.calculator-container');
+
+        calculatorSelect.addEventListener('change', () => {
+            const selectedCalculatorId = calculatorSelect.value;
+            calculators.forEach(calc => {
+                calc.style.display = 'none';
+            });
+
+            if (selectedCalculatorId) {
+                document.getElementById(selectedCalculatorId).style.display = 'block';
+
+                if (selectedCalculatorId === "map-generator") {
+                    document.getElementById(selectedCalculatorId).addEventListener('click', function (event) {
+                        event.stopPropagation();
+                    });
                 }
-                const result = Math.floor(Math.random() * sides) + 1;
-                rollResult.textContent = `You rolled: ${result}`;
-                rollButton.style.backgroundColor = '#555';
-                setTimeout(() => {
-                    rollButton.style.backgroundColor = '#007bff';
-                }, 200);
+            }
+        });
+
+        document.getElementById('calculateCR').addEventListener('click', function () {
+            const hp = parseInt(document.getElementById('hp').value);
+            const ac = parseInt(document.getElementById('ac').value);
+            const dpr = parseInt(document.getElementById('dpr').value);
+            const attackBonus = parseInt(document.getElementById('attackBonus').value);
+            const saveDC = parseInt(document.getElementById('saveDC').value);
+
+            const defensiveCR = calculateDefensiveCR(hp, ac);
+            const offensiveCR = calculateOffensiveCR(dpr, attackBonus, saveDC);
+            const finalCR = (defensiveCR + offensiveCR) / 2;
+
+            document.getElementById('defensiveTable').textContent = getDefensiveTable();
+            document.getElementById('offensiveTable').textContent = getOffensiveTable();
+            document.getElementById('finalCR').textContent = finalCR;
+
+            document.getElementById('crTables').style.display = 'block';
+        });
+
+        document.getElementById('generateTreasure').addEventListener('click', function () {
+            const partyLevel = parseInt(document.getElementById('partyLevel').value);
+            const encounterCR = parseInt(document.getElementById('encounterCR').value);
+            const location = document.getElementById('location').value;
+
+            const treasure = generateTreasure(partyLevel, encounterCR, location);
+
+            const treasureList = document.getElementById('treasureList');
+            treasureList.innerHTML = '';
+            treasure.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                treasureList.appendChild(li);
             });
-        
-            const stats = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
-        
-            stats.forEach(stat => {
-                const input = document.getElementById(stat);
-                const mod = document.getElementById(stat + 'Mod');
-        
-                input.addEventListener('input', () => {
-                    const score = parseInt(input.value);
-                    const modifier = Math.floor((score - 10) / 2);
-                    mod.textContent = `(<span class="math-inline">\{modifier \>\= 0 ? '\+' \: ''\}</span>{modifier})`;
+        });
+
+        function calculateDefensiveCR(hp, ac) {
+            return "Defensive CR Calculated";
+        }
+
+        function calculateOffensiveCR(dpr, attackBonus, saveDC) {
+            return "Offensive CR Calculated";
+        }
+
+        function generateTreasure(partyLevel, encounterCR, location) {
+            return ["Treasure Item 1", "Treasure Item 2"];
+        }
+
+        function getDefensiveTable() {
+            return "Defensive Table Data";
+        }
+
+        function getOffensiveTable() {
+            return "Offensive Table Data";
+        }
+
+        // --- Map Generator JavaScript Code ---
+
+        let selectedTerrain = 'grassland';
+        let mapData =[] // Declare mapData as a global variable
+
+        // Add event listeners to terrain palette buttons
+        document.querySelectorAll('#terrainPalette button').forEach(button => {
+            button.addEventListener('click', function () {
+                selectedTerrain = this.dataset.terrain;
+
+                // Add 'selected' class to the clicked button and remove it from others
+                document.querySelectorAll('#terrainPalette button').forEach(btn => {
+                    btn.classList.remove('selected');
                 });
+                this.classList.add('selected');
             });
-        
-            const calculatorSelect = document.getElementById('calculator-select');
-            const calculators = document.querySelectorAll('.calculator-container');
-        
-            calculatorSelect.addEventListener('change', () => {
-                const selectedCalculatorId = calculatorSelect.value;
-                calculators.forEach(calc => {
-                    calc.style.display = 'none';
-                });
-        
-                if (selectedCalculatorId) {
-                    document.getElementById(selectedCalculatorId).style.display = 'block';
-        
-                    if (selectedCalculatorId === "map-generator") {
-                        document.getElementById(selectedCalculatorId).addEventListener('click', function (event) {
-                            event.stopPropagation();
-                        });
-                    }
+        });
+
+        document.getElementById('mapCanvas').addEventListener('click', function (event) {
+            const canvas = document.getElementById('mapCanvas');
+            const rect = canvas.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+            const mapWidth = parseInt(document.getElementById('mapWidth').value);
+            const mapHeight = parseInt(document.getElementById('mapHeight').value);
+            const tileSize = canvas.width / mapWidth;
+            const gridX = Math.floor(x / tileSize);
+            const gridY = Math.floor(y / tileSize);
+
+            updateMapTile(gridX, gridY, selectedTerrain);
+        });
+
+        // --- Add Event Listener for Generate Map Button ---
+        document.getElementById('generateMap').addEventListener('click', function () {
+            const mapWidth = parseInt(document.getElementById('mapWidth').value);
+            const mapHeight = parseInt(document.getElementById('mapHeight').value);
+            generateMap(mapWidth, mapHeight);
+        });
+
+        function generateMap(mapWidth, mapHeight) {
+            const canvas = document.getElementById('mapCanvas');
+            const ctx = canvas.getContext('2d');
+            const tileSize = canvas.width / mapWidth;
+
+            // Clear the canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Initialize map data
+            generateMapData(mapWidth, mapHeight);
+            drawMap(ctx, mapData, tileSize);
+        }
+
+        function getMapDataFromCanvas(mapWidth, mapHeight) {
+            //This function is no longer needed
+        }
+
+        function updateMapTile(gridX, gridY, terrainType) {
+            const canvas = document.getElementById('mapCanvas');
+            const ctx = canvas.getContext('2d');
+            const mapWidth = parseInt(document.getElementById('mapWidth').value);
+            const mapHeight = parseInt(document.getElementById('mapHeight').value);
+            const tileSize = canvas.width / mapWidth;
+
+            if (gridX >= 0 && gridX < mapWidth && gridY >= 0 && gridY < mapHeight) {
+                mapData[gridY][gridX] = terrainType; // Update mapData
+                drawMap(ctx, mapData, tileSize); // Redraw the entire map
+            }
+        }
+
+        function generateMapData(mapWidth, mapHeight) {
+            mapData = [] // Reset mapData
+            for (let i = 0; i < mapHeight; i++) {
+                const row = []
+                for (let j = 0; j < mapWidth; j++) {
+                    row.push('grassland'); // Populate with grassland
                 }
-            });
-        
-            document.getElementById('calculateCR').addEventListener('click', function () {
-                const hp = parseInt(document.getElementById('hp').value);
-                const ac = parseInt(document.getElementById('ac').value);
-                const dpr = parseInt(document.getElementById('dpr').value);
-                const attackBonus = parseInt(document.getElementById('attackBonus').value);
-                const saveDC = parseInt(document.getElementById('saveDC').value);
-        
-                const defensiveCR = calculateDefensiveCR(hp, ac);
-                const offensiveCR = calculateOffensiveCR(dpr, attackBonus, saveDC);
-                const finalCR = (defensiveCR + offensiveCR) / 2;
-        
-                document.getElementById('defensiveTable').textContent = getDefensiveTable();
-                document.getElementById('offensiveTable').textContent = getOffensiveTable();
-                document.getElementById('finalCR').textContent = finalCR;
-        
-                document.getElementById('crTables').style.display = 'block';
-            });
-        
-            document.getElementById('generateTreasure').addEventListener('click', function () {
-                const partyLevel = parseInt(document.getElementById('partyLevel').value);
-                const encounterCR = parseInt(document.getElementById('encounterCR').value);
-                const location = document.getElementById('location').value;
-        
-                const treasure = generateTreasure(partyLevel, encounterCR, location);
-        
-                const treasureList = document.getElementById('treasureList');
-                treasureList.innerHTML = '';
-                treasure.forEach(item => {
-                    const li = document.createElement('li');
-                    li.textContent = item;
-                    treasureList.appendChild(li);
-                });
-            });
-        
-            function calculateDefensiveCR(hp, ac) {
-                return "Defensive CR Calculated";
+                mapData.push(row);
             }
-        
-            function calculateOffensiveCR(dpr, attackBonus, saveDC) {
-                return "Offensive CR Calculated";
-            }
-        
-            function generateTreasure(partyLevel, encounterCR, location) {
-                return ["Treasure Item 1", "Treasure Item 2"];
-            }
-        
-            function getDefensiveTable() {
-                return "Defensive Table Data";
-            }
-        
-            function getOffensiveTable() {
-                return "Offensive Table Data";
-            }
-        
-            // --- Map Generator JavaScript Code ---
-        
-            let selectedTerrain = 'grassland';
-        
-            document.querySelectorAll('#terrainPalette button').forEach(button => {
-                button.addEventListener('click', function () {
-                    selectedTerrain = this.dataset.terrain;
-                });
-            });
-        
-            document.getElementById('mapCanvas').addEventListener('click', function (event) {
-                const canvas = document.getElementById('mapCanvas');
-                const rect = canvas.getBoundingClientRect();
-                const x = event.clientX - rect.left;
-                const y = event.clientY - rect.top;
-                const mapWidth = parseInt(document.getElementById('mapWidth').value);
-                const mapHeight = parseInt(document.getElementById('mapHeight').value);
-                const tileSize = canvas.width / mapWidth;
-                const gridX = Math.floor(x / tileSize);
-                const gridY = Math.floor(y / tileSize);
-        
-                updateMapTile(gridX, gridY, selectedTerrain);
-                const mapData = getMapDataFromCanvas(mapWidth, mapHeight);
-                drawMap(canvas.getContext('2d'), mapData, tileSize);
-            });
-        
-            // --- Add Event Listener for Generate Map Button ---
-            document.getElementById('generateMap').addEventListener('click', function () {
-                const mapWidth = parseInt(document.getElementById('mapWidth').value);
-                const mapHeight = parseInt(document.getElementById('mapHeight').value);
-                generateMap(mapWidth, mapHeight);
-            });
-        
-            function getMapDataFromCanvas(mapWidth, mapHeight) {
-                const canvas = document.getElementById('mapCanvas');
-                const ctx = canvas.getContext('2d');
-                const tileSize = canvas.width / mapWidth;
-                const mapData = [];
-        
-                for (let y = 0; y < mapHeight; y++) {
-                    const row = [];
-                    for (let x = 0; x < mapWidth; x++) {
-                        const pixelData = ctx.getImageData(x * tileSize + tileSize / 2, y * tileSize + tileSize / 2, 1, 1).data;
-                        const color = `rgb(${pixelData[0]}, ${pixelData[1]}, ${pixelData[2]})`;
-        
-                        let terrain = '';
-                        switch (color) {
-                            case 'rgb(0, 128, 0)':
-                                terrain = 'forest';
-                                break;
-                            case 'rgb(128, 128, 128)':
-                                terrain = 'mountain';
-                                break;
-                            case 'rgb(105, 105, 105)':
-                                terrain = 'rock';
-                                break;
-                            case 'rgb(0, 0, 255)':
-                                terrain = 'water';
-                                break;
-                            case 'rgb(255, 255, 0)':
-                                terrain = 'desert';
-                                break;
-                            case 'rgb(0, 255, 0)':
-                                terrain = 'grassland';
-                                break;
-                            default:
-                                terrain = '';
-                                break;
-                        }
-                        row.push(terrain);
-                    }
-                    mapData.push(row);
-                }
-                return mapData;
-            }
-        
-            function updateMapTile(gridX, gridY, terrainType) {
-                const canvas = document.getElementById('mapCanvas');
-                const ctx = canvas.getContext('2d');
-                const mapWidth = parseInt(document.getElementById('mapWidth').value);
-                const mapHeight = parseInt(document.getElementById('mapHeight').value);
-                const tileSize = canvas.width / mapWidth;
-        
-                if (gridX >= 0 && gridX < mapWidth && gridY >= 0 && gridY < mapHeight) {
-                    let color = '';
-                    switch (terrainType) {
+        }
+
+        function drawMap(ctx, mapData, tileSize) {
+            ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); // Clear the canvas
+
+            for (let y = 0; y < mapData.length; y++) {
+                for (let x = 0; x < mapData[y].length; x++) {
+                    let color = 'lightgray'; // Default color
+
+                    switch (mapData[y][x]) {
                         case 'grassland':
                             color = 'green';
                             break;
@@ -404,71 +424,25 @@
                         case 'water':
                             color = 'blue';
                             break;
-                        default:
-                            color = 'lightgray';
-                            break;
                     }
+
                     ctx.fillStyle = color;
-                    ctx.fillRect(gridX * tileSize, gridY * tileSize, tileSize, tileSize);
+                    ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
                     ctx.strokeStyle = '#ccc';
-                    ctx.strokeRect(gridX * tileSize, gridY * tileSize, tileSize, tileSize);
+                    ctx.strokeRect(x * tileSize, y * tileSize, tileSize, tileSize);
                 }
             }
-        
-            function generateMapData(mapWidth, mapHeight) {
-                const map = [];
-                for (let i = 0; i < mapHeight; i++) {
-                    const row = [];
-                    for (let j = 0; j < mapWidth; j++) {
-                row.push('grassland');
-            }
-            map.push(row);
         }
-        return map;
-    }
 
-    function drawMap(ctx, mapData, tileSize) {
-        for (let y = 0; y < mapData.length; y++) {
-            for (let x = 0; x < mapData[y].length; x++) {
-                let color = 'lightgray'; // Default color
+        function generateMap(mapWidth, mapHeight) {
+            const canvas = document.getElementById('mapCanvas');
+            const ctx = canvas.getContext('2d');
+            const tileSize = canvas.width / mapWidth;
 
-                switch (mapData[y][x]) {
-                    case 'grassland':
-                        color = 'green';
-                        break;
-                    case 'forest':
-                        color = 'darkgreen';
-                        break;
-                    case 'desert':
-                        color = 'yellow';
-                        break;
-                    case 'mountain':
-                        color = 'gray';
-                        break;
-                    case 'rock':
-                        color = 'darkgray';
-                        break;
-                    case 'water':
-                        color = 'blue';
-                        break;
-                }
-
-                ctx.fillStyle = color;
-                ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
-                ctx.strokeStyle = '#ccc';
-                ctx.strokeRect(x * tileSize, y * tileSize, tileSize, tileSize);
-            }
+            generateMapData(mapWidth, mapHeight); // Initialize mapData
+            drawMap(ctx, mapData, tileSize);
         }
-    }
-
-    function generateMap(mapWidth, mapHeight) {
-        const canvas = document.getElementById('mapCanvas');
-        const ctx = canvas.getContext('2d');
-        const tileSize = canvas.width / mapWidth;
-
-        const mapData = generateMapData(mapWidth, mapHeight);
-        drawMap(ctx, mapData, tileSize);
-    }
-</script>
+    </script>
 </body>
+
 </html>
