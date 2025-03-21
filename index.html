@@ -1,687 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>D&D Dice Roller</title>
+    <title>D&D Homebrew Kits</title>
+    <meta name="description"
+        content="Handcrafted D&D homebrew kits, calculators, and resources for unforgettable campaigns">
+    <meta name="keywords"
+        content="D&D, homebrew, kits, campaigns, calculators, RPG, tabletop, roleplaying">
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-       /* Reset and Basic Styling */
-        body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f0f0;
-            color: #333;
-        }
-
-        #dice-roller-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-        }
-
-        /* Dice Canvas */
-        #dice-canvas-container {
-            position: relative; /* Needed for absolute positioning of controls */
-            width: 500px; /* Adjust as needed */
-            height: 300px; /* Adjust as needed */
-            border: 2px solid #444;
-            background-color: #ddd; /* Default background */
-            margin-bottom: 20px;
-            border-radius: 8px;
-            overflow: hidden; /* Prevents dice from rolling out of bounds */
-        }
-
-        #dice-canvas {
-          width: 100%;
-          height: 100%;
-          display: block; /* Important for consistent sizing */
-        }
-
-        /* Controls */
-        #controls {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Responsive columns */
-            gap: 10px;
-            width: 100%;
-            max-width: 500px; /* Match canvas width */
-            margin-bottom: 15px;
-        }
-
-        #controls label {
-            display: block;
-            margin-bottom: 5px;
-            text-align: center;
-        }
-
-        #controls input,
-        #controls select,
-        #controls button {
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            width: 100%;
-            box-sizing: border-box; /* Include padding in width */
-        }
-
-        #controls button {
-            background-color: #007bff;
-            color: white;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        #controls button:hover {
-            background-color: #0056b3;
-        }
-
-        #controls button:disabled {
-          background-color: #ccc;
-          cursor: not-allowed;
-        }
-
-        /* Roll Result and History */
-        #roll-result {
-            font-size: 1.5em;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        #roll-history {
-            border: 1px solid #ddd;
-            padding: 10px;
-            max-height: 200px;
-            overflow-y: auto;
-            width: 100%;
-            max-width: 500px;
-            background-color: white;
-            border-radius: 4px;
-        }
-
-        #roll-history ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        #roll-history li {
-            padding: 5px 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        #roll-history li:last-child {
-            border-bottom: none;
-        }
-
-        #clear-history {
-          margin-top: 10px;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        /*Loading Message*/
-        #loadingMessage {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          background-color: rgba(0, 0, 0, 0.7);
-          color: white;
-          padding: 10px 20px;
-          border-radius: 5px;
-          z-index: 10; /* Make sure it's above the canvas */
-        }
-
-        /* Styling for background image selection */
-        #background-image-select {
-          grid-column: span 2; /* Make the dropdown wider */
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
-    <div id="dice-roller-container">
-        <h1>D&D Dice Roller</h1>
-
-        <div id="dice-canvas-container">
-            <canvas id="dice-canvas"></canvas>
-            <div id="loadingMessage" class="hidden">Loading...</div>
+    <header>
+        <div class="container">
+            <nav>
+                <ul>
+                    <li><a href="index.html"><img src="HomeIcon.jpg" alt="Home" class="nav-icon" title="Home">
+                            Home</a></li>
+                    <li><a href="campaigns.html"><img src="CampaignsIcon.jpg" alt="Campaigns" class="nav-icon"
+                                title="Campaigns"> Campaigns</a></li>
+                    <li><a href="monsters.html"><img src="MonstersIcon.jpg" alt="Monsters" class="nav-icon"
+                                title="Monsters"> Monsters</a></li>
+                    <li><a href="characters.html"><img src="CharactersIcon.jpg" alt="Characters"
+                                class="nav-icon" title="Characters"> Characters</a></li>
+                    <li><a href="npcs.html"><img src="NPCIcon.jpg" alt="NPCs" class="nav-icon" title="NPCs"> NPCs</a>
+                    </li>
+                    <li><a href="items.html"><img src="ItemsIcon.jpg" alt="Items" class="nav-icon" title="Items"> Items</a>
+                    </li>
+                    <li><a href="weapons.html"><img src="WeaponsIcon.jpg" alt="Weapons" class="nav-icon"
+                                title="Weapons"> Weapons</a></li>
+                    <li><a href="armor.html"><img src="ArmorIcon.jpg" alt="Armor" class="nav-icon" title="Armor"> Armor</a>
+                    </li>
+                    <li><a href="aboutus.html"><img src="AboutUsIcon.jpg" alt="About Us" class="nav-icon"
+                                title="About Us"> About Us</a></li>
+                    <li><a href="ContactUs.html"><img src="ContactUsIcon.jpg" alt="Contact" class="nav-icon"
+                                title="Contact Us"> Contact</a></li>
+                    <li><a href="Blogs.html"><img src="BlogsIcon.jpg" alt="Blog" class="nav-icon" title="Blogs"> Blog</a>
+                    </li>
+                    <li><a href="cart.html"><img src="ShoppingCartIcon.jpg" alt="Cart" class="nav-icon"
+                                title="Shopping Cart"> Cart</a></li>
+                </ul>
+            </nav>
         </div>
+    </header>
+    <section id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Craft Your Epic Adventures</h1>
+                <p>Handcrafted D&D Homebrew Kits for Unforgettable Campaigns.</p>
+            </div>
+            <div id="calculator-box">
+                <h2>D&D Calculators</h2>
+                <p>Select a calculator:</p>
+                <select id="calculator-select">
+                    <option value="">Select a Calculator</option>
+                    <option value="dice-roller">Dice Roller</option>
+                    <option value="stat-calculator">Character Stat Calculator</option>
+                    <option value="cr-calculator">Challenge Rating (CR) Calculator</option>
+                    <option value="treasure-generator">Treasure Generator</option>
+                    <option value="map-generator">Map Generator</option>
+                </select>
+            </div>
+            <div id="calculator-area">
+                <div id="dice-roller" class="calculator-container">
+                    <label for="sidesInput">Enter sides:</label>
+                    <input type="number" id="sidesInput" value="20" min="1">
+                    <button id="rollButton">Roll Dice</button>
+                    <p id="rollResult"></p>
+                </div>
+                <div id="stat-calculator" class="calculator-container">
+                    <h3>Character Stat Calculator</h3>
+                    <label for="str">Strength:</label>
+                    <input type="number" id="str" value="10">
+                    <span id="strMod"></span><br>
+                    <label for="dex">Dexterity:</label>
+                    <input type="number" id="dex" value="10">
+                    <span id="dexMod"></span><br>
+                    <label for="con">Constitution:</label>
+                    <input type="number" id="con" value="10">
+                    <span id="conMod"></span><br>
+                    <label for="int">Intelligence:</label>
+                    <input type="number" id="int" value="10">
+                    <span id="intMod"></span><br>
+                    <label for="wis">Wisdom:</label>
+                    <input type="number" id="wis" value="10">
+                    <span id="wisMod"></span><br>
+                    <label for="cha">Charisma:</label>
+                    <input type="number" id="cha" value="10">
+                    <span id="chaMod"></span><br>
+                </div>
+                <div id="cr-calculator" class="calculator-container">
+                    <h3>Challenge Rating (CR) Calculator</h3>
+                    <div class="input-group">
+                        <label for="hp">Hit Points (HP):</label>
+                        <input type="number" id="hp" min="1" value="50">
+                    </div>
+                    <div class="input-group">
+                        <label for="ac">Armor Class (AC):</label>
+                        <input type="number" id="ac" value="15">
+                    </div>
+                    <div class="input-group">
+                        <label for="dpr">Average Damage Per Round (DPR):</label>
+                        <input type="number" id="dpr" min="1" value="15">
+                    </div>
+                    <div class="input-group">
+                        <label for="attackBonus">Attack Bonus:</label>
+                        <input type="number" id="attackBonus" value="5">
+                    </div>
+                    <div class="input-group">
+                        <label for="saveDC">Save DC:</label>
+                        <input type="number" id="saveDC" value="13">
+                    </div>
+                    <button id="calculateCR">Calculate CR</button>
+                    CR: <span id="finalCR"></span>
+                    <div id="crTables">
+                        <p>Defensive CR Table: <span id="defensiveTable"></span></p>
+                        <p>Offensive CR Table: <span id="offensiveTable"></span></p>
+                    </div>
+                </div>
+                <div id="treasure-generator" class="calculator-container">
+                    <h3>Treasure Generator (Coming Soon)</h3>
+                    <div class="input-group">
+                        <label for="partyLevel">Party Level:</label>
+                        <input type="number" id="partyLevel" min="1" value="5">
+                    </div>
+                    <div class="input-group">
+                        <label for="encounterCR">Encounter CR:</label>
+                        <input type="number" id="encounterCR" value="5">
+                    </div>
+                    <div class="input-group">
+                        <label for="location">Location:</label>
+                        <select id="location">
+                            <option value="dungeon">Dungeon</option>
+                            <option value="wilderness">Wilderness</option>
+                            <option value="urban">Urban</option>
+                        </select>
+                    </div>
+                    <button id="generateTreasure">Generate Treasure</button>
+                    <div id="treasure-result-container">
+                        <div id="treasureResults">
+                            <p>Treasure:</p>
+                            <ul id="treasureList"></ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="map-generator" class="calculator-container">
+                    <h3>Map Generator (Beta)</h3>
+                    <div class="input-group">
+                        <label for="mapWidth">Map Width (Tiles):</label>
+                        <input type="number" id="mapWidth" value="20" min="1">
+                    </div>
+                    <div class="input-group">
+                        <label for="mapHeight">Map Height:</label>
+                        <input type="number" id="mapHeight" value="20" min="1">
+                    </div>
 
+                    <div id="terrainPalette">
+                        <button data-terrain="grassland">Grassland</button>
+                        <button data-terrain="forest">Forest</button>
+                        <button data-terrain="desert">Desert</button>
+                        <button data-terrain="mountain">Mountain</button>
+                        <button data-terrain="rock">Rock</button>
+                        <button data-terrain="water">Water</button>
+                    </div>
 
-        <div id="controls">
-            <label for="num-dice">Number of Dice:</label>
-            <input type="number" id="num-dice" min="1" max="20" value="1">
-
-            <label for="dice-type">Dice Type:</label>
-            <select id="dice-type">
-                <option value="4">d4</option>
-                <option value="6">d6</option>
-                <option value="8">d8</option>
-                <option value="10">d10</option>
-                <option value="12">d12</option>
-                <option value="20" selected>d20</option>
-                <option value="100">d100</option>
-            </select>
-
-            <label for="modifier">Modifier:</label>
-            <input type="number" id="modifier" value="0">
-
-            <label for="dice-color">Dice Color:</label>
-            <input type="color" id="dice-color" value="#ff0000">
-
-            <label for="dice-material">Material:</label>
-            <select id="dice-material">
-              <option value="plastic">Plastic</option>
-              <option value="metal">Metal</option>
-            </select>
-
-          <label for="background-image-select">Background:</label>
-          <select id="background-image-select">
-            <option value="">Default</option>
-            <option value="url('background1.jpg')">Tabletop</option>
-            <option value="url('background2.jpg')">Dungeon</option>
-            <option value="url('background3.jpg')">Forest</option>
-          </select>
-
-            <button id="roll-button">Roll Dice</button>
+                    <button id="generateMap">Generate Map</button>
+                    <div id="mapContainer">
+                        <aside id="mapKey">
+                            <h3>Map Key</h3>
+                            <div class="key-item">
+                                <div class="key-color" data-terrain="grassland"></div>
+                                <span class="key-label">Grassland</span>
+                            </div>
+                            <div class="key-item">
+                                <div class="key-color" data-terrain="forest"></div>
+                                <span class="key-label">Forest</span>
+                            </div>
+                            <div class="key-item">
+                                <div class="key-color" data-terrain="desert"></div>
+                                <span class="key-label">Desert</span>
+                            </div>
+                            <div class="key-item">
+                                <div class="key-color" data-terrain="mountain"></div>
+                                <span class="key-label">Mountain</span>
+                            </div>
+                            <div class="key-item">
+                                <div class="key-color" data-terrain="rock"></div>
+                                <span class="key-label">Rock</span>
+                            </div>
+                            <div class="key-item">
+                                <div class="key-color" data-terrain="water"></div>
+                                <span class="key-label">Water</span>
+                            </div>
+                        </aside>
+                        <canvas id="mapCanvas"></canvas>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <div id="roll-result"></div>
-        <div id="roll-history">
-            <ul></ul>
+    </section>
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 D&D Homebrew Kits. All rights reserved.</p>
         </div>
-        <button id="clear-history" class="hidden">Clear History</button>
-    </div>
-
-    <audio id="dice-roll-sound" src="dice_roll.mp3" preload="auto"></audio>
-    <audio id="dice-hit-sound" src="dice_hit.mp3" preload="auto"></audio>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/cannon-es@0.17.1/dist/cannon-es.min.js"></script>
-    <script>
-
-      let scene, camera, renderer, world, dice = [], diceMeshes = [];
-      const originalDicePositions = [];
-
-      //Materials
-      let diceMaterials = {};
-
-      let isRolling = false; // Flag to prevent multiple rolls at once
-
-      init();
-
-      function init() {
-        // Show loading message
-        const loadingMessage = document.getElementById('loadingMessage');
-        loadingMessage.classList.remove('hidden');
-
-        // Cannon.js World (Physics)
-        world = new CANNON.World();
-        world.gravity.set(0, -40, 0); // Adjust gravity
-        world.broadphase = new CANNON.NaiveBroadphase();
-        world.solver.iterations = 20;
-
-        // Three.js Scene
-        scene = new THREE.Scene();
-
-        // Camera
-        camera = new THREE.PerspectiveCamera(45, 500 / 300, 0.1, 100);
-        camera.position.set(0, 12, 12);
-        camera.lookAt(new THREE.Vector3(0, 0, 0));
-
-        // Renderer
-        const canvas = document.getElementById('dice-canvas');
-        renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
-        renderer.setSize(500, 300);
-        renderer.shadowMap.enabled = true;
-        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-
-        // Lighting
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-        scene.add(ambientLight);
-
-        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
-        directionalLight.position.set(-5, 10, 7);
-        directionalLight.castShadow = true;
-        directionalLight.shadow.mapSize.width = 1024;
-        directionalLight.shadow.mapSize.height = 1024;
-        directionalLight.shadow.camera.near = 0.5;
-        directionalLight.shadow.camera.far = 50;
-        const shadowCamSize = 10;
-        directionalLight.shadow.camera.left = -shadowCamSize;
-        directionalLight.shadow.camera.right = shadowCamSize;
-        directionalLight.shadow.camera.top = shadowCamSize;
-        directionalLight.shadow.camera.bottom = -shadowCamSize;
-        scene.add(directionalLight);
-
-        // Ground Plane
-        const groundGeometry = new THREE.PlaneGeometry(30, 30);
-        const groundMaterial = new THREE.MeshStandardMaterial({ color: 0xaaaaaa, side: THREE.DoubleSide });
-        const groundMesh = new THREE.Mesh(groundGeometry, groundMaterial);
-        groundMesh.rotation.x = -Math.PI / 2;
-        groundMesh.receiveShadow = true;
-        scene.add(groundMesh);
-
-        const groundShape = new CANNON.Plane();
-        const groundBody = new CANNON.Body({ mass: 0 });
-        groundBody.addShape(groundShape);
-        groundBody.quaternion.setFromAxisAngle(new CANNON.Vec3(1, 0, 0), -Math.PI / 2);
-        world.addBody(groundBody);
-
-          // Load materials and then start
-          loadMaterials().then(() => {
-            loadingMessage.classList.add('hidden');
-              animate();
-              setupEventListeners();
-          });
-      }
-
-
-
-      function createDice(type, color, materialName) {
-        let geometry;
-        let scale = 1;
-
-        switch (type) {
-            case 4:  geometry = new THREE.TetrahedronGeometry(scale); break;
-            case 6:  geometry = new THREE.BoxGeometry(scale, scale, scale); break;
-            case 8:  geometry = new THREE.OctahedronGeometry(scale); break;
-            case 10: geometry = new THREE.CylinderGeometry(scale, scale, scale * 0.8, 10); break; //d10
-            case 12: geometry = new THREE.DodecahedronGeometry(scale); break;
-            case 20: geometry = new THREE.IcosahedronGeometry(scale); break;
-            case 100: geometry = new THREE.CylinderGeometry(scale, scale, scale, 10); break; // Approximate d100
-            default: return;
-        }
-
-        const material = diceMaterials[materialName];
-        const clonedMaterial = material.clone();
-        clonedMaterial.color.set(color);
-
-        const diceMesh = new THREE.Mesh(geometry, clonedMaterial);
-        diceMesh.castShadow = true;
-        diceMesh.receiveShadow = true;
-
-          // Physics
-          let shape;
-          const mass = 1;
-
-           switch (type) {
-                case 4:
-                    shape = new CANNON.ConvexPolyhedron({
-                        vertices: geometry.vertices.map(v => new CANNON.Vec3(v.x, v.y, v.z)),
-                        faces: geometry.faces.map(f => [f.a, f.b, f.c]),
-                    });
-                    break;
-                case 6:
-                    shape = new CANNON.Box(new CANNON.Vec3(scale / 2, scale / 2, scale / 2));
-                    break;
-                case 8:
-                    shape = new CANNON.ConvexPolyhedron({
-                        vertices: geometry.vertices.map(v => new CANNON.Vec3(v.x, v.y, v.z)),
-                        faces: geometry.faces.map(f => [f.a, f.b, f.c]),
-                    });
-                    break;
-                case 10: // d10 - Use ConvexPolyhedron for accurate collision
-                    shape = new CANNON.ConvexPolyhedron({
-                      vertices: geometry.vertices.map(v => new CANNON.Vec3(v.x, v.y, v.z)),
-                      faces: geometry.faces.map(f => [f.a, f.b, f.c])
-                    });
-                    break;
-                case 12:
-                    shape = new CANNON.ConvexPolyhedron({
-                        vertices: geometry.vertices.map(v => new CANNON.Vec3(v.x, v.y, v.z)),
-                        faces: geometry.faces.map(f => [f.a, f.b, f.c]), // Corrected: Use a, b, c for triangles
-                    });
-                    break;
-                case 20:
-                    shape = new CANNON.ConvexPolyhedron({
-                        vertices: geometry.vertices.map(v => new CANNON.Vec3(v.x, v.y, v.z)),
-                        faces: geometry.faces.map(f => [f.a, f.b, f.c]),
-                    });
-                    break;
-                case 100: // d100 - Use ConvexPolyhedron for a better approximation
-                     shape = new CANNON.ConvexPolyhedron({
-                        vertices: geometry.vertices.map(v => new CANNON.Vec3(v.x, v.y, v.z)),
-                        faces: geometry.faces.map(f=>[f.a, f.b, f.c])
-                     });
-                     break;
-                default:
-                    return;
-            }
-
-
-        const diceBody = new CANNON.Body({ mass: mass, shape: shape });
-        diceBody.position.set((Math.random() - 0.5) * 5, 5 + (dice.length * 2), (Math.random() - 0.5) * 5);
-        diceBody.quaternion.setFromEuler(Math.random() * Math.PI * 2, Math.random() * Math.PI * 2, Math.random() * Math.PI * 2);
-
-        dice.push(diceBody);
-        diceMeshes.push(diceMesh);
-        originalDicePositions.push(diceBody.position.clone());
-
-        world.addBody(diceBody);
-        scene.add(diceMesh);
-      }
-
-      function animate() {
-        requestAnimationFrame(animate);
-        world.step(1 / 60);
-
-        for (let i = 0; i < dice.length; i++) {
-          diceMeshes[i].position.copy(dice[i].position);
-          diceMeshes[i].quaternion.copy(dice[i].quaternion);
-        }
-
-        renderer.render(scene, camera);
-
-        let allStopped = dice.every(die => die.velocity.length() < 0.1 && die.angularVelocity.length() < 0.1);
-          if (isRolling && allStopped) {
-            isRolling = false;
-            document.getElementById('roll-button').disabled = false;
-            displayRollResults();
-          }
-      }
-
-
-      function clearDice() {
-        for (let i = 0; i < dice.length; i++) {
-            world.removeBody(dice[i]);
-            scene.remove(diceMeshes[i]);
-        }
-        dice = [];
-        diceMeshes = [];
-        originalDicePositions.length = 0;
-      }
-
-
-      function rollDice() {
-        if (isRolling) return;
-
-        clearDice();
-        isRolling = true;
-        document.getElementById('roll-button').disabled = true;
-
-        const numDice = parseInt(document.getElementById('num-dice').value);
-        const diceType = parseInt(document.getElementById('dice-type').value);
-        const diceColor = document.getElementById('dice-color').value;
-        const diceMaterial = document.getElementById('dice-material').value;
-
-        if (isNaN(numDice) || numDice < 1 || numDice > 20) {
-          alert('Please enter a valid number of dice (1-20).');
-          document.getElementById('roll-button').disabled = false;
-          isRolling = false;
-          return;
-        }
-
-        const diceRollSound = document.getElementById('dice-roll-sound');
-        diceRollSound.currentTime = 0;
-        diceRollSound.play();
-
-        for (let i = 0; i < numDice; i++) {
-          createDice(diceType, diceColor, diceMaterial);
-        }
-
-        for (let i = 0; i < dice.length; i++) {
-            dice[i].applyImpulse(
-                new CANNON.Vec3((Math.random() - 0.5) * 20, 10, (Math.random() - 0.5) * 20),
-                new CANNON.Vec3(0, 0, 0)
-            );
-        }
-
-        const diceHitSound = document.getElementById('dice-hit-sound');
-        for (let i = 0; i < dice.length; i++) {
-          dice[i].addEventListener("collide", function(e){
-              if(e.contact.getImpactVelocityAlongNormal() > 1){
-                diceHitSound.currentTime = 0;
-                diceHitSound.play();
-              }
-          });
-        }
-      }
-
-      function displayRollResults() {
-        const diceType = parseInt(document.getElementById('dice-type').value);
-        const modifier = parseInt(document.getElementById('modifier').value);
-        let total = 0;
-        const individualResults = [];
-
-        for (let i = 0; i < dice.length; i++) {
-          const die = dice[i];
-          const upVector = new THREE.Vector3(0, 1, 0);
-          upVector.applyQuaternion(new THREE.Quaternion(die.quaternion.x, die.quaternion.y, die.quaternion.z, die.quaternion.w));
-
-          let highestDot = -Infinity;
-          let result = 1;
-
-            for (let faceIndex = 1; faceIndex <= diceType; faceIndex++) {
-                let faceVector = getFaceUpVector(diceType, faceIndex);
-
-                // Handle d100 as a special case *before* normalization
-                if (diceType === 100) {
-                  const d10Result = (faceIndex - 1) % 10 + 1; // 1 to 10
-                  const tensDigit = Math.floor((faceIndex - 1) / 10); // 0 to 9
-                    faceVector = getFaceUpVector(10, d10Result); // Get d10 face vector.
-                    const dot = upVector.dot(faceVector);
-                     if (dot > highestDot) {
-                        highestDot = dot;
-                        result = (tensDigit * 10) + (d10Result === 10 ? 0 : d10Result); // d100 result (handle 10 on d10)
-                        if(result === 0) result = 100; // 0 becomes 100
-                     }
-                    continue; // Skip to the next face for d100
-                }
-
-                // Normalize for accurate dot product calculation (except d100)
-                faceVector.normalize();
-                const dot = upVector.dot(faceVector);
-
-                if (dot > highestDot) {
-                    highestDot = dot;
-                    result = faceIndex;
-                }
-            }
-
-
-          individualResults.push(result);
-          total += result;
-        }
-
-        total += modifier;
-
-        let resultString = `${dice.length}d${diceType}`;
-        if (modifier > 0) {
-            resultString += ` + ${modifier}`;
-        } else if (modifier < 0) {
-            resultString += ` - ${Math.abs(modifier)}`;
-        }
-        resultString += `:  ${total}  (`
-        resultString += individualResults.join(', ');
-        resultString += `)`;
-          if (modifier !== 0) {
-          resultString += ` ${modifier > 0 ? '+' : ''} ${modifier}`;
-          }
-
-        document.getElementById('roll-result').textContent = resultString;
-
-        const historyList = document.querySelector('#roll-history ul');
-        const listItem = document.createElement('li');
-        listItem.textContent = resultString;
-        historyList.appendChild(listItem);
-        document.getElementById('clear-history').classList.remove('hidden');
-      }
-
-
-
-    function getFaceUpVector(diceType, faceIndex) {
-      let faceVector = new THREE.Vector3();
-
-      switch (diceType) {
-        case 4: // d4
-            switch (faceIndex) {
-                case 1: faceVector.set(0, 1, 0); break;
-                case 2: faceVector.set(0, -1 / 3, 2 * Math.sqrt(2) / 3); break;
-                case 3: faceVector.set(-Math.sqrt(6) / 3, -1 / 3, -Math.sqrt(2) / 3); break;
-                case 4: faceVector.set(Math.sqrt(6) / 3, -1 / 3, -Math.sqrt(2) / 3); break;
-            }
-          break;
-        case 6: // d6
-            switch (faceIndex) {
-                case 1: faceVector.set(0, 1, 0); break;
-                case 2: faceVector.set(0, -1, 0); break;
-                case 3: faceVector.set(1, 0, 0); break;
-                case 4: faceVector.set(-1, 0, 0); break;
-                case 5: faceVector.set(0, 0, 1); break;
-                case 6: faceVector.set(0, 0, -1); break;
-            }
-          break;
-        case 8: // d8
-            switch (faceIndex) {
-                case 1: faceVector.set(0, 1, 0); break;
-                case 2: faceVector.set(0, -1, 0); break;
-                case 3: faceVector.set(1, 0, 0); break; // Corrected: Two faces can point up
-                case 4: faceVector.set(-1, 0, 0); break; // Corrected: Two faces can point up
-                case 5: faceVector.set(0, 0, 1); break;
-                case 6: faceVector.set(0, 0, -1); break;
-                case 7: faceVector.set(1, 0, 0); break;   // Duplicate, that's okay.
-                case 8: faceVector.set(-1, 0, 0); break;   // Duplicate, that's okay
-            }
-          break;
-        case 10: // d10
-            // Calculate the angle based on the face index
-            const angle = (faceIndex - 1) * (2 * Math.PI / 10);
-            //  x and z components are based on the angle
-            faceVector.set(Math.sin(angle), 0, Math.cos(angle)); // y is 0 for top faces
-          break;
-        case 12: // d12
-          const phi = (1 + Math.sqrt(5)) / 2; // Golden ratio
-            switch(faceIndex){
-              case 1: faceVector.set(0,1,phi); break;
-              case 2: faceVector.set(0,-1,phi); break;
-              case 3: faceVector.set(0,1,-phi); break;
-              case 4: faceVector.set(0,-1,-phi); break;
-              case 5: faceVector.set(1, phi, 0); break;
-              case 6: faceVector.set(-1, phi, 0); break;
-              case 7: faceVector.set(1, -phi, 0);break;
-              case 8: faceVector.set(-1, -phi, 0);break;
-              case 9: faceVector.set(phi, 0, 1);break;
-              case 10: faceVector.set(phi, 0, -1);break;
-              case 11: faceVector.set(-phi, 0, 1);break;
-              case 12: faceVector.set(-phi, 0, -1);break;
-            }
-          break;
-        case 20: // d20
-           // Define vertices (normalized)
-            const t = (1 + Math.sqrt(5)) / 2;
-            const vertices = [
-                new THREE.Vector3(-1,  t,  0),
-                new THREE.Vector3( 1,  t,  0),
-                new THREE.Vector3(-1, -t,  0),
-                new THREE.Vector3( 1, -t,  0),
-                new THREE.Vector3( 0, -1,  t),
-                new THREE.Vector3( 0,  1,  t),
-                new THREE.Vector3( 0, -1, -t),
-                new THREE.Vector3( 0,  1, -t),
-                new THREE.Vector3( t,  0, -1),
-                new THREE.Vector3( t,  0,  1),
-                new THREE.Vector3(-t,  0, -1),
-                new THREE.Vector3(-t,  0,  1)
-            ];
-
-            for(let i=0; i< vertices.length; i++){
-              vertices[i].normalize();
-            }
-
-            const faces = [
-              [0, 11, 5],[0, 5, 1],[0, 1, 7],[0, 7, 10],[0, 10, 11],
-              [1, 5, 9],[5, 11, 4],[11, 10, 2],[10, 7, 6],[7, 1, 8],
-              [3, 9, 4],[3, 4, 2],[3, 2, 6],[3, 6, 8],[3, 8, 9],
-              [4, 9, 5],[2, 4, 11],[6, 2, 10],[8, 6, 7],[9, 8, 1]
-            ];
-
-            const v1 = vertices[faces[faceIndex - 1][0]];
-            const v2 = vertices[faces[faceIndex - 1][1]];
-            const v3 = vertices[faces[faceIndex - 1][2]];
-
-            const cb = new THREE.Vector3();
-            const ab = new THREE.Vector3();
-            cb.subVectors(v3, v2);
-            ab.subVectors(v1, v2);
-            cb.cross(ab).normalize();
-            faceVector.copy(cb);
-          break;
-
-        case 100: // d100 (Approximation - use d10 and calculate)
-           // This is handled in displayRollResults, so nothing here.
-          break;
-      }
-
-      return faceVector;
-    }
-
-
-    function setupEventListeners() {
-        document.getElementById('roll-button').addEventListener('click', rollDice);
-        document.getElementById('clear-history').addEventListener('click', () => {
-            document.querySelector('#roll-history ul').innerHTML = '';
-            document.getElementById('clear-history').classList.add('hidden');
-        });
-        document.getElementById('background-image-select').addEventListener('change', (event) => {
-          const selectedImage = event.target.value;
-          const container = document.getElementById('dice-canvas-container');
-          container.style.backgroundImage = selectedImage;
-          container.style.backgroundColor = selectedImage ? 'transparent' : '#ddd';
-        });
-    }
-
-    async function loadMaterials() {
-        const textureLoader = new THREE.TextureLoader();
-
-        // Wrap texture loading in Promises
-        const plasticTexturePromise = new Promise((resolve, reject) => {
-          textureLoader.load('plastic_texture.jpg', resolve, undefined, reject);
-        });
-        const metalTexturePromise = new Promise((resolve, reject) => {
-            textureLoader.load('metal_texture.jpg', resolve, undefined, reject);
-        });
-
-        try {
-          const plasticTexture = await plasticTexturePromise;
-          const metalTexture = await metalTexturePromise;
-
-          diceMaterials.plastic = new THREE.MeshStandardMaterial({
-              map: plasticTexture,
-              roughness: 0.4,
-              metalness: 0.1
-          });
-
-          diceMaterials.metal = new THREE.MeshStandardMaterial({
-              map: metalTexture,
-              roughness: 0.2,
-              metalness: 0.8
-          });
-
-        } catch (error) {
-          console.error("Error loading textures:", error);
-          // Handle the error, e.g., use default materials
-
-          diceMaterials.plastic = new THREE.MeshStandardMaterial({
-            color: 0x888888, // Default gray
-            roughness: 0.5,
-            metalness: 0.0
-          });
-
-          diceMaterials.metal = new THREE.MeshStandardMaterial({
-             color: 0xaaaaaa,  //Default light gray
-             roughness: 0.5,
-             metalness: 0.5
-          });
-        }
-    }
-    </script>
+    </footer>
+    <script src="scripts.js"></script>
 </body>
+
 </html>
