@@ -3,6 +3,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const calculatorSelect = document.getElementById('calculator-select');
     const calculatorContainers = document.querySelectorAll('.calculator-container');
 
+    // Hide all calculator containers on page load
+    calculatorContainers.forEach(container => {
+        container.style.display = 'none';
+    });
+
     calculatorSelect.addEventListener('change', function() {
         calculatorContainers.forEach(container => {
             container.style.display = 'none';
@@ -11,6 +16,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const selectedCalculator = document.getElementById(this.value);
         if (selectedCalculator) {
             selectedCalculator.style.display = 'block';
+        }
+        if (this.value === ""){
+            calculatorContainers.forEach(container => {
+                container.style.display = 'none';
+            });
         }
     });
 
