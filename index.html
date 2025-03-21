@@ -16,6 +16,89 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
         rel="stylesheet">
+    <style>
+        #dice-roller {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 10px;
+            width: 300px;
+        }
+
+        #dice-roller label {
+            margin-top: 10px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        #dice-roller input,
+        #dice-roller button,
+        #dice-roller select {
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+            max-width: 200px;
+        }
+
+        #dice-roller button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #dice-roller button:hover {
+            background-color: #0056b3;
+        }
+
+        #rollResult {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 15px;
+            color: #333;
+        }
+
+        #rollHistory {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            max-height: 150px;
+            overflow-y: auto;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        #rollHistory h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        #rollHistory ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #rollHistory li {
+            padding: 5px 0;
+            border-bottom: 1px solid #ddd;
+            font-size: 16px;
+            color: #555;
+        }
+
+        #rollHistory li:last-child {
+            border-bottom: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -71,10 +154,18 @@
             </div>
             <div id="calculator-area">
                 <div id="dice-roller" class="calculator-container">
-                    <label for="sidesInput">Enter sides:</label>
+                    <label for="numDiceInput">Number of Dice:</label>
+                    <input type="number" id="numDiceInput" value="1" min="1">
+                    <label for="sidesInput">Number of Sides:</label>
                     <input type="number" id="sidesInput" value="20" min="1">
+                    <label for="modifierInput">Modifier:</label>
+                    <input type="number" id="modifierInput" value="0">
                     <button id="rollButton">Roll Dice</button>
                     <p id="rollResult"></p>
+                    <div id="rollHistory">
+                        <h3>Roll History</h3>
+                        <ul></ul>
+                    </div>
                 </div>
                 <div id="stat-calculator" class="calculator-container">
                     <h3>Character Stat Calculator</h3>
@@ -201,7 +292,7 @@
                                 <span class="key-label">Water</span>
                             </div>
                         </aside>
-                        <canvas id="mapCanvas"></canvas>
+                        <div id="mapDisplay"></div>
                     </div>
                 </div>
             </div>
@@ -212,7 +303,304 @@
             <p>&copy; 2023 D&D Homebrew Kits. All rights reserved.</p>
         </div>
     </footer>
-    <script src="scripts.js"></script>
+    <script>
+        const rollButton = document.getElementById('rollButton');
+        const rollResult = document.getElementById('rollResult');
+        const sidesInput = document.getElementById('sidesInput');
+        const numDiceInput = document.getElementById('numDiceInput');
+        const modifierInput = document.getElementById('modifierInput');
+        const rollHistoryList = document.querySelector('#rollHistory ul');
+
+        rollButton.addEventListener('click', () => {
+            const sides = parseInt(sidesInput.value);
+            const numDice = parseInt(numDiceInput.value);
+            const modifier = parseInt(modifierInput.value);
+
+            if (isNaN(sides) || sides < 1 || isNaN(numDice) || numDice < 1) {
+                alert('Please enter valid numbers for sides and dice.');
+                return;
+            }
+
+            // Add dice roll animation
+            rollResult.textContent = "...rolling...";
+            rollButton.disabled = true; // Disable button during roll
+            sidesInput.disabled = true; // Disable input during roll
+            numDiceInput.disabled = true;
+            modifierInput.disabled = true;
+
+
+            setTimeout(() => {
+                let totalResult = 0;
+                const individualRolls = [];
+                for (let i = 0; i < numDice; i++) {
+                    const roll = Math.floor(Math.random() * sides) + 1;
+                    individualRolls.push(roll);
+                    totalResult += roll;
+                }
+                totalResult += modifier;
+
+                let resultText = `${numDice}d${sides}`;
+                if (modifier > 0) {
+                    resultText += `+${modifier}`;
+                } else if (modifier < 0) {
+                    resultText += `${modifier}`;
+                }
+                resultText += `: ${totalResult}  (${individualRolls.join('+')})`; //show each die
+
+                rollResult.textContent = resultText;
+                rollButton.disabled = false; // Re-enable button
+                sidesInput.disabled = false; // Re-enable input
+                numDiceInput.disabled = false;
+                modifierInput.disabled = false;
+
+                // Add to roll history
+                const listItem = document.createElement('li');
+                listItem.textContent = resultText;
+                rollHistoryList.appendChild(listItem);
+
+                //keep only the last 10 rolls
+                if (rollHistoryList.children.length > 10) {
+                    rollHistoryList.removeChild(rollHistoryList.firstChild);
+                }
+
+            }, 1000); // Simulate rolling time (1 second)
+
+            rollButton.style.backgroundColor = '#555';
+            setTimeout(() => {
+                rollButton.style.backgroundColor = '#007bff';
+            }, 200);
+        });
+
+        const stats = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
+
+        stats.forEach(stat => {
+            const input = document.getElementById(stat);
+            const mod = document.getElementById(stat + 'Mod');
+
+            input.addEventListener('input', () => {
+                const score = parseInt(input.value);
+                const modifier = Math.floor((score - 10) / 2);
+                mod.textContent = `(${modifier >= 0 ? '+' : ''}${modifier})`;
+            });
+        });
+
+        const calculatorSelect = document.getElementById('calculator-select');
+        const calculators = document.querySelectorAll('.calculator-container');
+
+        calculatorSelect.addEventListener('change', () => {
+            const selectedCalculatorId = calculatorSelect.value;
+            calculators.forEach(calc => {
+                calc.style.display = 'none';
+            });
+
+            if (selectedCalculatorId) {
+                document.getElementById(selectedCalculatorId).style.display = 'block';
+            }
+        });
+
+        document.getElementById('calculateCR').addEventListener('click', function () {
+            const hp = parseInt(document.getElementById('hp').value);
+            const ac = parseInt(document.getElementById('ac').value);
+            const dpr = parseInt(document.getElementById('dpr').value);
+            const attackBonus = parseInt(document.getElementById('attackBonus').value);
+            const saveDC = parseInt(document.getElementById('saveDC').value);
+
+            const defensiveCR = calculateDefensiveCR(hp, ac);
+            const offensiveCR = calculateOffensiveCR(dpr, attackBonus, saveDC);
+            const finalCR = (defensiveCR + offensiveCR) / 2;
+
+            document.getElementById('defensiveTable').textContent = getDefensiveTable();
+            document.getElementById('offensiveTable').textContent = getOffensiveTable();
+            document.getElementById('finalCR').textContent = finalCR;
+
+            document.getElementById('crTables').style.display = 'block';
+        });
+
+        document.getElementById('generateTreasure').addEventListener('click', function () {
+            const partyLevel = parseInt(document.getElementById('partyLevel').value);
+            const encounterCR = parseInt(document.getElementById('encounterCR').value);
+            const location = document.getElementById('location').value;
+
+            const treasure = generateTreasure(partyLevel, encounterCR, location);
+
+            const treasureList = document.getElementById('treasureList');
+            treasureList.innerHTML = '';
+            treasure.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                treasureList.appendChild(li);
+            });
+        });
+
+        function calculateDefensiveCR(hp, ac) {
+            return "Defensive CR Calculated";
+        }
+
+        function calculateOffensiveCR(dpr, attackBonus, saveDC) {
+            return "Offensive CR Calculated";
+        }
+
+        function generateTreasure(partyLevel, encounterCR, location) {
+            return ["Treasure Item 1", "Treasure Item 2"];
+        }
+
+        function getDefensiveTable() {
+            return "Defensive Table Data";
+        }
+
+        function getOffensiveTable() {
+            return "Offensive Table Data";
+        }
+
+        // --- Map Generator JavaScript Code ---
+
+        let selectedTerrain = 'grassland';
+        let mapData = [] // Declare mapData as a global variable
+        const mapDisplay = document.getElementById('mapDisplay');
+
+
+        // Add event listeners to terrain palette buttons
+        document.querySelectorAll('#terrainPalette button').forEach(button => {
+            button.addEventListener('click', function () {
+                selectedTerrain = this.dataset.terrain;
+
+                // Add 'selected' class to the clicked button and remove it from others
+                document.querySelectorAll('#terrainPalette button').forEach(btn => {
+                    btn.classList.remove('selected');
+                });
+                this.classList.add('selected');
+            });
+        });
+
+        document.getElementById('mapDisplay').addEventListener('click', function (event) {
+            const mapWidth = parseInt(document.getElementById('mapWidth').value);
+            const mapHeight = parseInt(document.getElementById('mapHeight').value);
+            const tileSize = mapDisplay.clientWidth / mapWidth;
+            const rect = mapDisplay.getBoundingClientRect();
+             const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+
+            const gridX = Math.floor(x / tileSize);
+            const gridY = Math.floor(y / tileSize);
+
+            updateMapTile(gridX, gridY, selectedTerrain);
+        });
+
+        // --- Add Event Listener for Generate Map Button ---
+        document.getElementById('generateMap').addEventListener('click', function () {
+            const mapWidth = parseInt(document.getElementById('mapWidth').value);
+            const mapHeight = parseInt(document.getElementById('mapHeight').value);
+            generateMap(mapWidth, mapHeight);
+        });
+
+        function generateMap(mapWidth, mapHeight) {
+           // const canvas = document.getElementById('mapCanvas');
+           // const ctx = canvas.getContext('2d');
+            const tileSize = mapDisplay.clientWidth / mapWidth;
+
+            generateMapData(mapWidth, mapHeight); // Initialize mapData
+            drawMap(mapData, tileSize);
+            updateColorKey(); // Update the color key after generating the map
+        }
+
+
+
+        function updateMapTile(gridX, gridY, terrainType) {
+            const mapWidth = parseInt(document.getElementById('mapWidth').value);
+            const mapHeight = parseInt(document.getElementById('mapHeight').value);
+            const tileSize = mapDisplay.clientWidth / mapWidth;
+
+            if (gridX >= 0 && gridX < mapWidth && gridY >= 0 && gridY < mapHeight) {
+                mapData[gridY][gridX] = terrainType; // Update mapData
+                drawMap(mapData, tileSize); // Redraw the entire map
+            }
+        }
+
+        function generateMapData(mapWidth, mapHeight) {
+            mapData = [] // Reset mapData
+            for (let i = 0; i < mapHeight; i++) {
+                const row = []
+                for (let j = 0; j < mapWidth; j++) {
+                    row.push('grassland'); // Populate with grassland
+                }
+                mapData.push(row);
+            }
+        }
+
+       function drawMap(mapData, tileSize) {
+            mapDisplay.innerHTML = ''; // Clear previous map
+
+            for (let y = 0; y < mapData.length; y++) {
+                for (let x = 0; x < mapData[y].length; x++) {
+                    let tileColor = 'lightgray'; // Default color
+
+                    switch (mapData[y][x]) {
+                        case 'grassland':
+                            tileColor = 'green';
+                            break;
+                        case 'forest':
+                            tileColor = 'darkgreen';
+                            break;
+                        case 'desert':
+                            tileColor = 'yellow';
+                            break;
+                        case 'mountain':
+                            tileColor = 'gray';
+                            break;
+                        case 'rock':
+                            tileColor = 'darkgray';
+                            break;
+                        case 'water':
+                            tileColor = 'blue';
+                            break;
+                    }
+
+                    const tile = document.createElement('div');
+                    tile.style.width = tileSize + 'px';
+                    tile.style.height = tileSize + 'px';
+                    tile.style.backgroundColor = tileColor;
+                    tile.style.border = '1px solid #ccc';
+                    tile.style.display = 'inline-block';
+                    mapDisplay.appendChild(tile);
+                }
+            }
+        }
+
+        function updateColorKey() {
+            const keyItems = document.querySelectorAll('#mapKey .key-item');
+
+            keyItems.forEach(item => {
+                const keyColor = item.querySelector('.key-color');
+                const terrain = keyColor.dataset.terrain;
+                keyColor.style.backgroundColor = getTerrainColor(terrain);
+            });
+        }
+
+        function getTerrainColor(terrain) {
+            switch (terrain) {
+                case 'grassland':
+                    return 'green';
+                case 'forest':
+                    return 'darkgreen';
+                case 'desert':
+                    return 'yellow';
+                case 'mountain':
+                    return 'gray';
+                case 'rock':
+                    return 'darkgray';
+                case 'water':
+                    return 'blue';
+                default:
+                    return 'lightgray'; // Default color
+            }
+        }
+
+        function generateMap(mapWidth, mapHeight) {
+            const  tileSize = mapDisplay.clientWidth / mapWidth;
+            generateMapData(mapWidth, mapHeight); // Initialize mapData
+            drawMap(mapData, tileSize);
+        }
+    </script>
 </body>
 
 </html>
