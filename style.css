@@ -8,11 +8,11 @@ body {
     font-family: 'Roboto', sans-serif;
     line-height: 1.6;
     color: white;
-    background-image: url('test.jpg'); /* Or your actual image */
+    background-image: url('test.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    min-height: 100vh; /* Ensure full height */
+    min-height: 100vh;
 }
 
 .container {
@@ -22,44 +22,44 @@ body {
 }
 
 header {
-    background-color: transparent; /*changed to transparent */
+    background-color: transparent;
     padding: 10px 0;
 }
 
 header .container {
     display: flex;
-    justify-content: center; /*center horizontally */
+    justify-content: center;
     align-items: center;
-    flex-direction: column; /* stack logo and nav vertically */
+    flex-direction: column;
 }
 
 nav ul {
     list-style: none;
     display: flex;
-    justify-content: center; /* Center navigation items */
-    text-align: center; /*Center Navigation items */
+    justify-content: center;
+    text-align: center;
 }
 
 nav ul li .nav-icon {
-    width: 80px; /*Adjust size as needed*/
-    height: 80px; /* Adjust size as needed*/
-    margin-bottom: 5px; /*Space between icon and text */
-    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.7)  ) brightness(1.8); /* Added shadow to icons */
+    width: 80px;
+    height: 80px;
+    margin-bottom: 5px;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.7)) brightness(1.8);
 }
 
 nav ul li a {
     text-decoration: none;
     color: white;
     font-weight: bold;
-    display: block; /* Make the link a block-level element */
-    text-align: center; /* Center the link text */
+    display: block;
+    text-align: center;
 }
 
 nav ul li {
-    display: flex; /* use flex to center the icon and text */
-        flex-direction: column;
-        align-items: center;
-        margin: 0 20px; /* Add some horizontal margin */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 20px;
 }
 
 nav ul li a:hover {
@@ -72,17 +72,18 @@ nav ul li a:hover {
     position: relative;
 }
 
-#hero h1, #hero p {
+#hero h1,
+#hero p {
     font-size: 3.5em;
     margin-bottom: 20px;
     line-height: 1.2;
     color: white;
     text-shadow: 2px 2px 2px #000,
-                4px 4px 4px #222,
-                6px 6px 6px #444,
-                8px 8px 8px #666,
-                0 0 10px rgba(255, 255, 255, 0.2),
-                0 -1px 0 rgba(255, 255, 255, 0.3);
+    4px 4px 4px #222,
+    6px 6px 6px #444,
+    8px 8px 8px #666,
+    0 0 10px rgba(255, 255, 255, 0.2),
+    0 -1px 0 rgba(255, 255, 255, 0.3);
 }
 
 #hero p {
@@ -119,7 +120,9 @@ nav ul li a:hover {
     color: white;
 }
 
-#about-us, #contact, #blog {
+#about-us,
+#contact,
+#blog {
     padding: 50px 0;
     text-align: center;
 }
@@ -139,7 +142,7 @@ nav ul li a:hover {
 }
 
 footer {
-    color: white; /* Removed background-color: #333; */
+    color: white;
     text-align: center;
     padding: 20px 0;
     position: fixed;
@@ -200,7 +203,7 @@ product p {
     margin-bottom: 20px;
 }
 
-.blog-post-content ul{
+.blog-post-content ul {
     margin-bottom: 20px;
     padding-left: 20px;
 }
@@ -245,7 +248,7 @@ nav ul li a {
     font-size: 1.5em;
     margin-top: 10px;
     font-weight: bold;
-    color: #ffcc00; /* Gold color */
+    color: #ffcc00;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
@@ -281,7 +284,7 @@ nav ul li a {
 
 #calculator-box ul {
     margin-bottom: 10px;
-    color:white;
+    color: white;
     padding-left: 20px;
 }
 
@@ -301,25 +304,11 @@ nav ul li a {
     display: none;
     flex-direction: column;
     padding: 15px;
+    gap: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
     margin: 20px auto;
     width: 300px;
-}
-
-.calculator-container button {
-    padding: 8px 15px;
-    border: none;
-    border-radius: 4px;
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    margin-top: 10px;
-}
-
-.calculator-container button:hover {
-    background-color: #0056b3;
 }
 
 .input-group {
@@ -331,11 +320,12 @@ nav ul li a {
     margin-bottom: 5px;
 }
 
-.input-group input, .input-group select {
+.input-group input,
+.input-group select {
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 3px;
-    width: calc(100% - 16px); /* Adjust width for padding and border */
+    width: calc(100% - 16px);
 }
 
 #calculateCR {
@@ -391,50 +381,105 @@ nav ul li a {
     background-color: #0056b3;
 }
 
+#map-generator {
+    display: none;
+    flex-direction: column;
+    padding: 20px;
+    border: 2px solid #555;
+    background-color: rgba(50, 50, 50, 0.8);
+    border-radius: 8px;
+    margin: 20px auto;
+    width: 350px;
+    gap: 12px;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+}
+
 #map-generator h3 {
-    margin-bottom: 10px;
+    font-size: 1.6em;
+    margin-bottom: 15px;
+    color: #ddd;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+    background: linear-gradient(to bottom, #aaa, #ddd);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: 'Courier New', monospace;
+}
+
+#map-generator .input-group label {
+    color: #ccc;
+    font-size: 1em;
+}
+
+#map-generator .input-group input {
+    background-color: #444;
+    color: #fff;
+    border: 1px solid #777;
+    padding: 8px;
+    border-radius: 4px;
 }
 
 #terrainPalette {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: center;
 }
 
 #terrainPalette button {
     padding: 8px 12px;
-    margin-right: 5px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
+    border: 1px solid #666;
+    border-radius: 5px;
     cursor: pointer;
+    background: linear-gradient(to bottom, #888, #555);
+    color: #fff;
+    font-weight: bold;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+    transition: transform 0.1s ease;
+}
+
+#terrainPalette button:hover {
+    transform: scale(1.05);
 }
 
 #generateMap {
     padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
+    background: linear-gradient(to bottom, #666, #333);
+    color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.2s ease;
+    font-weight: bold;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+    margin-top: 15px;
 }
 
 #generateMap:hover {
-    background-color: #0056b3;
+    background: linear-gradient(to bottom, #444, #111);
 }
 
 #mapContainer {
-    margin-top: 10px;
+    margin-top: 20px;
     display: flex;
+    border: 2px solid #555;
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 #mapKey {
     width: 150px;
-    border: 1px solid #ccc;
+    border-right: 2px solid #555;
     padding: 10px;
-    margin-right: 10px;
+    background-color: #333;
+    color: #fff;
 }
 
 #mapKey h3 {
+    font-size: 1.2em;
     margin-bottom: 10px;
+    color: #ddd;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .key-item {
@@ -443,36 +488,29 @@ nav ul li a {
     margin-bottom: 5px;
 }
 
-.key-color {
-    width: 20px;
-    height: 20px;
-    margin-right: 5px;
+.key-label {
+    color: #ccc;
+    font-size: 0.9em;
 }
 
-.key-color[data-terrain="grassland"] { background-color: green; }
-.key-color[data-terrain="forest"] { background-color: darkgreen; }
-.key-color[data-terrain="desert"] { background-color: yellow; }
-.key-color[data-terrain="mountain"] { background-color: gray; }
-.key-color[data-terrain="rock"] { background-color: darkgray; }
-.key-color[data-terrain="water"] { background-color: blue; }
-
 #mapCanvas {
-    border: 1px solid #ccc;
+    border: none;
+    background-color: #222;
 }
 
 #map-instructions {
-    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
-    border: 1px solid #ccc;
+    background-color: rgba(30, 30, 30, 0.8);
+    border: 1px solid #555;
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 10px;
-    text-align: left; /* Align text within the box */
-    color: #333; /* Dark text color */
+    text-align: left;
+    color: #ccc;
 }
 
 #map-instructions p {
     margin-bottom: 5px;
-    font-style: italic; /* Italicize the introductory text */
+    font-style: italic;
 }
 
 #map-instructions ol {
@@ -488,39 +526,37 @@ nav ul li a {
 }
 
 #dice-roller h3 {
-    margin-bottom: 15px; /* More space below heading */
-    font-size: 1.4em;   /* Larger heading */
-    color: #ffcc00; /* Gold color */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Add text shadow */
+    margin-bottom: 15px;
+    font-size: 1.4em;
+    color: #ffcc00;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 #dice-roller .input-group {
-    /* Using existing input-group styles */
-    margin-bottom: 15px; /* More space below input */
+    margin-bottom: 15px;
 }
 
 #dice-roller #sidesInput {
-    width: calc(100% - 20px); /* Adjust input width */
-    padding: 10px;        /* Add padding */
-    font-size: 1em;       /* Bigger font size */
+    width: calc(100% - 20px);
+    padding: 10px;
+    font-size: 1em;
 }
 
 #dice-roller .button-container {
     display: flex;
-    justify-content: center; /* Center the button */
-    margin-bottom: 15px; /* Add space below button */
+    justify-content: center;
+    margin-bottom: 15px;
 }
 
 #dice-roller #rollButton {
-    /* Use existing button styles */
-    padding: 10px 20px;   /* Add padding */
-    font-size: 1.1em;      /* Bigger font size */
+    padding: 10px 20px;
+    font-size: 1.1em;
 }
 
 #dice-roller #rollResult {
-    text-align: center;   /* Center the result text */
-    font-size: 1.3em;      /* Bigger font size */
-    font-weight: bold;    /* Bold result */
-    color: #fff;         /* White result */
-    min-height: 1.5em;    /* Minimum height for spacing */
+    text-align: center;
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #fff;
+    min-height: 1.5em;
 }
