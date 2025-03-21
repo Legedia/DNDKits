@@ -1,11 +1,17 @@
 const rollButton = document.getElementById('rollButton');
 const rollResult = document.getElementById('rollResult');
 const sidesInput = document.getElementById('sidesInput');
+const numDiceInput = document.getElementById('numDiceInput');
+const modifierInput = document.getElementById('modifierInput');
+const rollHistoryList = document.querySelector('#rollHistory ul');
 
 rollButton.addEventListener('click', () => {
     const sides = parseInt(sidesInput.value);
-    if (isNaN(sides) || sides < 1) {
-        alert('Please enter a valid number of sides.');
+    const numDice = parseInt(numDiceInput.value);
+    const modifier = parseInt(modifierInput.value);
+
+    if (isNaN(sides) || sides < 1 || isNaN(numDice) || numDice < 1) {
+        alert('Please enter valid numbers for sides and dice.');
         return;
     }
 
@@ -13,12 +19,44 @@ rollButton.addEventListener('click', () => {
     rollResult.textContent = "...rolling...";
     rollButton.disabled = true; // Disable button during roll
     sidesInput.disabled = true; // Disable input during roll
+    numDiceInput.disabled = true;
+    modifierInput.disabled = true;
+
 
     setTimeout(() => {
-        const result = Math.floor(Math.random() * sides) + 1;
-        rollResult.textContent = result;
+        let totalResult = 0;
+        const individualRolls = [];
+        for (let i = 0; i < numDice; i++) {
+            const roll = Math.floor(Math.random() * sides) + 1;
+            individualRolls.push(roll);
+            totalResult += roll;
+        }
+        totalResult += modifier;
+
+        let resultText = `${numDice}d${sides}`;
+        if (modifier > 0) {
+            resultText += `+${modifier}`;
+        } else if (modifier < 0) {
+            resultText += `${modifier}`;
+        }
+        resultText += `: ${totalResult}  (${individualRolls.join('+')})`; //show each die
+
+        rollResult.textContent = resultText;
         rollButton.disabled = false; // Re-enable button
         sidesInput.disabled = false; // Re-enable input
+        numDiceInput.disabled = false;
+        modifierInput.disabled = false;
+
+        // Add to roll history
+        const listItem = document.createElement('li');
+        listItem.textContent = resultText;
+        rollHistoryList.appendChild(listItem);
+
+        //keep only the last 10 rolls
+        if (rollHistoryList.children.length > 10) {
+            rollHistoryList.removeChild(rollHistoryList.firstChild);
+        }
+
     }, 1000); // Simulate rolling time (1 second)
 
     rollButton.style.backgroundColor = '#555';
@@ -143,13 +181,6 @@ document.getElementById('mapCanvas').addEventListener('click', function (event) 
     const gridX = Math.floor(x / tileSize);
     const gridY = Math.floor(y / tileSize);
 
-    // Check if mapData is initialized
-    if (!mapData || mapData.length === 0 || mapData[0].length === 0) {
-        const initialMapWidth = parseInt(document.getElementById('mapWidth').value);
-        const initialMapHeight = parseInt(document.getElementById('mapHeight').value);
-        generateMapData(initialMapWidth, initialMapHeight); // Initialize mapData
-    }
-
     updateMapTile(gridX, gridY, selectedTerrain);
 });
 
@@ -170,6 +201,9 @@ function generateMap(mapWidth, mapHeight) {
     updateColorKey(); // Update the color key after generating the map
 }
 
+function getMapDataFromCanvas(mapWidth, mapHeight) {
+    //This function is no longer needed
+}
 
 function updateMapTile(gridX, gridY, terrainType) {
     const canvas = document.getElementById('mapCanvas');
@@ -180,14 +214,14 @@ function updateMapTile(gridX, gridY, terrainType) {
 
     if (gridX >= 0 && gridX < mapWidth && gridY >= 0 && gridY < mapHeight) {
         mapData[gridY][gridX] = terrainType; // Update mapData
-        drawMap(ctx, mapData, tileSize); // Redraw the entire map.  This is the key change.
+        drawMap(ctx, mapData, tileSize); // Redraw the entire map
     }
 }
 
 function generateMapData(mapWidth, mapHeight) {
-    mapData = []; // Reset mapData
+    mapData = [] // Reset mapData
     for (let i = 0; i < mapHeight; i++) {
-        const row = [];
+        const row = []
         for (let j = 0; j < mapWidth; j++) {
             row.push('grassland'); // Populate with grassland
         }
@@ -258,4 +292,13 @@ function getTerrainColor(terrain) {
         default:
             return 'lightgray'; // Default color
     }
+}
+
+function generateMap(mapWidth, mapHeight) {
+    const canvas = document.getElementById('mapCanvas');
+    const ctx = canvas.getContext('2d');
+    const tileSize = canvas.width / mapWidth;
+
+    generateMapData(mapWidth, mapHeight); // Initialize mapData
+    drawMap(ctx, mapData, tileSize);
 }
