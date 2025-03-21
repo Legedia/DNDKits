@@ -482,3 +482,45 @@ nav ul li a {
 #map-instructions li {
     margin-bottom: 3px;
 }
+
+#dice-roller {
+    /* No changes needed here, the calculator-container styles apply */
+}
+
+#dice-roller h3 {
+    margin-bottom: 15px; /* More space below heading */
+    font-size: 1.4em;   /* Larger heading */
+    color: #ffcc00; /* Gold color */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Add text shadow */
+}
+
+#dice-roller .input-group {
+    /* Using existing input-group styles */
+    margin-bottom: 15px; /* More space below input */
+}
+
+#dice-roller #sidesInput {
+    width: calc(100% - 20px); /* Adjust input width */
+    padding: 10px;        /* Add padding */
+    font-size: 1em;       /* Bigger font size */
+}
+
+#dice-roller .button-container {
+    display: flex;
+    justify-content: center; /* Center the button */
+    margin-bottom: 15px; /* Add space below button */
+}
+
+#dice-roller #rollButton {
+    /* Use existing button styles */
+    padding: 10px 20px;   /* Add padding */
+    font-size: 1.1em;      /* Bigger font size */
+}
+
+#dice-roller #rollResult {
+    text-align: center;   /* Center the result text */
+    font-size: 1.3em;      /* Bigger font size */
+    font-weight: bold;    /* Bold result */
+    color: #fff;         /* White result */
+    min-height: 1.5em;    /* Minimum height for spacing */
+}
