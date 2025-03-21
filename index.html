@@ -16,89 +16,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
         rel="stylesheet">
-    <style>
-        #dice-roller {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            margin: 10px;
-            width: 300px;
-        }
-
-        #dice-roller label {
-            margin-top: 10px;
-            margin-bottom: 5px;
-            color: #333;
-        }
-
-        #dice-roller input,
-        #dice-roller button,
-        #dice-roller select {
-            padding: 8px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            width: 100%;
-            max-width: 200px;
-        }
-
-        #dice-roller button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        #dice-roller button:hover {
-            background-color: #0056b3;
-        }
-
-        #rollResult {
-            font-size: 24px;
-            font-weight: bold;
-            margin-top: 15px;
-            color: #333;
-        }
-
-        #rollHistory {
-            margin-top: 20px;
-            padding: 10px;
-            border: 1px solid #eee;
-            border-radius: 5px;
-            background-color: #f9f9f9;
-            max-height: 150px;
-            overflow-y: auto;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        #rollHistory h3 {
-            font-size: 18px;
-            margin-bottom: 10px;
-            color: #333;
-        }
-
-        #rollHistory ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        #rollHistory li {
-            padding: 5px 0;
-            border-bottom: 1px solid #ddd;
-            font-size: 16px;
-            color: #555;
-        }
-
-        #rollHistory li:last-child {
-            border-bottom: none;
-        }
-    </style>
 </head>
 
 <body>
@@ -118,9 +35,9 @@
                     </li>
                     <li><a href="items.html"><img src="ItemsIcon.jpg" alt="Items" class="nav-icon" title="Items"> Items</a>
                     </li>
-                    <li><a href="weapons.html"><img src="WeaponsIcon.jpg" alt="Weapons"
+                    <li><a href="weapons.html"><img src="WeaponsIcon.jpg" alt="Weapons" class="nav-icon"
                                 title="Weapons"> Weapons</a></li>
-                    <li><a href="armor.html"><img src="ArmorIcon.jpg" alt="Armor" title="Armor"> Armor</a>
+                    <li><a href="armor.html"><img src="ArmorIcon.jpg" alt="Armor" class="nav-icon" title="Armor"> Armor</a>
                     </li>
                     <li><a href="aboutus.html"><img src="AboutUsIcon.jpg" alt="About Us" class="nav-icon"
                                 title="About Us"> About Us</a></li>
@@ -154,18 +71,10 @@
             </div>
             <div id="calculator-area">
                 <div id="dice-roller" class="calculator-container">
-                    <label for="numDiceInput">Number of Dice:</label>
-                    <input type="number" id="numDiceInput" value="1" min="1">
-                    <label for="sidesInput">Number of Sides:</label>
+                    <label for="sidesInput">Enter sides:</label>
                     <input type="number" id="sidesInput" value="20" min="1">
-                    <label for="modifierInput">Modifier:</label>
-                    <input type="number" id="modifierInput" value="0">
                     <button id="rollButton">Roll Dice</button>
                     <p id="rollResult"></p>
-                    <div id="rollHistory">
-                        <h3>Roll History</h3>
-                        <ul></ul>
-                    </div>
                 </div>
                 <div id="stat-calculator" class="calculator-container">
                     <h3>Character Stat Calculator</h3>
@@ -300,10 +209,10 @@
     </section>
     <footer>
         <div class="container">
-            <p>&copy; 2025 Legedia's Homebrew Kits. All rights reserved.</p>
+            <p>&copy; 2023 D&D Homebrew Kits. All rights reserved.</p>
         </div>
     </footer>
-    <script src="script.js"></script>
+    <script src="scripts.js"></script>
 </body>
 
 </html>
