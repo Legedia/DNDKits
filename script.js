@@ -182,38 +182,31 @@ function generateMapData(mapWidth, mapHeight) {
     }
 }
 
-function drawMap(ctx, mapData, tileSize) {
-    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); // Clear the canvas
+function updateColorKey() {
+    const keyItems = document.querySelectorAll('#mapKey .key-item');
 
-    for (let y = 0; y < mapData.length; y++) {
-        for (let x = 0; x < mapData[y].length; x++) {
-            let color = 'lightgray'; // Default color
+    keyItems.forEach(item => {
+        const keyColor = item.querySelector('.key-color');
+        const terrain = keyColor.dataset.terrain;
+        keyColor.style.backgroundColor = getTerrainColor(terrain);
+    });
+}
 
-            switch (mapData[y][x]) {
-                case 'grassland':
-                    color = 'green';
-                    break;
-                case 'forest':
-                    color = 'darkgreen';
-                    break;
-                case 'desert':
-                    color = 'yellow';
-                    break;
-                case 'mountain':
-                    color = 'gray';
-                    break;
-                case 'rock':
-                    color = 'darkgray';
-                    break;
-                case 'water':
-                    color = 'blue';
-                    break;
-            }
-
-            ctx.fillStyle = color;
-            ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
-            ctx.strokeStyle = '#ccc';
-            ctx.strokeRect(x * tileSize, y * tileSize, tileSize, tileSize);
-        }
+function getTerrainColor(terrain) {
+    switch (terrain) {
+        case 'grassland':
+            return 'green';
+        case 'forest':
+            return 'darkgreen';
+        case 'desert':
+            return 'yellow';
+        case 'mountain':
+            return 'gray';
+        case 'rock':
+            return 'darkgray';
+        case 'water':
+            return 'blue';
+        default:
+            return 'lightgray'; // Default color
     }
 }
