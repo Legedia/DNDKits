@@ -255,3 +255,4 @@ function getTerrainColor(terrain) {
             return 'lightgray'; // Default color
     }
 }
+
