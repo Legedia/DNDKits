@@ -14,91 +14,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
-        rel="stylesheet">
-    <style>
-        #dice-roller {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            margin: 10px;
-            width: 300px;
-        }
-
-        #dice-roller label {
-            margin-top: 10px;
-            margin-bottom: 5px;
-            color: #333;
-        }
-
-        #dice-roller input,
-        #dice-roller button,
-        #dice-roller select {
-            padding: 8px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            width: 100%;
-            max-width: 200px;
-        }
-
-        #dice-roller button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        #dice-roller button:hover {
-            background-color: #0056b3;
-        }
-
-        #rollResult {
-            font-size: 24px;
-            font-weight: bold;
-            margin-top: 15px;
-            color: #333;
-        }
-
-        #rollHistory {
-            margin-top: 20px;
-            padding: 10px;
-            border: 1px solid #eee;
-            border-radius: 5px;
-            background-color: #f9f9f9;
-            max-height: 150px;
-            overflow-y: auto;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        #rollHistory h3 {
-            font-size: 18px;
-            margin-bottom: 10px;
-            color: #333;
-        }
-
-        #rollHistory ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        #rollHistory li {
-            padding: 5px 0;
-            border-bottom: 1px solid #ddd;
-            font-size: 16px;
-            color: #555;
-        }
-
-        #rollHistory li:last-child {
-            border-bottom: none;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -116,17 +32,19 @@
                                 class="nav-icon" title="Characters"> Characters</a></li>
                     <li><a href="npcs.html"><img src="NPCIcon.jpg" alt="NPCs" class="nav-icon" title="NPCs"> NPCs</a>
                     </li>
-                    <li><a href="items.html"><img src="ItemsIcon.jpg" alt="Items" class="nav-icon" title="Items"> Items</a>
+                    <li><a href="items.html"><img src="ItemsIcon.jpg" alt="Items" class="nav-icon" title="Items">
+                            Items</a>
                     </li>
-                    <li><a href="weapons.html"><img src="WeaponsIcon.jpg" alt="Weapons"
-                                class="nav-icon" title="Weapons"> Weapons</a></li>
+                    <li><a href="weapons.html"><img src="WeaponsIcon.jpg" alt="Weapons" class="nav-icon"
+                                title="Weapons"> Weapons</a></li>
                     <li><a href="armor.html"><img src="ArmorIcon.jpg" alt="Armor" title="Armor"> Armor</a>
                     </li>
                     <li><a href="aboutus.html"><img src="AboutUsIcon.jpg" alt="About Us" class="nav-icon"
                                 title="About Us"> About Us</a></li>
                     <li><a href="ContactUs.html"><img src="ContactUsIcon.jpg" alt="Contact" class="nav-icon"
                                 title="Contact Us"> Contact</a></li>
-                    <li><a href="Blogs.html"><img src="BlogsIcon.jpg" alt="Blog" class="nav-icon" title="Blogs"> Blog</a>
+                    <li><a href="Blogs.html"><img src="BlogsIcon.jpg" alt="Blog" class="nav-icon" title="Blogs">
+                            Blog</a>
                     </li>
                     <li><a href="cart.html"><img src="ShoppingCartIcon.jpg" alt="Cart" class="nav-icon"
                                 title="Shopping Cart"> Cart</a></li>
@@ -140,6 +58,7 @@
                 <h1>Craft Your Epic Adventures</h1>
                 <p>Handcrafted D&D Homebrew Kits for Unforgettable Campaigns.</p>
             </div>
+
             <div id="calculator-box">
                 <h2>D&D Calculators</h2>
                 <p>Select a calculator:</p>
@@ -152,7 +71,9 @@
                     <option value="map-generator">Map Generator</option>
                 </select>
             </div>
+
             <div id="calculator-area">
+
                 <div id="dice-roller" class="calculator-container">
                     <label for="numDiceInput">Number of Dice:</label>
                     <input type="number" id="numDiceInput" value="1" min="1">
@@ -167,27 +88,34 @@
                         <ul></ul>
                     </div>
                 </div>
+
                 <div id="stat-calculator" class="calculator-container">
                     <h3>Character Stat Calculator</h3>
                     <label for="str">Strength:</label>
                     <input type="number" id="str" value="10">
                     <span id="strMod"></span><br>
+
                     <label for="dex">Dexterity:</label>
                     <input type="number" id="dex" value="10">
                     <span id="dexMod"></span><br>
+
                     <label for="con">Constitution:</label>
                     <input type="number" id="con" value="10">
                     <span id="conMod"></span><br>
+
                     <label for="int">Intelligence:</label>
                     <input type="number" id="int" value="10">
                     <span id="intMod"></span><br>
+
                     <label for="wis">Wisdom:</label>
                     <input type="number" id="wis" value="10">
                     <span id="wisMod"></span><br>
+
                     <label for="cha">Charisma:</label>
                     <input type="number" id="cha" value="10">
                     <span id="chaMod"></span><br>
                 </div>
+
                 <div id="cr-calculator" class="calculator-container">
                     <h3>Challenge Rating (CR) Calculator</h3>
                     <div class="input-group">
@@ -217,6 +145,7 @@
                         <p>Offensive CR Table: <span id="offensiveTable"></span></p>
                     </div>
                 </div>
+
                 <div id="treasure-generator" class="calculator-container">
                     <h3>Treasure Generator (Coming Soon)</h3>
                     <div class="input-group">
@@ -243,6 +172,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div id="map-generator" class="calculator-container">
                     <h3>Map Generator (Beta)</h3>
                     <div class="input-group">
@@ -295,9 +225,9 @@
                         <canvas id="mapCanvas"></canvas>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div> </div>
     </section>
+
     <footer>
         <div class="container">
             <p>&copy; 2025 Legedia's Homebrew Kits. All rights reserved.</p>
