@@ -143,6 +143,13 @@ document.getElementById('mapCanvas').addEventListener('click', function (event) 
     const gridX = Math.floor(x / tileSize);
     const gridY = Math.floor(y / tileSize);
 
+     // Check if mapData is initialized
+    if (!mapData || mapData.length === 0 || mapData[0].length === 0) {
+        const initialMapWidth = parseInt(document.getElementById('mapWidth').value);
+        const initialMapHeight = parseInt(document.getElementById('mapHeight').value);
+        generateMapData(initialMapWidth, initialMapHeight); // Initialize mapData
+    }
+
     updateMapTile(gridX, gridY, selectedTerrain);
 });
 
@@ -163,9 +170,6 @@ function generateMap(mapWidth, mapHeight) {
     updateColorKey(); // Update the color key after generating the map
 }
 
-function getMapDataFromCanvas(mapWidth, mapHeight) {
-    //This function is no longer needed
-}
 
 function updateMapTile(gridX, gridY, terrainType) {
     const canvas = document.getElementById('mapCanvas');
@@ -176,14 +180,14 @@ function updateMapTile(gridX, gridY, terrainType) {
 
     if (gridX >= 0 && gridX < mapWidth && gridY >= 0 && gridY < mapHeight) {
         mapData[gridY][gridX] = terrainType; // Update mapData
-        drawMap(ctx, mapData, tileSize); // Redraw the entire map
+        drawMap(ctx, mapData, tileSize); // Redraw the entire map.  This is the key change.
     }
 }
 
 function generateMapData(mapWidth, mapHeight) {
-    mapData = [] // Reset mapData
+    mapData = []; // Reset mapData
     for (let i = 0; i < mapHeight; i++) {
-        const row = []
+        const row = [];
         for (let j = 0; j < mapWidth; j++) {
             row.push('grassland'); // Populate with grassland
         }
@@ -255,4 +259,3 @@ function getTerrainColor(terrain) {
             return 'lightgray'; // Default color
     }
 }
-
