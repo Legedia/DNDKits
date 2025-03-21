@@ -13,11 +13,15 @@ document.addEventListener('DOMContentLoaded', function() {
             container.style.display = 'none';
         });
 
-        const selectedCalculator = document.getElementById(this.value);
+        const selectedCalculatorId = this.value;  // Get the selected value
+        console.log("Selected calculator ID:", selectedCalculatorId); // Debugging log
+        const selectedCalculator = document.getElementById(selectedCalculatorId);
+
         if (selectedCalculator) {
             selectedCalculator.style.display = 'block';
         }
-        if (this.value === ""){
+
+        if (this.value === "") {
             calculatorContainers.forEach(container => {
                 container.style.display = 'none';
             });
