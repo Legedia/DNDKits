@@ -18,7 +18,7 @@
         rel="stylesheet">
     <style>
         #dice-roller {
-            display: flex;
+            display: none;
             flex-direction: column;
             align-items: center;
             padding: 20px;
@@ -98,14 +98,6 @@
         #rollHistory li:last-child {
             border-bottom: none;
         }
-
-        #diceColor {
-            margin-top: 10px;
-        }
-
-        #diceColor label {
-            margin-right: 5px;
-        }
     </style>
 </head>
 
@@ -126,9 +118,9 @@
                     </li>
                     <li><a href="items.html"><img src="ItemsIcon.jpg" alt="Items" class="nav-icon" title="Items"> Items</a>
                     </li>
-                    <li><a href="weapons.html"><img src="WeaponsIcon.jpg" alt="Weapons" class="nav-icon"
+                    <li><a href="weapons.html"><img src="WeaponsIcon.jpg" alt="Weapons"
                                 title="Weapons"> Weapons</a></li>
-                    <li><a href="armor.html"><img src="ArmorIcon.jpg" alt="Armor" class="nav-icon" title="Armor"> Armor</a>
+                    <li><a href="armor.html"><img src="ArmorIcon.jpg" alt="Armor" title="Armor"> Armor</a>
                     </li>
                     <li><a href="aboutus.html"><img src="AboutUsIcon.jpg" alt="About Us" class="nav-icon"
                                 title="About Us"> About Us</a></li>
@@ -168,16 +160,6 @@
                     <input type="number" id="sidesInput" value="20" min="1">
                     <label for="modifierInput">Modifier:</label>
                     <input type="number" id="modifierInput" value="0">
-                    <label for="advantageInput">Advantage/Disadvantage:</label>
-                    <select id="advantageInput">
-                        <option value="normal">Normal</option>
-                        <option value="advantage">Advantage</option>
-                        <option value="disadvantage">Disadvantage</option>
-                    </select>
-                    <div id="diceColor">
-                        <label for="diceColorInput">Dice Color:</label>
-                        <input type="color" id="diceColorInput" value="#007bff">
-                    </div>
                     <button id="rollButton">Roll Dice</button>
                     <p id="rollResult"></p>
                     <div id="rollHistory">

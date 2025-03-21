@@ -4,15 +4,17 @@ const sidesInput = document.getElementById('sidesInput');
 const numDiceInput = document.getElementById('numDiceInput');
 const modifierInput = document.getElementById('modifierInput');
 const rollHistoryList = document.querySelector('#rollHistory ul');
-const advantageInput = document.getElementById('advantageInput');
-const diceColorInput = document.getElementById('diceColorInput');
+// Removed: advantageInput and diceColorInput are not in the provided HTML.
+// const advantageInput = document.getElementById('advantageInput');
+// const diceColorInput = document.getElementById('diceColorInput');
 
 rollButton.addEventListener('click', () => {
     const sides = parseInt(sidesInput.value);
     const numDice = parseInt(numDiceInput.value);
     const modifier = parseInt(modifierInput.value);
-    const advantage = advantageInput.value;
-    const diceColor = diceColorInput.value;
+    // Removed: advantage and diceColor are not used if the inputs are missing.
+    // const advantage = advantageInput.value;
+    // const diceColor = diceColorInput.value;
 
     if (isNaN(sides) || sides < 1 || isNaN(numDice) || numDice < 1) {
         alert('Please enter valid numbers for sides and dice.');
@@ -25,8 +27,9 @@ rollButton.addEventListener('click', () => {
     sidesInput.disabled = true; // Disable input during roll
     numDiceInput.disabled = true;
     modifierInput.disabled = true;
-    advantageInput.disabled = true;
-    diceColorInput.disabled = true;
+    // Removed: Disable inputs that don't exist.
+    // advantageInput.disabled = true;
+    // diceColorInput.disabled = true;
 
 
     setTimeout(() => {
@@ -44,35 +47,8 @@ rollButton.addEventListener('click', () => {
         }
 
         let displayRolls = [...rolls]; //copy rolls array
-        if (advantage === 'advantage') {
-            let rolls2 = [];
-            for (let i = 0; i < numDice; i++) {
-                rolls2.push(Math.floor(Math.random() * sides) + 1);
-            }
-            let totalResult2 = rolls2.reduce((sum, roll) => sum + roll, 0) + modifier;
-            if (totalResult2 > totalResult) {
-                totalResult = totalResult2;
-                displayRolls = [...rolls2];
-                resultText += ` (Advantage: ${rolls.join('+')} vs ${rolls2.join('+')})`;
-            }
-            else {
-                resultText += ` (Advantage: ${rolls2.join('+')} vs ${rolls.join('+')})`;
-            }
-        } else if (advantage === 'disadvantage') {
-            let rolls2 = [];
-            for (let i = 0; i < numDice; i++) {
-                rolls2.push(Math.floor(Math.random() * sides) + 1);
-            }
-            let totalResult2 = rolls2.reduce((sum, roll) => sum + roll, 0) + modifier;
-            if (totalResult2 < totalResult) {
-                totalResult = totalResult2;
-                displayRolls = [...rolls2];
-                resultText += ` (Disadvantage: ${rolls.join('+')} vs ${rolls2.join('+')})`;
-            }
-            else {
-                resultText += ` (Disadvantage: ${rolls2.join('+')} vs ${rolls.join('+')})`;
-            }
-        }
+
+        // Removed: Advantage/Disadvantage logic, as it depends on removed inputs.
 
         let isCritical = false;
         let isFumble = false;
@@ -86,15 +62,16 @@ rollButton.addEventListener('click', () => {
             }
         }
 
-        resultText += `: <span style="color:${diceColor}">${totalResult}</span>  (${displayRolls.join('+')})`; //show each die
-
+        // Removed diceColor: resultText += `: <span style="color:${diceColor}">${totalResult}</span>  (${displayRolls.join('+')})`; //show each die
+        resultText += `: <span>${totalResult}</span>  (${displayRolls.join('+')})`; //show each die, no color
         rollResult.innerHTML = resultText;
         rollButton.disabled = false; // Re-enable button
         sidesInput.disabled = false; // Re-enable input
         numDiceInput.disabled = false;
         modifierInput.disabled = false;
-        advantageInput.disabled = false;
-        diceColorInput.disabled = false;
+        // Removed: Re-enable inputs that don't exist.
+        // advantageInput.disabled = false;
+        // diceColorInput.disabled = false;
 
         // Add to roll history
         const listItem = document.createElement('li');
@@ -130,14 +107,40 @@ stats.forEach(stat => {
 const calculatorSelect = document.getElementById('calculator-select');
 const calculators = document.querySelectorAll('.calculator-container');
 
+// --- IMPROVED CALCULATOR DISPLAY LOGIC ---
+
+function initializeCalculators() {
+    // 1. Hide all calculators initially.
+    calculators.forEach(calc => {
+        calc.style.display = 'none';
+    });
+
+    // 2. Check the currently selected value in the dropdown.
+    const selectedCalculatorId = calculatorSelect.value;
+
+    // 3. If a calculator IS selected (e.g., from a previous state), show it.
+    if (selectedCalculatorId) {
+        const selectedCalculator = document.getElementById(selectedCalculatorId);
+         if (selectedCalculator) { //added this null check to avoid an error
+            selectedCalculator.style.display = 'flex'; // Use 'flex', as defined in your inline styles.
+        }
+    }
+}
+
+// Call the initialization function when the page loads.
+initializeCalculators();
+
+// Keep the existing 'change' event listener, but modify it to use 'flex'.
 calculatorSelect.addEventListener('change', () => {
     const selectedCalculatorId = calculatorSelect.value;
+
     calculators.forEach(calc => {
         calc.style.display = 'none';
     });
 
     if (selectedCalculatorId) {
-        document.getElementById(selectedCalculatorId).style.display = 'block';
+        // Use 'flex' here to match the inline style and initial state.
+        document.getElementById(selectedCalculatorId).style.display = 'flex';
 
         if (selectedCalculatorId === "map-generator") {
             document.getElementById(selectedCalculatorId).addEventListener('click', function (event) {
@@ -146,6 +149,9 @@ calculatorSelect.addEventListener('change', () => {
         }
     }
 });
+
+// --- END OF IMPROVED CALCULATOR DISPLAY LOGIC ---
+
 
 document.getElementById('calculateCR').addEventListener('click', function () {
     const hp = parseInt(document.getElementById('hp').value);
