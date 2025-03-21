@@ -4,11 +4,15 @@ const sidesInput = document.getElementById('sidesInput');
 const numDiceInput = document.getElementById('numDiceInput');
 const modifierInput = document.getElementById('modifierInput');
 const rollHistoryList = document.querySelector('#rollHistory ul');
+const advantageInput = document.getElementById('advantageInput');
+const diceColorInput = document.getElementById('diceColorInput');
 
 rollButton.addEventListener('click', () => {
     const sides = parseInt(sidesInput.value);
     const numDice = parseInt(numDiceInput.value);
     const modifier = parseInt(modifierInput.value);
+    const advantage = advantageInput.value;
+    const diceColor = diceColorInput.value;
 
     if (isNaN(sides) || sides < 1 || isNaN(numDice) || numDice < 1) {
         alert('Please enter valid numbers for sides and dice.');
@@ -21,35 +25,80 @@ rollButton.addEventListener('click', () => {
     sidesInput.disabled = true; // Disable input during roll
     numDiceInput.disabled = true;
     modifierInput.disabled = true;
+    advantageInput.disabled = true;
+    diceColorInput.disabled = true;
 
 
     setTimeout(() => {
-        let totalResult = 0;
-        const individualRolls = [];
+        let rolls = [];
         for (let i = 0; i < numDice; i++) {
-            const roll = Math.floor(Math.random() * sides) + 1;
-            individualRolls.push(roll);
-            totalResult += roll;
+            rolls.push(Math.floor(Math.random() * sides) + 1);
         }
-        totalResult += modifier;
 
+        let totalResult = rolls.reduce((sum, roll) => sum + roll, 0) + modifier;
         let resultText = `${numDice}d${sides}`;
         if (modifier > 0) {
             resultText += `+${modifier}`;
         } else if (modifier < 0) {
             resultText += `${modifier}`;
         }
-        resultText += `: ${totalResult}  (${individualRolls.join('+')})`; //show each die
 
-        rollResult.textContent = resultText;
+        let displayRolls = [...rolls]; //copy rolls array
+        if (advantage === 'advantage') {
+            let rolls2 = [];
+            for (let i = 0; i < numDice; i++) {
+                rolls2.push(Math.floor(Math.random() * sides) + 1);
+            }
+            let totalResult2 = rolls2.reduce((sum, roll) => sum + roll, 0) + modifier;
+            if (totalResult2 > totalResult) {
+                totalResult = totalResult2;
+                displayRolls = [...rolls2];
+                resultText += ` (Advantage: ${rolls.join('+')} vs ${rolls2.join('+')})`;
+            }
+            else {
+                resultText += ` (Advantage: ${rolls2.join('+')} vs ${rolls.join('+')})`;
+            }
+        } else if (advantage === 'disadvantage') {
+            let rolls2 = [];
+            for (let i = 0; i < numDice; i++) {
+                rolls2.push(Math.floor(Math.random() * sides) + 1);
+            }
+            let totalResult2 = rolls2.reduce((sum, roll) => sum + roll, 0) + modifier;
+            if (totalResult2 < totalResult) {
+                totalResult = totalResult2;
+                displayRolls = [...rolls2];
+                resultText += ` (Disadvantage: ${rolls.join('+')} vs ${rolls2.join('+')})`;
+            }
+            else {
+                resultText += ` (Disadvantage: ${rolls2.join('+')} vs ${rolls.join('+')})`;
+            }
+        }
+
+        let isCritical = false;
+        let isFumble = false;
+        if (numDice === 1) {
+            if (rolls[0] === sides) {
+                isCritical = true;
+                resultText += " - Critical Hit!";
+            } else if (rolls[0] === 1) {
+                isFumble = true;
+                resultText += " - Critical Miss!";
+            }
+        }
+
+        resultText += `: <span style="color:${diceColor}">${totalResult}</span>  (${displayRolls.join('+')})`; //show each die
+
+        rollResult.innerHTML = resultText;
         rollButton.disabled = false; // Re-enable button
         sidesInput.disabled = false; // Re-enable input
         numDiceInput.disabled = false;
         modifierInput.disabled = false;
+        advantageInput.disabled = false;
+        diceColorInput.disabled = false;
 
         // Add to roll history
         const listItem = document.createElement('li');
-        listItem.textContent = resultText;
+        listItem.innerHTML = resultText;
         rollHistoryList.appendChild(listItem);
 
         //keep only the last 10 rolls
@@ -223,19 +272,21 @@ function generateMapData(mapWidth, mapHeight) {
     for (let i = 0; i < mapHeight; i++) {
         const row = []
         for (let j = 0; j < mapWidth; j++) {
-            row.push('grassland'); // Populate with grassland
+            row.push('grassland'); // Default terrain
         }
         mapData.push(row);
     }
 }
 
 function drawMap(ctx, mapData, tileSize) {
-    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); // Clear the canvas
+    const mapWidth = mapData[0].length;
+    const mapHeight = mapData.length;
 
-    for (let y = 0; y < mapData.length; y++) {
-        for (let x = 0; x < mapData[y].length; x++) {
-            let color = 'lightgray'; // Default color
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); // Clear canvas
 
+    for (let y = 0; y < mapHeight; y++) {
+        for (let x = 0; x < mapWidth; x++) {
+            let color;
             switch (mapData[y][x]) {
                 case 'grassland':
                     color = 'green';
@@ -292,13 +343,4 @@ function getTerrainColor(terrain) {
         default:
             return 'lightgray'; // Default color
     }
-}
-
-function generateMap(mapWidth, mapHeight) {
-    const canvas = document.getElementById('mapCanvas');
-    const ctx = canvas.getContext('2d');
-    const tileSize = canvas.width / mapWidth;
-
-    generateMapData(mapWidth, mapHeight); // Initialize mapData
-    drawMap(ctx, mapData, tileSize);
 }
