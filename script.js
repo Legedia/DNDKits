@@ -1,267 +1,148 @@
-const rollButton = document.getElementById('rollButton');
-const rollResult = document.getElementById('rollResult');
-const sidesInput = document.getElementById('sidesInput');
+document.addEventListener('DOMContentLoaded', function() {
+    // Calculator functionality
+    const calculatorSelect = document.getElementById('calculator-select');
+    const calculatorContainers = document.querySelectorAll('.calculator-container');
 
-rollButton.addEventListener('click', () => {
-    const sides = parseInt(sidesInput.value);
-    if (isNaN(sides) || sides < 1) {
-        alert('Please enter a valid number of sides.');
-        return;
+    calculatorSelect.addEventListener('change', function() {
+        calculatorContainers.forEach(container => {
+            container.style.display = 'none';
+        });
+
+        const selectedCalculator = document.getElementById(this.value);
+        if (selectedCalculator) {
+            selectedCalculator.style.display = 'block';
+        }
+    });
+
+    // Dice Roller
+    const rollButton = document.getElementById('rollButton');
+    if (rollButton) {
+        rollButton.addEventListener('click', function() {
+            const sides = parseInt(document.getElementById('sidesInput').value);
+            const result = Math.floor(Math.random() * sides) + 1;
+            document.getElementById('rollResult').textContent = `You rolled a ${result}`;
+        });
     }
 
-    // Add dice roll animation
-    rollResult.textContent = "...rolling...";
-    rollButton.disabled = true; // Disable button during roll
-    sidesInput.disabled = true; // Disable input during roll
+    // Character Stat Calculator
+    const statCalculator = document.getElementById('stat-calculator');
+    if (statCalculator) {
+        const stats = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
+        stats.forEach(stat => {
+            document.getElementById(stat).addEventListener('input', function() {
+                const score = parseInt(this.value);
+                const modifier = Math.floor((score - 10) / 2);
+                document.getElementById(`${stat}Mod`).textContent = `(${modifier >= 0 ? '+' : ''}${modifier})`;
+            });
+            //initialize the values.
+            const initialScore = parseInt(document.getElementById(stat).value);
+            const initialModifier = Math.floor((initialScore - 10) / 2);
+            document.getElementById(`${stat}Mod`).textContent = `(${initialModifier >= 0 ? '+' : ''}${initialModifier})`;
+        });
+    }
 
-    setTimeout(() => {
-        const result = Math.floor(Math.random() * sides) + 1;
-        rollResult.textContent = result;
-        rollButton.disabled = false; // Re-enable button
-        sidesInput.disabled = false; // Re-enable input
-    }, 1000); // Simulate rolling time (1 second)
+    // Challenge Rating (CR) Calculator
+    const calculateCRButton = document.getElementById('calculateCR');
+    if (calculateCRButton) {
+        calculateCRButton.addEventListener('click', function() {
+            const hp = parseInt(document.getElementById('hp').value);
+            const ac = parseInt(document.getElementById('ac').value);
+            const dpr = parseInt(document.getElementById('dpr').value);
+            const attackBonus = parseInt(document.getElementById('attackBonus').value);
+            const saveDC = parseInt(document.getElementById('saveDC').value);
 
-    rollButton.style.backgroundColor = '#555';
-    setTimeout(() => {
-        rollButton.style.backgroundColor = '#007bff';
-    }, 200);
-});
+            // Placeholder logic for CR calculation (replace with actual D&D CR logic)
+            const defensiveCR = Math.round(hp / 25) + Math.round((ac - 10) / 2); // Example placeholder
+            const offensiveCR = Math.round(dpr / 5) + Math.round((attackBonus - 3) / 2) + Math.round((saveDC - 13) / 2); // Example placeholder
+            const finalCR = Math.round((defensiveCR + offensiveCR) / 2);
 
-const stats = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
+            document.getElementById('defensiveTable').textContent = defensiveCR;
+            document.getElementById('offensiveTable').textContent = offensiveCR;
+            document.getElementById('finalCR').textContent = finalCR;
+        });
+    }
 
-stats.forEach(stat => {
-    const input = document.getElementById(stat);
-    const mod = document.getElementById(stat + 'Mod');
+    // Treasure Generator (Placeholder)
+    const generateTreasureButton = document.getElementById('generateTreasure');
+    if (generateTreasureButton) {
+        generateTreasureButton.addEventListener('click', function() {
+            const partyLevel = parseInt(document.getElementById('partyLevel').value);
+            const encounterCR = parseInt(document.getElementById('encounterCR').value);
+            const location = document.getElementById('location').value;
 
-    input.addEventListener('input', () => {
-        const score = parseInt(input.value);
-        const modifier = Math.floor((score - 10) / 2);
-        mod.textContent = `(${modifier >= 0 ? '+' : ''}${modifier})`;
-    });
-});
+            // Placeholder treasure generation logic
+            const treasure = [`${location} treasure: ${partyLevel} gold, ${encounterCR} gems`];
+            const treasureList = document.getElementById('treasureList');
+            treasureList.innerHTML = ''; // Clear previous results
+            treasure.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                treasureList.appendChild(li);
+            });
+        });
+    }
 
-const calculatorSelect = document.getElementById('calculator-select');
-const calculators = document.querySelectorAll('.calculator-container');
+    // Map Generator
+    const generateMapButton = document.getElementById('generateMap');
+    if (generateMapButton) {
+        generateMapButton.addEventListener('click', function() {
+            const width = parseInt(document.getElementById('mapWidth').value);
+            const height = parseInt(document.getElementById('mapHeight').value);
+            const canvas = document.getElementById('mapCanvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = width * 20; // Example tile size: 20px
+            canvas.height = height * 20;
 
-calculatorSelect.addEventListener('change', () => {
-    const selectedCalculatorId = calculatorSelect.value;
-    calculators.forEach(calc => {
-        calc.style.display = 'none';
-    });
+            // Simple random terrain generation
+            for (let x = 0; x < width; x++) {
+                for (let y = 0; y < height; y++) {
+                    const terrainType = ['grassland', 'forest', 'desert', 'mountain', 'rock', 'water'][Math.floor(Math.random() * 6)];
+                    const color = getTerrainColor(terrainType);
+                    ctx.fillStyle = color;
+                    ctx.fillRect(x * 20, y * 20, 20, 20);
+                }
+            }
+        });
+    }
 
-    if (selectedCalculatorId) {
-        document.getElementById(selectedCalculatorId).style.display = 'block';
+    // Terrain Palette Interaction
+    const terrainPalette = document.getElementById('terrainPalette');
+    if (terrainPalette) {
+        let selectedTerrain = 'grassland'; // Default terrain
 
-        if (selectedCalculatorId === "map-generator") {
-            document.getElementById(selectedCalculatorId).addEventListener('click', function (event) {
-                event.stopPropagation();
+        terrainPalette.addEventListener('click', function(event) {
+            if (event.target.tagName === 'BUTTON') {
+                selectedTerrain = event.target.dataset.terrain;
+                console.log(`Selected terrain: ${selectedTerrain}`);
+            }
+        });
+
+        // Map Canvas Interaction
+        const mapCanvas = document.getElementById('mapCanvas');
+        if (mapCanvas) {
+            mapCanvas.addEventListener('click', function(event) {
+                const rect = mapCanvas.getBoundingClientRect();
+                const x = event.clientX - rect.left;
+                const y = event.clientY - rect.top;
+                const tileX = Math.floor(x / 20); // Tile size: 20px
+                const tileY = Math.floor(y / 20);
+                const ctx = mapCanvas.getContext('2d');
+                ctx.fillStyle = getTerrainColor(selectedTerrain);
+                ctx.fillRect(tileX * 20, tileY * 20, 20, 20);
             });
         }
     }
-});
 
-document.getElementById('calculateCR').addEventListener('click', function () {
-    const hp = parseInt(document.getElementById('hp').value);
-    const ac = parseInt(document.getElementById('ac').value);
-    const dpr = parseInt(document.getElementById('dpr').value);
-    const attackBonus = parseInt(document.getElementById('attackBonus').value);
-    const saveDC = parseInt(document.getElementById('saveDC').value);
-
-    const defensiveCR = calculateDefensiveCR(hp, ac);
-    const offensiveCR = calculateOffensiveCR(dpr, attackBonus, saveDC);
-    const finalCR = (defensiveCR + offensiveCR) / 2;
-
-    document.getElementById('defensiveTable').textContent = getDefensiveTable();
-    document.getElementById('offensiveTable').textContent = getOffensiveTable();
-    document.getElementById('finalCR').textContent = finalCR;
-
-    document.getElementById('crTables').style.display = 'block';
-});
-
-document.getElementById('generateTreasure').addEventListener('click', function () {
-    const partyLevel = parseInt(document.getElementById('partyLevel').value);
-    const encounterCR = parseInt(document.getElementById('encounterCR').value);
-    const location = document.getElementById('location').value;
-
-    const treasure = generateTreasure(partyLevel, encounterCR, location);
-
-    const treasureList = document.getElementById('treasureList');
-    treasureList.innerHTML = '';
-    treasure.forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = item;
-        treasureList.appendChild(li);
-    });
-});
-
-function calculateDefensiveCR(hp, ac) {
-    return "Defensive CR Calculated";
-}
-
-function calculateOffensiveCR(dpr, attackBonus, saveDC) {
-    return "Offensive CR Calculated";
-}
-
-function generateTreasure(partyLevel, encounterCR, location) {
-    return ["Treasure Item 1", "Treasure Item 2"];
-}
-
-function getDefensiveTable() {
-    return "Defensive Table Data";
-}
-
-function getOffensiveTable() {
-    return "Offensive Table Data";
-}
-
-// --- Map Generator JavaScript Code ---
-
-let selectedTerrain = 'grassland';
-let mapData = [] // Declare mapData as a global variable
-
-// Add event listeners to terrain palette buttons
-document.querySelectorAll('#terrainPalette button').forEach(button => {
-    button.addEventListener('click', function () {
-        selectedTerrain = this.dataset.terrain;
-
-        // Add 'selected' class to the clicked button and remove it from others
-        document.querySelectorAll('#terrainPalette button').forEach(btn => {
-            btn.classList.remove('selected');
-        });
-        this.classList.add('selected');
-    });
-});
-
-document.getElementById('mapCanvas').addEventListener('click', function (event) {
-    const canvas = document.getElementById('mapCanvas');
-    const rect = canvas.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
-    const mapWidth = parseInt(document.getElementById('mapWidth').value);
-    const mapHeight = parseInt(document.getElementById('mapHeight').value);
-    const tileSize = canvas.width / mapWidth;
-    const gridX = Math.floor(x / tileSize);
-    const gridY = Math.floor(y / tileSize);
-
-    updateMapTile(gridX, gridY, selectedTerrain);
-});
-
-// --- Add Event Listener for Generate Map Button ---
-document.getElementById('generateMap').addEventListener('click', function () {
-    const mapWidth = parseInt(document.getElementById('mapWidth').value);
-    const mapHeight = parseInt(document.getElementById('mapHeight').value);
-    generateMap(mapWidth, mapHeight);
-});
-
-function generateMap(mapWidth, mapHeight) {
-    const canvas = document.getElementById('mapCanvas');
-    const ctx = canvas.getContext('2d');
-    const tileSize = canvas.width / mapWidth;
-
-    generateMapData(mapWidth, mapHeight); // Initialize mapData
-    drawMap(ctx, mapData, tileSize);
-    updateColorKey(); // Update the color key after generating the map
-}
-
-function getMapDataFromCanvas(mapWidth, mapHeight) {
-    //This function is no longer needed
-}
-
-function updateMapTile(gridX, gridY, terrainType) {
-    const canvas = document.getElementById('mapCanvas');
-    const ctx = canvas.getContext('2d');
-    const mapWidth = parseInt(document.getElementById('mapWidth').value);
-    const mapHeight = parseInt(document.getElementById('mapHeight').value);
-    const tileSize = canvas.width / mapWidth;
-
-    if (gridX >= 0 && gridX < mapWidth && gridY >= 0 && gridY < mapHeight) {
-        mapData[gridY][gridX] = terrainType; // Update mapData
-        drawMap(ctx, mapData, tileSize); // Redraw the entire map
-    }
-}
-
-function generateMapData(mapWidth, mapHeight) {
-    mapData = [] // Reset mapData
-    for (let i = 0; i < mapHeight; i++) {
-        const row = []
-        for (let j = 0; j < mapWidth; j++) {
-            row.push('grassland'); // Populate with grassland
-        }
-        mapData.push(row);
-    }
-}
-
-function drawMap(ctx, mapData, tileSize) {
-    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); // Clear the canvas
-
-    for (let y = 0; y < mapData.length; y++) {
-        for (let x = 0; x < mapData[y].length; x++) {
-            let color = 'lightgray'; // Default color
-
-            switch (mapData[y][x]) {
-                case 'grassland':
-                    color = 'green';
-                    break;
-                case 'forest':
-                    color = 'darkgreen';
-                    break;
-                case 'desert':
-                    color = 'yellow';
-                    break;
-                case 'mountain':
-                    color = 'gray';
-                    break;
-                case 'rock':
-                    color = 'darkgray';
-                    break;
-                case 'water':
-                    color = 'blue';
-                    break;
-            }
-
-            ctx.fillStyle = color;
-            ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
-            ctx.strokeStyle = '#ccc';
-            ctx.strokeRect(x * tileSize, y * tileSize, tileSize, tileSize);
+    // Helper function to get terrain color
+    function getTerrainColor(terrain) {
+        switch (terrain) {
+            case 'grassland': return 'green';
+            case 'forest': return 'darkgreen';
+            case 'desert': return 'yellow';
+            case 'mountain': return 'gray';
+            case 'rock': return 'darkgray';
+            case 'water': return 'blue';
+            default: return 'white';
         }
     }
-}
-
-function updateColorKey() {
-    const keyItems = document.querySelectorAll('#mapKey .key-item');
-
-    keyItems.forEach(item => {
-        const keyColor = item.querySelector('.key-color');
-        const terrain = keyColor.dataset.terrain;
-        keyColor.style.backgroundColor = getTerrainColor(terrain);
-    });
-}
-
-function getTerrainColor(terrain) {
-    switch (terrain) {
-        case 'grassland':
-            return 'green';
-        case 'forest':
-            return 'darkgreen';
-        case 'desert':
-            return 'yellow';
-        case 'mountain':
-            return 'gray';
-        case 'rock':
-            return 'darkgray';
-        case 'water':
-            return 'blue';
-        default:
-            return 'lightgray'; // Default color
-    }
-}
-
-function generateMap(mapWidth, mapHeight) {
-    const canvas = document.getElementById('mapCanvas');
-    const ctx = canvas.getContext('2d');
-    const tileSize = canvas.width / mapWidth;
-
-    generateMapData(mapWidth, mapHeight); // Initialize mapData
-    drawMap(ctx, mapData, tileSize);
-}
-
+});
