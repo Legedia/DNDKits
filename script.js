@@ -1,5 +1,3 @@
-// --- General Calculator JavaScript Code ---
-
 const rollButton = document.getElementById('rollButton');
 const rollResult = document.getElementById('rollResult');
 const sidesInput = document.getElementById('sidesInput');
@@ -10,8 +8,19 @@ rollButton.addEventListener('click', () => {
         alert('Please enter a valid number of sides.');
         return;
     }
-    const result = Math.floor(Math.random() * sides) + 1;
-    rollResult.textContent = `You rolled: ${result}`;
+
+    // Add dice roll animation
+    rollResult.textContent = "...rolling...";
+    rollButton.disabled = true; // Disable button during roll
+    sidesInput.disabled = true; // Disable input during roll
+
+    setTimeout(() => {
+        const result = Math.floor(Math.random() * sides) + 1;
+        rollResult.textContent = result;
+        rollButton.disabled = false; // Re-enable button
+        sidesInput.disabled = false; // Re-enable input
+    }, 1000); // Simulate rolling time (1 second)
+
     rollButton.style.backgroundColor = '#555';
     setTimeout(() => {
         rollButton.style.backgroundColor = '#007bff';
@@ -108,7 +117,7 @@ function getOffensiveTable() {
 // --- Map Generator JavaScript Code ---
 
 let selectedTerrain = 'grassland';
-let mapData =// Declare mapData as a global variable
+let mapData = [] // Declare mapData as a global variable
 
 // Add event listeners to terrain palette buttons
 document.querySelectorAll('#terrainPalette button').forEach(button => {
@@ -172,13 +181,49 @@ function updateMapTile(gridX, gridY, terrainType) {
 }
 
 function generateMapData(mapWidth, mapHeight) {
-    mapData =// Reset mapData
+    mapData = [] // Reset mapData
     for (let i = 0; i < mapHeight; i++) {
-        const row =
+        const row = []
         for (let j = 0; j < mapWidth; j++) {
             row.push('grassland'); // Populate with grassland
         }
         mapData.push(row);
+    }
+}
+
+function drawMap(ctx, mapData, tileSize) {
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); // Clear the canvas
+
+    for (let y = 0; y < mapData.length; y++) {
+        for (let x = 0; x < mapData[y].length; x++) {
+            let color = 'lightgray'; // Default color
+
+            switch (mapData[y][x]) {
+                case 'grassland':
+                    color = 'green';
+                    break;
+                case 'forest':
+                    color = 'darkgreen';
+                    break;
+                case 'desert':
+                    color = 'yellow';
+                    break;
+                case 'mountain':
+                    color = 'gray';
+                    break;
+                case 'rock':
+                    color = 'darkgray';
+                    break;
+                case 'water':
+                    color = 'blue';
+                    break;
+            }
+
+            ctx.fillStyle = color;
+            ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
+            ctx.strokeStyle = '#ccc';
+            ctx.strokeRect(x * tileSize, y * tileSize, tileSize, tileSize);
+        }
     }
 }
 
