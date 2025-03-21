@@ -444,3 +444,26 @@ nav ul li a {
 #mapCanvas {
     border: 1px solid #ccc;
 }
+
+#map-instructions {
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    text-align: left; /* Align text within the box */
+    color: #333; /* Dark text color */
+}
+
+#map-instructions p {
+    margin-bottom: 5px;
+    font-style: italic; /* Italicize the introductory text */
+}
+
+#map-instructions ol {
+    margin-left: 20px;
+}
+
+#map-instructions li {
+    margin-bottom: 3px;
+}
