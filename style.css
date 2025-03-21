@@ -317,18 +317,30 @@ a:hover {
 }
 
 /* --- End Dice Roller Styles --- */
-
-
+/* --- Select --- */
 #calculator-box {
-    position: absolute;
-    top: 80px; /* Adjust as needed */
-    left: 20px; /* Adjust as needed */
-    border: 2px solid #ccc;
-    padding: 10px; /* Reduced padding */
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    z-index: 10; /* Ensure it's above other elements */
+	position: absolute;
+	top: 80px;
+	left: 20px;
+	border: 2px solid #ccc;
+	padding: 10px;
+	background-color: rgba(255, 255, 255, 0.1);
+	border-radius: 10px;
+	z-index: 10;
 }
+
+#calculator-select {
+	padding: 5px 10px;
+	font-size: 1em;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	margin-bottom: 10px;
+	width: 100%;
+	position: relative;
+	z-index: 10;
+}
+
+/* --- End Select --- */
 
 #calculator-box h2 {
     margin-bottom: 10px;
@@ -367,16 +379,7 @@ a:hover {
     color: white;
 }
 
-#calculator-select {
-    padding: 5px 10px;
-    font-size: 1em;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    margin-bottom: 10px;
-    width: 100%;
-    position: relative;
-    z-index: 10;
-}
+
 
 /* Calculator Area Styling */
 #calculator-area {
