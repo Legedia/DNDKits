@@ -549,3 +549,18 @@
         width: 300px; /* Set a fixed width */
     }
 
+    #terrainPalette button.selected {
+        /* Option 1: Add a border */
+        border: 2px solid #4CAF50; /* Green border */
+    
+        /* Option 2: Change background color */
+        /* background-color: #4CAF50; /* Green background */
+        /* color: white; /* Ensure text is visible */
+    
+        /* Option 3: Add an outline */
+        /* outline: 2px solid #4CAF50; */
+    
+        /* Option 4: Add a box shadow */
+        /* box-shadow: 0 0 5px #4CAF50; */
+    }
+
