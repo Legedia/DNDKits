@@ -143,7 +143,7 @@ document.getElementById('mapCanvas').addEventListener('click', function (event) 
     const gridX = Math.floor(x / tileSize);
     const gridY = Math.floor(y / tileSize);
 
-     // Check if mapData is initialized
+    // Check if mapData is initialized
     if (!mapData || mapData.length === 0 || mapData[0].length === 0) {
         const initialMapWidth = parseInt(document.getElementById('mapWidth').value);
         const initialMapHeight = parseInt(document.getElementById('mapHeight').value);
