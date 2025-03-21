@@ -77,10 +77,23 @@
                 <div id="dice-roller" class="calculator-container">
                     <label for="numDiceInput">Number of Dice:</label>
                     <input type="number" id="numDiceInput" value="1" min="1">
+
                     <label for="sidesInput">Number of Sides:</label>
                     <input type="number" id="sidesInput" value="20" min="1">
+
                     <label for="modifierInput">Modifier:</label>
                     <input type="number" id="modifierInput" value="0">
+
+                    <label for="advantageInput">Advantage/Disadvantage:</label>
+                    <select id="advantageInput">
+                        <option value="normal">Normal</option>
+                        <option value="advantage">Advantage</option>
+                        <option value="disadvantage">Disadvantage</option>
+                    </select>
+
+                    <label for="diceColorInput">Dice Color:</label>
+                    <input type="color" id="diceColorInput" value="#ff0000">
+
                     <button id="rollButton">Roll Dice</button>
                     <p id="rollResult"></p>
                     <div id="rollHistory">
