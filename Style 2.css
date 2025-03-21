@@ -1,0 +1,566 @@
+/* Reset some default styles */
+body, h1, h2, h3, p, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: white;
+    background-image: url('test.jpg'); /* Or your actual image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh; /* Ensure full height */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header {
+    background-color: transparent; /*changed to transparent */
+    padding: 10px 0;
+}
+
+header .container {
+    display: flex;
+    justify-content: center; /*center horizontally */
+    align-items: center;
+    flex-direction: column; /* stack logo and nav vertically */
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center; /* Center navigation items */
+    text-align: center; /*Center Navigation items */
+}
+
+nav ul li .nav-icon {
+    width: 80px; /*Adjust size as needed*/
+    height: 80px; /* Adjust size as needed*/
+    margin-bottom: 5px; /*Space between icon and text */
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.7)  ) brightness(1.8); /* Added shadow to icons */
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    display: block; /* Make the link a block-level element */
+    text-align: center; /* Center the link text */
+}
+
+nav ul li {
+    display: flex; /* use flex to center the icon and text */
+        flex-direction: column;
+        align-items: center;
+        margin: 0 20px; /* Add some horizontal margin */
+}
+
+nav ul li a:hover {
+    color: red;
+}
+
+#hero {
+    text-align: center;
+    padding: 100px 0;
+    position: relative;
+}
+
+#hero h1, #hero p {
+    font-size: 3.5em;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    color: white;
+    text-shadow: 2px 2px 2px #000,
+                4px 4px 4px #222,
+                6px 6px 6px #444,
+                8px 8px 8px #666,
+                0 0 10px rgba(255, 255, 255, 0.2),
+                0 -1px 0 rgba(255, 255, 255, 0.3);
+}
+
+#hero p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+}
+
+#featured-kits {
+    padding: 50px 0;
+    text-align: center;
+}
+
+#featured-kits .kit {
+    display: inline-block;
+    width: 300px;
+    margin: 20px;
+    vertical-align: top;
+}
+
+#featured-kits .kit img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+#featured-kits .kit h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: white;
+}
+
+#featured-kits .kit p {
+    margin-bottom: 20px;
+    color: white;
+}
+
+#about-us, #contact, #blog {
+    padding: 50px 0;
+    text-align: center;
+}
+
+#blog .blog-post {
+    margin-bottom: 30px;
+}
+
+#blog .blog-post h3 {
+    margin-bottom: 10px;
+    color: white;
+}
+
+#blog .blog-post .post-date {
+    font-style: italic;
+    color: #ccc;
+}
+
+footer {
+    color: white; /* Removed background-color: #333; */
+    text-align: center;
+    padding: 20px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Product Category Pages */
+.product-category {
+    padding: 50px 0;
+    text-align: center;
+}
+
+.product {
+    display: inline-block;
+    width: 300px;
+    margin: 20px;
+    vertical-align: top;
+}
+
+.product img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+product h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: white;
+}
+
+product p {
+    margin-bottom: 20px;
+    color: white;
+}
+
+/* Blog Post Content Page */
+
+.blog-post-content {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    text-align: left;
+    color: white;
+}
+
+.blog-post-content h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.blog-post-content p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.blog-post-content ul{
+    margin-bottom: 20px;
+    padding-left: 20px;
+}
+
+a {
+    color: red;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+nav ul li a {
+    color: white;
+}
+
+#hero .hero-content {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
+}
+
+#rollButton {
+    padding: 10px 20px;
+    font-size: 1.2em;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#rollButton:hover {
+    background-color: #0056b3;
+}
+
+#rollResult {
+    font-size: 1.5em;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #ffcc00; /* Gold color */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+#sidesInput {
+    padding: 5px 10px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-right: 10px;
+}
+
+#calculator-box {
+    /* position: absolute; */
+    /* top: 80px; /* Adjust as needed */
+    /* left: 20px; /* Adjust as needed */
+    border: 2px solid #ccc;
+    padding: 10px; /* Reduced padding */
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    z-index: 10; /* Ensure it's above other elements */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+}
+
+#calculator-box h2 {
+    margin-bottom: 10px;
+    color: white;
+}
+
+#calculator-box p {
+    margin-bottom: 10px;
+    color: white;
+}
+
+#calculator-box ul {
+    margin-bottom: 10px;
+    color:white;
+    padding-left: 20px;
+}
+
+#calculator-box li {
+    margin-bottom: 5px;
+}
+
+#calculator-select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.calculator-container {
+    display: none;
+    flex-direction: column;
+    padding: 15px;
+    gap: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 20px auto;
+    width: 300px;
+}
+
+.input-group {
+    margin-bottom: 5px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-group input, .input-group select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: calc(100% - 16px); /* Adjust width for padding and border */
+}
+
+#calculateCR {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#calculateCR:hover {
+    background-color: #0056b3;
+}
+
+#crTables {
+    margin-top: 10px;
+}
+
+#treasure-generator h3 {
+    margin-bottom: 10px;
+}
+
+#treasure-result-container {
+    margin-top: 10px;
+}
+
+#treasureResults p {
+    margin-bottom: 5px;
+}
+
+#treasureList {
+    list-style: none;
+    padding-left: 0;
+}
+
+#treasureList li {
+    margin-bottom: 5px;
+}
+
+#generateTreasure {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#generateTreasure:hover {
+    background-color: #0056b3;
+}
+
+#map-generator {
+    /* Keep existing styles, but adjust */
+    display: none;
+    flex-direction: column;
+    padding: 20px;
+    border: 2px solid #555; /* Darker border */
+    background-color: rgba(50, 50, 50, 0.8); /* Darker background */
+    border-radius: 8px; /* Slightly more rounded */
+    margin: 20px auto;
+    width: 350px; /* Slightly wider */
+    gap: 12px; /* Adjusted gap */
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5); /* Add shadow */
+}
+
+#map-generator h3 {
+    /* Metallic Text */
+    font-size: 1.6em;
+    margin-bottom: 15px;
+    color: #ddd; /* Lighter text */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+    background: linear-gradient(to bottom, #aaa, #ddd);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: 'Courier New', monospace; /* Tech font */
+}
+
+#map-generator .input-group label {
+    color: #ccc; /* Lighter labels */
+    font-size: 1em;
+}
+
+#map-generator .input-group input {
+    background-color: #444;
+    color: #fff;
+    border: 1px solid #777;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+#terrainPalette {
+    margin-bottom: 15px;
+    display: flex; /* Use flexbox for layout */
+    flex-wrap: wrap; /* Allow wrapping */
+    gap: 5px; /* Space between buttons */
+    justify-content: center; /* Center buttons */
+}
+
+#terrainPalette button {
+    padding: 8px 12px;
+    border: 1px solid #666;
+    border-radius: 5px;
+    cursor: pointer;
+    background: linear-gradient(to bottom, #888, #555); /* Metallic gradient */
+    color: #fff;
+    font-weight: bold;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+    transition: transform 0.1s ease; /* Add transition */
+}
+
+#terrainPalette button:hover {
+    transform: scale(1.05); /* Slight scale-up on hover */
+}
+
+#generateMap {
+    /* Use existing button styles, but adjust colors */
+    padding: 10px 20px;
+    background: linear-gradient(to bottom, #666, #333); /* Darker gradient */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-weight: bold;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+    margin-top: 15px;
+}
+
+#generateMap:hover {
+    background: linear-gradient(to bottom, #444, #111);
+}
+
+#mapContainer {
+    margin-top: 20px;
+    display: flex;
+    border: 2px solid #555; /* Add border to container */
+    border-radius: 8px;
+    overflow: hidden; /* Clip content */
+}
+
+#mapKey {
+    width: 150px;
+    border-right: 2px solid #555; /* Add divider */
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+}
+
+#mapKey h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: #ddd;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.key-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.key-label {
+    color: #ccc;
+    font-size: 0.9em;
+}
+
+#mapCanvas {
+    border: none; /* Remove canvas border */
+    background-color: #222; /* Dark canvas background */
+}
+
+#map-instructions {
+    background-color: rgba(30, 30, 30, 0.8); /* Darker instruction background */
+    border: 1px solid #555;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    text-align: left;
+    color: #ccc; /* Lighter instruction text */
+}
+
+#map-instructions p {
+    margin-bottom: 5px;
+    font-style: italic;
+}
+
+#map-instructions ol {
+    margin-left: 20px;
+}
+
+#map-instructions li {
+    margin-bottom: 3px;
+}
+
+#dice-roller {
+    /* No changes needed here, the calculator-container styles apply */
+}
+
+#dice-roller h3 {
+    margin-bottom: 15px; /* More space below heading */
+    font-size: 1.4em;   /* Larger heading */
+    color: #ffcc00; /* Gold color */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Add text shadow */
+}
+
+#dice-roller .input-group {
+    /* Using existing input-group styles */
+    margin-bottom: 15px; /* More space below input */
+}
+
+#dice-roller #sidesInput {
+    width: calc(100% - 20px); /* Adjust input width */
+    padding: 10px;        /* Add padding */
+    font-size: 1em;       /* Bigger font size */
+}
+
+#dice-roller .button-container {
+    display: flex;
+    justify-content: center; /* Center the button */
+    margin-bottom: 15px; /* Add space below button */
+}
+
+#dice-roller #rollButton {
+    /* Use existing button styles */
+    padding: 10px 20px;   /* Add padding */
+    font-size: 1.1em;      /* Bigger font size */
+}
+
+#dice-roller #rollResult {
+    text-align: center;   /* Center the result text */
+    font-size: 1.3em;      /* Bigger font size */
+    font-weight: bold;    /* Bold result */
+    color: #fff;         /* White result */
+    min-height: 1.5em;    /* Minimum height for spacing */
+}
